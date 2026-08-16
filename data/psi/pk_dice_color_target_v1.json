@@ -1,0 +1,40 @@
+{
+  "id": "psi_pk_dice_color_target_v1",
+  "title": "PK – Dice Color Target (5-Roll Format)",
+  "target_task": "Influence a custom die to land on assigned target color as often as possible across five rolls.",
+  "session": {
+    "duration_sec": 300,
+    "phases": [
+      {
+        "name": "Pre-roll prime",
+        "duration_sec": 60,
+        "instruction": "Fix target color in mind. Rehearse the die landing with target face up."
+      },
+      {
+        "name": "5-roll run",
+        "duration_sec": 180,
+        "rolls": 5,
+        "per_roll_structure": [
+          { "label": "Focus burst", "duration_sec": 12, "cue": "Target color only." },
+          { "label": "Roll", "duration_sec": 6, "cue": "Roll consistently (same method each time)." },
+          { "label": "Freeze + lock", "duration_sec": 6, "cue": "As it settles: hold target outcome." },
+          { "label": "Release", "duration_sec": 12, "cue": "Drop intention completely (reset state)." }
+        ]
+      },
+      {
+        "name": "Post-run reset",
+        "duration_sec": 60,
+        "instruction": "No analysis spirals—log result, then detach."
+      }
+    ]
+  },
+  "logging": {
+    "record": [
+      "target_color",
+      "hits_out_of_5",
+      "roll_method_consistency_notes",
+      "fatigue_rating_1to5",
+      "focus_quality_1to5"
+    ]
+  }
+}

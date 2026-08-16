@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>SynSync Pro — Open Source Brainwave Entrainment Platform</title>
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="SynSync Pro — Open Source Brainwave Entrainment Platform">
+    <meta name="description" content="118 neuroscience-backed brainwave entrainment protocols. Zero tracking. Zero data collection. Your brain, your device, your data. The Linux of brain technology.">
+    <meta name="keywords" content="brainwave entrainment, binaural beats, isochronic tones, neurofeedback, meditation, focus, sleep, open source, privacy, brain technology">
+    <meta name="author" content="SynSync">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph (Facebook, LinkedIn, Discord, Slack, iMessage, WhatsApp) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://synsync.netlify.app/">
+    <meta property="og:title" content="SynSync Pro — Open Source Brainwave Entrainment">
+    <meta property="og:description" content="118 neuroscience-backed protocols for sleep, focus, anxiety relief, and consciousness exploration. Zero tracking. 100% private. Free.">
+    <meta property="og:image" content="https://synsync.netlify.app/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="SynSync Pro — The Linux of Brain Technology. 118 protocols. Zero tracking. Open source.">
+    <meta property="og:site_name" content="SynSync Pro">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://synsync.netlify.app/">
+    <meta name="twitter:title" content="SynSync Pro — Open Source Brainwave Entrainment">
+    <meta name="twitter:description" content="118 neuroscience-backed protocols. Zero tracking. Your brain data never leaves your device.">
+    <meta name="twitter:image" content="https://synsync.netlify.app/og-image.png">
+    <meta name="twitter:image:alt" content="SynSync Pro brainwave entrainment platform interface">
+
+    <!-- PWA / Mobile Meta Tags -->
+    <meta name="application-name" content="SynSync Pro">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SynSync Pro">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="msapplication-TileColor" content="#030508">
+    <meta name="theme-color" content="#030508">
+    <link rel="canonical" href="https://synsync.netlify.app/">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Self-hosted favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "SynSync Pro",
+      "applicationCategory": "HealthApplication",
+      "applicationSubCategory": "Brainwave Entrainment",
+      "operatingSystem": "Web Browser (Chrome, Firefox, Safari, Edge)",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Open-source brainwave entrainment platform with 118 neuroscience-backed protocols. Privacy-first design with zero data collection.",
+      "url": "https://synsync.netlify.app/",
+      "featureList": [
+        "118 neuroscience-backed entrainment protocols",
+        "Multi-modal entrainment (binaural, isochronic, monaural)",
+        "Zero data collection — all processing on-device",
+        "Offline-capable Progressive Web App",
+        "Real-time DSP visualization",
+        "Harmonic stacking with octave layering",
+        "Split-hemisphere targeting",
+        "Evidence-level transparency for every protocol"
+      ],
+      "softwareVersion": "2.0",
+      "isAccessibleForFree": true,
+      "browserRequirements": "Requires Web Audio API support",
+      "permissions": "none"
+    }
+    </script>
+
+    <!-- Fonts: Self-hosted via @fontsource (zero external requests) -->
+    <!-- Font imports moved to src/index.css for proper bundling -->
+
+    <style>
+        :root {
+            /* Default (Alien/Neuro) */
+            --bg: #000000;
+            --surface: #1a1a1a;
+            --border: rgba(255, 255, 255, 0.1);
+            --primary: #00f3ff;
+            --secondary: #bcff00;
+            --accent: #ff00ea;
+            --text: #e2e8f0;
+            --font-display: 'Teko';
+            --font-body: 'Inter';
+            --font-mono: 'JetBrains Mono';
+        }
+
+        [data-theme='neural'] {
+            --bg: #080c0d;
+            --surface: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --primary: #0dccf2;
+            --secondary: #ff8c42;
+            --accent: #8b5cf6;
+            --text: #ffffff;
+            --font-display: 'Space Grotesk';
+            --font-body: 'Space Grotesk';
+            --font-mono: 'Space Mono';
+        }
+
+        [data-theme='cosmic'] {
+            --bg: #020205;
+            --surface: rgba(0, 0, 0, 0.4);
+            --border: rgba(255, 255, 255, 0.05);
+            --primary: #00d4ff;
+            --secondary: #ff0080;
+            --accent: #ff8c00;
+            --text: #cbd5e1;
+            --font-display: 'Michroma';
+            --font-body: 'Outfit';
+            --font-mono: 'Share Tech Mono';
+        }
+
+        html {
+            height: 100%;
+            background: var(--bg);
+            /* Prevent rubber-banding on iOS PWA — content scrolls inside app containers only */
+            overscroll-behavior: none;
+        }
+
+        body {
+            height: 100%;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body), sans-serif;
+            overflow: hidden;           /* prevent page-level scroll — app is full-viewport */
+            -webkit-tap-highlight-color: transparent;
+            -webkit-overflow-scrolling: touch;  /* smooth momentum scroll in PWA on iOS */
+            overscroll-behavior: none;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        #root {
+            height: 100%;
+            background: var(--bg);
+        }
+
+        /* Momentum scrolling for all scrollable containers in PWA mode */
+        .overflow-y-auto,
+        .overflow-x-auto,
+        [style*="overflow-y: auto"],
+        [style*="overflow-y:auto"] {
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+        }
+
+        /* Scroll containers inside the app — prevent overscroll bleed */
+        main > div {
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+        }
+
+        /* Safe area padding for PWA on iOS (bottom home indicator) */
+        @supports (padding-bottom: env(safe-area-inset-bottom)) {
+            .safe-area-pb {
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+        }
+
+        /* Theme specific effects */
+        .alien-grid {
+            background-size: 40px 40px;
+            background-image:
+                linear-gradient(to right, rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+        }
+
+        .nebula-bg {
+            background:
+                radial-gradient(circle at 20% 30%, rgba(13, 204, 242, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 40%),
+                var(--bg);
+        }
+
+        .cosmic-bg {
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(77, 0, 146, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 128, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 70%),
+                var(--bg);
+        }
+
+        .alien-glass {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .cosmic-glass {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 2rem;
+            box-shadow:
+                0 8px 32px 0 rgba(0, 0, 0, 0.8),
+                inset 0 0 15px rgba(255, 255, 255, 0.03);
+        }
+
+        .scanlines::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background:
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%),
+                linear-gradient(90deg,
+                    rgba(255, 0, 0, 0.03),
+                    rgba(0, 255, 0, 0.01),
+                    rgba(0, 0, 255, 0.03)
+                );
+            z-index: 9999;
+            background-size: 100% 3px, 4px 100%;
+            pointer-events: none;
+        }
+
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb {
+            background: var(--surface);
+            border: 1px solid var(--border);
+        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+        .text-glow { text-shadow: 0 0 15px var(--primary); }
+        .border-glow { box-shadow: 0 0 15px var(--primary); }
+
+        .safe-area-top { padding-top: env(safe-area-inset-top); }
+        .safe-area-pb { padding-bottom: env(safe-area-inset-bottom); }
+    </style>
+
+    <!-- importmap intentionally removed: Vite bundles all deps from node_modules for production.
+         The aistudiocdn.com CDN is only reachable inside the AI Studio IDE environment. -->
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- Vite/TS entry -->
+    <script type="module" src="/index.tsx"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(reg => {
+                    console.log('SynSync Service Worker registered');
+                }).catch(err => {
+                    console.log('SW registration failed: ', err);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

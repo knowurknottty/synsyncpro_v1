@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SynSync Pro — Quick Reference Card</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #06080f;
+  --surface: #0d1021;
+  --surface2: #111428;
+  --border: #1a2038;
+  --border2: #222840;
+  --cyan: #00d4ff;
+  --purple: #8b5cf6;
+  --green: #22d3a0;
+  --gold: #fbbf24;
+  --red: #f87171;
+  --orange: #fb923c;
+  --pink: #f472b6;
+  --text: #dde3f0;
+  --text-dim: #6b7a9a;
+  --white: #ffffff;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+/* ── HEADER ─────────────────────────────── */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  position: sticky; top: 0; z-index: 50;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--cyan);
+  text-transform: uppercase;
+}
+.logo span { color: var(--purple); }
+
+.header-right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ── SEARCH ──────────────────────────────── */
+#search-bar {
+  padding: 16px 32px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#search-input {
+  flex: 1;
+  min-width: 200px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+#search-input::placeholder { color: var(--text-dim); }
+#search-input:focus { border-color: var(--cyan); }
+
+.filter-btn {
+  padding: 8px 16px;
+  border: 1px solid var(--border2);
+  border-radius: 5px;
+  background: var(--surface);
+  color: var(--text-dim);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.filter-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+.filter-btn.active { background: var(--cyan); border-color: var(--cyan); color: var(--bg); }
+
+/* ── LAYOUT ──────────────────────────────── */
+#main {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border-top: none;
+}
+
+/* ── CATEGORY SECTION ────────────────────── */
+.cat-section {
+  background: var(--bg);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.cat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px 12px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 118px;
+  z-index: 10;
+}
+
+.cat-icon { font-size: 20px; }
+
+.cat-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.cat-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  margin-left: auto;
+}
+
+/* ── PROTOCOL ROW ────────────────────────── */
+.proto-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  cursor: default;
+  transition: background 0.15s;
+}
+.proto-row:last-child { border-bottom: none; }
+.proto-row:hover { background: var(--surface2); }
+.proto-row.hidden { display: none; }
+
+.proto-id {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  min-width: 30px;
+  padding-top: 2px;
+  letter-spacing: 0.08em;
+}
+
+.proto-info { flex: 1; min-width: 0; }
+
+.proto-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.proto-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  border: 1px solid;
+  letter-spacing: 0.06em;
+}
+.chip-freq { color: var(--cyan); border-color: rgba(0,212,255,0.3); background: rgba(0,212,255,0.07); }
+.chip-dur { color: var(--text-dim); border-color: var(--border2); background: transparent; }
+
+.proto-goal {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+.ev-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+.ev1 { background: #22d3a0; }
+.ev2 { background: #00d4ff; }
+.ev3 { background: #8b5cf6; }
+.ev4 { background: #fbbf24; }
+.ev5 { background: #f87171; }
+
+/* ── LEGEND ──────────────────────────────── */
+#legend {
+  padding: 16px 32px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.legend-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.legend-item {
+  display: flex; align-items: center; gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* ── EMPTY STATE ─────────────────────────── */
+#empty-state {
+  display: none;
+  grid-column: 1 / -1;
+  padding: 60px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 16px;
+  background: var(--bg);
+}
+
+/* ── RESPONSIVE ──────────────────────────── */
+@media (max-width: 680px) {
+  #main { grid-template-columns: 1fr; }
+  header { padding: 14px 20px; }
+  #search-bar { padding: 12px 20px; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+.cat-section { animation: fadeIn 0.3s ease both; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">SynSync<span>Pro</span></div>
+  <div class="header-right">Quick Reference · 81 Protocols · Find Your Protocol Fast</div>
+</header>
+
+<div id="search-bar">
+  <input type="text" id="search-input" placeholder="Search by goal, symptom, or protocol name…" oninput="filterProtocols()">
+  <button class="filter-btn active" onclick="filterAll(this)">All</button>
+  <button class="filter-btn" onclick="filterCat('suffering', this)">Sleep &amp; Pain</button>
+  <button class="filter-btn" onclick="filterCat('focus', this)">Focus</button>
+  <button class="filter-btn" onclick="filterCat('flow', this)">Flow</button>
+  <button class="filter-btn" onclick="filterCat('emotional', this)">Emotional</button>
+  <button class="filter-btn" onclick="filterCat('altered', this)">Altered States</button>
+  <button class="filter-btn" onclick="filterCat('advanced', this)">Advanced</button>
+</div>
+
+<div id="main">
+
+  <!-- ── SUFFERING REDUCTION ── -->
+  <div class="cat-section" data-cat="suffering">
+    <div class="cat-header">
+      <div class="cat-icon">🛌</div>
+      <div class="cat-title">Sleep &amp; Pain</div>
+      <div class="cat-count">12 protocols</div>
+    </div>
+    <div class="proto-row" data-tags="sleep deep rest insomnia slow wave nightly">
+      <div class="proto-id">1.1</div>
+      <div class="proto-info">
+        <div class="proto-name">Deep Sleep Optimization v4</div>
+        <div class="proto-chips"><span class="chip chip-freq">0.5–1 Hz Delta</span><span class="chip chip-dur">45–60 min</span></div>
+        <div class="proto-goal">Sleep latency ↓30–50 min · SWS ↑20–40% · nightly</div>
+      </div>
+      <div class="ev-dot ev1" title="Evidence Level I"></div>
+    </div>
+    <div class="proto-row" data-tags="pain chronic analgesia endorphin threshold">
+      <div class="proto-id">1.2</div>
+      <div class="proto-info">
+        <div class="proto-name">NeuroAnalgesia</div>
+        <div class="proto-chips"><span class="chip chip-freq">10 Hz Alpha + 0.5 Hz Delta</span><span class="chip chip-dur">30 min</span></div>
+        <div class="proto-goal">Pain threshold ↑25% · endorphin release · daily</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="anxiety worry panic calm gaba cortisol stress">
+      <div class="proto-id">1.3</div>
+      <div class="proto-info">
+        <div class="proto-name">Anxiety Relief v4</div>
+        <div class="proto-chips"><span class="chip chip-freq">6 Hz Theta</span><span class="chip chip-dur">20 min</span></div>
+        <div class="proto-goal">Anxiety ↓40–60% · GABA ↑ · cortisol ↓ · daily</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="mood depression dopamine motivation reward lift">
+      <div class="proto-id">1.4</div>
+      <div class="proto-info">
+        <div class="proto-name">Mood Elevator v4</div>
+        <div class="proto-chips"><span class="chip chip-freq">16 Hz Beta + 40 Hz Gamma</span><span class="chip chip-dur">25 min</span></div>
+        <div class="proto-goal">Mood ↑40–60% · dopamine ↑ · 3–5×/week · morning</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="migraine headache pain cortical alpha">
+      <div class="proto-id">1.5</div>
+      <div class="proto-info">
+        <div class="proto-name">Migraine Dissolver</div>
+        <div class="proto-chips"><span class="chip chip-freq">10 Hz Alpha</span><span class="chip chip-dur">20 min</span></div>
+        <div class="proto-goal">Pain ↓40–60% · dark room · low volume · at onset</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="trauma ptsd flashback amygdala alpha theta crossover">
+      <div class="proto-id">1.6</div>
+      <div class="proto-info">
+        <div class="proto-name">Trauma Processing — PTSD Relief</div>
+        <div class="proto-chips"><span class="chip chip-freq">10→5 Hz Alpha-Theta Crossover</span><span class="chip chip-dur">30 min</span></div>
+        <div class="proto-goal">Trauma access + integration · 1–2×/week · with support</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="grief loss sadness mourning bereavement">
+      <div class="proto-id">1.7</div>
+      <div class="proto-info">
+        <div class="proto-name">Grief Integration</div>
+        <div class="proto-chips"><span class="chip chip-freq">5–7 Hz Theta</span><span class="chip chip-dur">35 min</span></div>
+        <div class="proto-goal">Emotional processing of loss · 1×/week · 3–6 months</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="insomnia can't sleep racing mind rumination">
+      <div class="proto-id">1.8</div>
+      <div class="proto-info">
+        <div class="proto-name">Insomnia Breakthrough v2</div>
+        <div class="proto-chips"><span class="chip chip-freq">1 Hz Delta + 6 Hz Theta</span><span class="chip chip-dur">45–60 min</span></div>
+        <div class="proto-goal">Quiets racing mind · sleep onset ↑ · safe to sleep during</div>
+      </div>
+      <div class="ev-dot ev1" title="Evidence Level I"></div>
+    </div>
+    <div class="proto-row" data-tags="stress cortisol tension decompression wind down">
+      <div class="proto-id">1.9</div>
+      <div class="proto-info">
+        <div class="proto-name">Stress Release Theta v2</div>
+        <div class="proto-chips"><span class="chip chip-freq">5–6 Hz Theta</span><span class="chip chip-dur">25 min</span></div>
+        <div class="proto-goal">GABA ↑↑ · cortisol ↓↓ · end of day · pairs with sleep</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="depression low mood anhedonia motivation sad">
+      <div class="proto-id">1.10</div>
+      <div class="proto-info">
+        <div class="proto-name">Depression Lifter</div>
+        <div class="proto-chips"><span class="chip chip-freq">16–18 Hz Beta Left PFC</span><span class="chip chip-dur">25 min</span></div>
+        <div class="proto-goal">Left frontal activation · dopamine ↑ · morning only</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="burnout exhausted overworked depleted hpa">
+      <div class="proto-id">1.11</div>
+      <div class="proto-info">
+        <div class="proto-name">Burnout Recovery</div>
+        <div class="proto-chips"><span class="chip chip-freq">8–10 Hz Alpha + 6 Hz Theta</span><span class="chip chip-dur">35 min</span></div>
+        <div class="proto-goal">HPA restoration · daily · gentle approach only</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="fatigue chronic tired foggy brain fog smr">
+      <div class="proto-id">1.12</div>
+      <div class="proto-info">
+        <div class="proto-name">Chronic Fatigue Reset</div>
+        <div class="proto-chips"><span class="chip chip-freq">12–13 Hz SMR + 8 Hz Alpha</span><span class="chip chip-dur">30 min</span></div>
+        <div class="proto-goal">Alerting circuits restored · brain fog ↓ · morning</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+  </div>
+
+  <!-- ── PERFORMANCE & FOCUS ── -->
+  <div class="cat-section" data-cat="focus">
+    <div class="cat-header">
+      <div class="cat-icon">⚡</div>
+      <div class="cat-title">Performance &amp; Focus</div>
+      <div class="cat-count">9 protocols</div>
+    </div>
+    <div class="proto-row" data-tags="focus attention concentrate deep work distraction">
+      <div class="proto-id">2.1</div>
+      <div class="proto-info">
+        <div class="proto-name">Focused Attention v4</div>
+        <div class="proto-chips"><span class="chip chip-freq">40 Hz Gamma + 12–15 Hz SMR</span><span class="chip chip-dur">25 min</span></div>
+        <div class="proto-goal">Focus ↑50–100% sess.1 · ↑300% wk4 · before work blocks</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="learning memory study hippocampus theta consolidation">
+      <div class="proto-id">2.2</div>
+      <div class="proto-info">
+        <div class="proto-name">Learning Consolidation v4</div>
+        <div class="proto-chips"><span class="chip chip-freq">5–7 Hz Theta + Gamma Coupling</span><span class="chip chip-dur">20 min</span></div>
+        <div class="proto-goal">Retention ↑40% · run before OR after studying</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="adhd attention deficit hyperactivity smr beta impulse">
+      <div class="proto-id">2.3</div>
+      <div class="proto-info">
+        <div class="proto-name">ADHD Daily Optimizer</div>
+        <div class="proto-chips"><span class="chip chip-freq">12–15 Hz SMR + Beta Up</span><span class="chip chip-dur">35 min</span></div>
+        <div class="proto-goal">ADHD sx ↓30–50% · daily · 6–8 wks · FDA-cleared mech.</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="working memory capacity multitask gamma prefrontal">
+      <div class="proto-id">2.4</div>
+      <div class="proto-info">
+        <div class="proto-name">Working Memory Expander</div>
+        <div class="proto-chips"><span class="chip chip-freq">40 Hz Gamma Prefrontal</span><span class="chip chip-dur">15 min</span></div>
+        <div class="proto-goal">Memory span ↑50–100% · short but potent · before complex tasks</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="exam test performance anxiety recall stress smr beta">
+      <div class="proto-id">2.5</div>
+      <div class="proto-info">
+        <div class="proto-name">Test &amp; Exam Performance</div>
+        <div class="proto-chips"><span class="chip chip-freq">12 Hz SMR → 16 Hz Beta</span><span class="chip chip-dur">30 min</span></div>
+        <div class="proto-goal">Test anxiety ↓30–50% · recall ↑15–25% · 90 min before</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="coding programming debugging engineering logic analysis">
+      <div class="proto-id">2.6</div>
+      <div class="proto-info">
+        <div class="proto-name">Coding / Technical Flow v2</div>
+        <div class="proto-chips"><span class="chip chip-freq">18 Hz High Beta</span><span class="chip chip-dur">30–40 min</span></div>
+        <div class="proto-goal">Logical thinking ↑ · debugging ↓30% · before sessions</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="creative creativity art writing music idea generation breakthrough">
+      <div class="proto-id">2.7</div>
+      <div class="proto-info">
+        <div class="proto-name">Creative Breakthrough v3</div>
+        <div class="proto-chips"><span class="chip chip-freq">40 Hz Gamma + 8 Hz Alpha</span><span class="chip chip-dur">30–40 min</span></div>
+        <div class="proto-goal">Ideas ↑20–30% · afternoon timing · 2–3×/week creative projects</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="language learning foreign vocabulary pronunciation retention">
+      <div class="proto-id">2.8</div>
+      <div class="proto-info">
+        <div class="proto-name">Language Learning Acceleration v2</div>
+        <div class="proto-chips"><span class="chip chip-freq">7 Hz Theta</span><span class="chip chip-dur">25–30 min</span></div>
+        <div class="proto-goal">Acquisition speed ↑30–50% · run then immediately study</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="motivation drive procrastination dopamine initiation lazy">
+      <div class="proto-id">2.9</div>
+      <div class="proto-info">
+        <div class="proto-name">Peak Drive — Motivation</div>
+        <div class="proto-chips"><span class="chip chip-freq">18–20 Hz Beta + 40 Hz Bursts</span><span class="chip chip-dur">20 min</span></div>
+        <div class="proto-goal">Dopamine ↑ · procrastination ↓ · morning · not daily</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+  </div>
+
+  <!-- ── FLOW STATE ── -->
+  <div class="cat-section" data-cat="flow">
+    <div class="cat-header">
+      <div class="cat-icon">🌊</div>
+      <div class="cat-title">Flow State Sequence</div>
+      <div class="cat-count">5 phases · 76 min total</div>
+    </div>
+    <div class="proto-row" data-tags="flow entry begin threshold crossing start">
+      <div class="proto-id">3.1</div>
+      <div class="proto-info">
+        <div class="proto-name">Flow 1: Entry — Threshold Crossing</div>
+        <div class="proto-chips"><span class="chip chip-freq">7 Hz → 40 Hz Ramp</span><span class="chip chip-dur">15 min</span></div>
+        <div class="proto-goal">Suppresses inner critic · activates task-positive network</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="flow immersion deep focus lock task">
+      <div class="proto-id">3.2</div>
+      <div class="proto-info">
+        <div class="proto-name">Flow 2: Immersion — Focus Lock</div>
+        <div class="proto-chips"><span class="chip chip-freq">6–15 Hz Beta</span><span class="chip chip-dur">15 min</span></div>
+        <div class="proto-goal">Alpha suppressed · task absorption · "falling into" the work</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="flow autotelic intrinsic motivation self reward">
+      <div class="proto-id">3.3</div>
+      <div class="proto-info">
+        <div class="proto-name">Flow 3: Autotelic — Self-Sustaining</div>
+        <div class="proto-chips"><span class="chip chip-freq">39–40 Hz Gamma</span><span class="chip chip-dur">15 min</span></div>
+        <div class="proto-goal">Intrinsic reward loop · effortless doing · nucleus accumbens</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="flow peak performance timeless time distortion output triple">
+      <div class="proto-id">3.4</div>
+      <div class="proto-info">
+        <div class="proto-name">Flow 4: Timeless — Peak Performance</div>
+        <div class="proto-chips"><span class="chip chip-freq">40 Hz Gamma + 7 Hz Theta</span><span class="chip chip-dur">15 min</span></div>
+        <div class="proto-goal">Time perception dissolves · output ×3 · peak state</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="flow harvest consolidation integration insight capture">
+      <div class="proto-id">3.5</div>
+      <div class="proto-info">
+        <div class="proto-name">Flow 5: Harvest — Integration</div>
+        <div class="proto-chips"><span class="chip chip-freq">7 Hz Theta → 1.5 Hz Delta</span><span class="chip chip-dur">10 min</span></div>
+        <div class="proto-goal">Insights captured · prevents crash · neural path consolidation</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+  </div>
+
+  <!-- ── EMOTIONAL MASTERY ── -->
+  <div class="cat-section" data-cat="emotional">
+    <div class="cat-header">
+      <div class="cat-icon">💎</div>
+      <div class="cat-title">Emotional Mastery</div>
+      <div class="cat-count">10 protocols</div>
+    </div>
+    <div class="proto-row" data-tags="emotion release processing catharsis feel cry limbic">
+      <div class="proto-id">4.1</div>
+      <div class="proto-info">
+        <div class="proto-name">Emotional Processing &amp; Release</div>
+        <div class="proto-chips"><span class="chip chip-freq">5–7 Hz Theta</span><span class="chip chip-dur">35 min</span></div>
+        <div class="proto-goal">Limbic access · catharsis · 30 min integration after</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="anger rage frustration transform agency">
+      <div class="proto-id">4.2</div>
+      <div class="proto-info">
+        <div class="proto-name">Anger Release Protocol</div>
+        <div class="proto-chips"><span class="chip chip-freq">14 Hz Beta</span><span class="chip chip-dur">25 min</span></div>
+        <div class="proto-goal">Anger → agency · integrate without suppression</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="confidence self esteem efficacy social fear doubt">
+      <div class="proto-id">4.3</div>
+      <div class="proto-info">
+        <div class="proto-name">Confidence Rebuilding</div>
+        <div class="proto-chips"><span class="chip chip-freq">12 Hz SMR</span><span class="chip chip-dur">22 min</span></div>
+        <div class="proto-goal">Calm confidence ↑ · social fear ↓ · self-efficacy ↑</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="self compassion inner critic negative self talk kindness">
+      <div class="proto-id">4.4</div>
+      <div class="proto-info">
+        <div class="proto-name">Self-Compassion Amplifier</div>
+        <div class="proto-chips"><span class="chip chip-freq">6 Hz Theta + 528 Hz</span><span class="chip chip-dur">25 min</span></div>
+        <div class="proto-goal">Inner critic ↓ · self-compassion vmPFC ↑</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="joy happiness positive affect delight spontaneous">
+      <div class="proto-id">4.5</div>
+      <div class="proto-info">
+        <div class="proto-name">Joy Activation</div>
+        <div class="proto-chips"><span class="chip chip-freq">40 Hz Gamma</span><span class="chip chip-dur">20 min</span></div>
+        <div class="proto-goal">Spontaneous positive affect · dopamine ↑ · delight</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="fear phobia courage amygdala extinction brave">
+      <div class="proto-id">4.6</div>
+      <div class="proto-info">
+        <div class="proto-name">Fear Dissolution</div>
+        <div class="proto-chips"><span class="chip chip-freq">10 Hz → 5 Hz Alpha-Theta</span><span class="chip chip-dur">30 min</span></div>
+        <div class="proto-goal">Fear extinction · amygdala retraining · courage ↑</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="shame worth worthless self worth restore">
+      <div class="proto-id">4.7</div>
+      <div class="proto-info">
+        <div class="proto-name">Shame Release</div>
+        <div class="proto-chips"><span class="chip chip-freq">5 Hz Theta + 396 Hz</span><span class="chip chip-dur">30 min</span></div>
+        <div class="proto-goal">Access + process shame · self-worth restoration</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="inner child childhood wound early memory healing">
+      <div class="proto-id">4.8</div>
+      <div class="proto-info">
+        <div class="proto-name">Inner Child Healing</div>
+        <div class="proto-chips"><span class="chip chip-freq">6 Hz Theta</span><span class="chip chip-dur">35 min</span></div>
+        <div class="proto-goal">Early emotional memory access · compassionate re-integration</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="purpose clarity calling values direction life meaning">
+      <div class="proto-id">4.9</div>
+      <div class="proto-info">
+        <div class="proto-name">Purpose &amp; Clarity</div>
+        <div class="proto-chips"><span class="chip chip-freq">14 Hz + 40 Hz</span><span class="chip chip-dur">30 min</span></div>
+        <div class="proto-goal">Value clarity · life direction · executive vision ↑</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="resilience regulation bounce back stress tolerance emotional">
+      <div class="proto-id">4.10</div>
+      <div class="proto-info">
+        <div class="proto-name">Emotional Resilience Builder</div>
+        <div class="proto-chips"><span class="chip chip-freq">10 Hz Alpha / 14 Hz Beta</span><span class="chip chip-dur">25 min</span></div>
+        <div class="proto-goal">Regulation capacity ↑ · stress bounce-back ↑ · baseline build</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+  </div>
+
+  <!-- ── RELATIONSHIPS ── -->
+  <div class="cat-section" data-cat="emotional">
+    <div class="cat-header">
+      <div class="cat-icon">🤝</div>
+      <div class="cat-title">Relationships &amp; Connection</div>
+      <div class="cat-count">8 protocols</div>
+    </div>
+    <div class="proto-row" data-tags="social anxiety confidence shy introvert public speaking">
+      <div class="proto-id">5.1</div>
+      <div class="proto-info">
+        <div class="proto-name">Social Confidence Amplifier</div>
+        <div class="proto-chips"><span class="chip chip-freq">12 Hz SMR</span><span class="chip chip-dur">22 min</span></div>
+        <div class="proto-goal">Social anxiety ↓ · calm presence ↑ · before social events</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="communication authentic vulnerable honest expression">
+      <div class="proto-id">5.2</div>
+      <div class="proto-info">
+        <div class="proto-name">Authentic Communication</div>
+        <div class="proto-chips"><span class="chip chip-freq">8–10 Hz Alpha + 6 Hz Theta</span><span class="chip chip-dur">22 min</span></div>
+        <div class="proto-goal">Vulnerability ↑ · authentic expression · before hard conversations</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="empathy compassion oxytocin connection understanding others">
+      <div class="proto-id">5.3</div>
+      <div class="proto-info">
+        <div class="proto-name">Empathy Expander</div>
+        <div class="proto-chips"><span class="chip chip-freq">6 Hz Theta</span><span class="chip chip-dur">25 min</span></div>
+        <div class="proto-goal">Oxytocin ↑ · mentalizing ↑ · empathy depth ↑</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="intimacy open vulnerable partner bond close wall">
+      <div class="proto-id">5.4</div>
+      <div class="proto-info">
+        <div class="proto-name">Intimacy Opening</div>
+        <div class="proto-chips"><span class="chip chip-freq">5–6 Hz Theta + Delta</span><span class="chip chip-dur">30 min</span></div>
+        <div class="proto-goal">Emotional walls ↓ · bonding ↑ · evening with partner</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="conflict argument resolution perspective taking calm">
+      <div class="proto-id">5.5</div>
+      <div class="proto-info">
+        <div class="proto-name">Conflict Resolution</div>
+        <div class="proto-chips"><span class="chip chip-freq">10 Hz Alpha</span><span class="chip chip-dur">20 min</span></div>
+        <div class="proto-goal">Reactivity ↓ · perspective ↑ · PFC control · before conflict talks</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="boundary assertive no people pleasing self advocate">
+      <div class="proto-id">5.6</div>
+      <div class="proto-info">
+        <div class="proto-name">Boundary Setting</div>
+        <div class="proto-chips"><span class="chip chip-freq">14 Hz Beta</span><span class="chip chip-dur">20 min</span></div>
+        <div class="proto-goal">Assertiveness ↑ · self-advocacy · fear of conflict ↓</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="repair relationship resentment forgive compassion reconnect">
+      <div class="proto-id">5.7</div>
+      <div class="proto-info">
+        <div class="proto-name">Relationship Repair</div>
+        <div class="proto-chips"><span class="chip chip-freq">6–8 Hz Theta + Alpha</span><span class="chip chip-dur">30 min</span></div>
+        <div class="proto-goal">Resentment processing · compassion ↑ · repair readiness</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="attraction desire passion rekindling romance sexual">
+      <div class="proto-id">5.8</div>
+      <div class="proto-info">
+        <div class="proto-name">Attraction &amp; Desire Rekindling</div>
+        <div class="proto-chips"><span class="chip chip-freq">40 Hz Gamma + 6 Hz Theta</span><span class="chip chip-dur">30 min</span></div>
+        <div class="proto-goal">Dopamine + oxytocin · novelty perception ↑ · desire circuits</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+  </div>
+
+  <!-- ── ALTERED STATES ── -->
+  <div class="cat-section" data-cat="altered">
+    <div class="cat-header">
+      <div class="cat-icon">🌀</div>
+      <div class="cat-title">Altered States</div>
+      <div class="cat-count">24 protocols · Legal · No Substances</div>
+    </div>
+    <div class="proto-row" data-tags="cannabis body high light relaxation mild euphoria">
+      <div class="proto-id">6.1</div>
+      <div class="proto-info">
+        <div class="proto-name">Light Cannabis State</div>
+        <div class="proto-chips"><span class="chip chip-freq">8 Hz Alpha + 1 Hz Delta</span><span class="chip chip-dur">25–30 min</span></div>
+        <div class="proto-goal">Body relaxation · mild euphoria · 2–4 hrs</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="cannabis moderate balanced euphoria creative social">
+      <div class="proto-id">6.2–6.6</div>
+      <div class="proto-info">
+        <div class="proto-name">Cannabis States (Moderate / Deep / Creative / Social / Therapeutic)</div>
+        <div class="proto-chips"><span class="chip chip-freq">6 Hz + 8 Hz + 0.5–4 Hz</span><span class="chip chip-dur">30–45 min</span></div>
+        <div class="proto-goal">Full spectrum: balanced · immersive · creative · social ease · healing</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="mdma empathy warmth heart opening light moderate connection">
+      <div class="proto-id">7.1</div>
+      <div class="proto-info">
+        <div class="proto-name">Light MDMA State (Empathy Activation)</div>
+        <div class="proto-chips"><span class="chip chip-freq">6 Hz Theta + 12 Hz SMR</span><span class="chip chip-dur">25–30 min</span></div>
+        <div class="proto-goal">Empathy ↑ · warmth · social ease · 2–3 hrs</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="mdma moderate deep therapeutic relationship creative couples trauma">
+      <div class="proto-id">7.2–7.6</div>
+      <div class="proto-info">
+        <div class="proto-name">MDMA States (Full Spectrum)</div>
+        <div class="proto-chips"><span class="chip chip-freq">4–10 Hz Theta/Alpha/Delta layers</span><span class="chip chip-dur">35–50 min</span></div>
+        <div class="proto-goal">Heart opening · couples · therapeutic · trauma · creative art</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="stimulant energy focus adderall alert dopamine light moderate">
+      <div class="proto-id">8.1–8.6</div>
+      <div class="proto-info">
+        <div class="proto-name">Stimulant Alternatives (Full Spectrum)</div>
+        <div class="proto-chips"><span class="chip chip-freq">16–20 Hz Beta + 40 Hz Gamma</span><span class="chip chip-dur">15–30 min</span></div>
+        <div class="proto-goal">Light energy · intense drive · focus · social · creative · no crash</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="psychedelic light psilocybin mild visual insight">
+      <div class="proto-id">9.1</div>
+      <div class="proto-info">
+        <div class="proto-name">Light Psychedelic</div>
+        <div class="proto-chips"><span class="chip chip-freq">40 Hz Gamma + 7 Hz Theta</span><span class="chip chip-dur">30–35 min</span></div>
+        <div class="proto-goal">Mild perceptual shifts · insight · emotional openness · 3–4 hrs</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="psychedelic moderate standard psilocybin ego dissolution visual">
+      <div class="proto-id">9.2</div>
+      <div class="proto-info">
+        <div class="proto-name">Moderate Psychedelic</div>
+        <div class="proto-chips"><span class="chip chip-freq">40 Hz + 4 Hz Theta + 0.5 Hz Delta</span><span class="chip chip-dur">40–50 min</span></div>
+        <div class="proto-goal">Visual phenomena · ego dissolution begins · profound insight</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="psychedelic deep high dose lsd ego death mystical advanced">
+      <div class="proto-id">9.3–9.6</div>
+      <div class="proto-info">
+        <div class="proto-name">Deep / Therapeutic / Expansion / Creative Psychedelic</div>
+        <div class="proto-chips"><span class="chip chip-freq">40 Hz + 3–5 Hz + 0.5–1 Hz Delta</span><span class="chip chip-dur">45–60 min</span></div>
+        <div class="proto-goal">Full ego dissolution · mystical · therapeutic · creative vision · ⚠ Not for beginners</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="portal entity contact dmt ayahuasca speculative level 5">
+      <div class="proto-id">10.1</div>
+      <div class="proto-info">
+        <div class="proto-name">Portal / Entity Contact Simulation</div>
+        <div class="proto-chips"><span class="chip chip-freq">0.5 Hz Delta + 80+ Hz Gamma</span><span class="chip chip-dur">60–90 min</span></div>
+        <div class="proto-goal">⚠ Level V speculative · entity reports · 1×/wk max · experienced only</div>
+      </div>
+      <div class="ev-dot ev5" title="Evidence Level V"></div>
+    </div>
+  </div>
+
+  <!-- ── ADVANCED & EXPERIMENTAL ── -->
+  <div class="cat-section" data-cat="advanced">
+    <div class="cat-header">
+      <div class="cat-icon">🔬</div>
+      <div class="cat-title">Advanced &amp; Experimental</div>
+      <div class="cat-count">16 protocols</div>
+    </div>
+    <div class="proto-row" data-tags="athletic confidence performance sport competition anxiety">
+      <div class="proto-id">A1</div>
+      <div class="proto-info">
+        <div class="proto-name">Athletic Confidence Amplifier</div>
+        <div class="proto-chips"><span class="chip chip-freq">40 Hz + 12 Hz SMR</span><span class="chip chip-dur">20 min</span></div>
+        <div class="proto-goal">Confidence ↑80% · pre-competition · anxiety ↓</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="reaction time reflex speed hand eye coordination sport">
+      <div class="proto-id">A2</div>
+      <div class="proto-info">
+        <div class="proto-name">Reaction Time Sharpener</div>
+        <div class="proto-chips"><span class="chip chip-freq">40 Hz + 20 Hz Beta</span><span class="chip chip-dur">20 min</span></div>
+        <div class="proto-goal">Reaction time ↓50–100ms · reflexes ↑ · 45 min before game</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="endurance aerobic capacity stamina pain threshold mental">
+      <div class="proto-id">A3</div>
+      <div class="proto-info">
+        <div class="proto-name">Endurance Enhancer</div>
+        <div class="proto-chips"><span class="chip chip-freq">20 Hz + 40 Hz</span><span class="chip chip-dur">25 min</span></div>
+        <div class="proto-goal">Aerobic capacity ↑15–30% · pain threshold ↑ · mental stamina</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="recovery sport muscle soreness growth hormone delta sleep">
+      <div class="proto-id">A4</div>
+      <div class="proto-info">
+        <div class="proto-name">Recovery Accelerator</div>
+        <div class="proto-chips"><span class="chip chip-freq">1–2 Hz Delta + 8 Hz Alpha</span><span class="chip chip-dur">20 min</span></div>
+        <div class="proto-goal">DOMS ↓ · GH ↑ · muscle recovery ↑ · post-workout evening</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="vagus nerve hrv heart rate variability inflammation parasympathetic">
+      <div class="proto-id">Adv1</div>
+      <div class="proto-info">
+        <div class="proto-name">Vagus Nerve Reset</div>
+        <div class="proto-chips"><span class="chip chip-freq">40 Hz + 7.83 Hz Schumann</span><span class="chip chip-dur">25 min</span></div>
+        <div class="proto-goal">HRV ↑40–60% · inflammation ↓ · parasympathetic dominance</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="emdr trauma bilateral memory reprocessing reconsolidation">
+      <div class="proto-id">Adv2</div>
+      <div class="proto-info">
+        <div class="proto-name">Hemispheric Erasure (EMDR Enhancement)</div>
+        <div class="proto-chips"><span class="chip chip-freq">40 Hz + Bilateral Audio</span><span class="chip chip-dur">30 min</span></div>
+        <div class="proto-goal">Traumatic memory reprocessing · EMDR-equivalent bilateral stim</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="neurorecovery addiction alcohol drugs relapse peniston alpha theta">
+      <div class="proto-id">Adv3</div>
+      <div class="proto-info">
+        <div class="proto-name">NeuroRecovery — Addiction + Trauma</div>
+        <div class="proto-chips"><span class="chip chip-freq">10 Hz → 5 Hz Peniston Protocol</span><span class="chip chip-dur">30 min</span></div>
+        <div class="proto-goal">80% abstinence basis · dopamine recal · 1–2×/week</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="dopamine reset craving addiction reward anhedonia pleasure">
+      <div class="proto-id">Adv4</div>
+      <div class="proto-info">
+        <div class="proto-name">Dopamine Reset</div>
+        <div class="proto-chips"><span class="chip chip-freq">12 Hz SMR</span><span class="chip chip-dur">25 min</span></div>
+        <div class="proto-goal">Reward circuit recal · craving ↓ · anhedonia ↓ · pleasure restored</div>
+      </div>
+      <div class="ev-dot ev2" title="Evidence Level II"></div>
+    </div>
+    <div class="proto-row" data-tags="schumann earth resonance circadian calm alertness nature">
+      <div class="proto-id">Adv5</div>
+      <div class="proto-info">
+        <div class="proto-name">Schumann Synchronization</div>
+        <div class="proto-chips"><span class="chip chip-freq">7.83 Hz</span><span class="chip chip-dur">20 min</span></div>
+        <div class="proto-goal">Earth resonance alignment · circadian ↑ · calm alert state</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="kundalini energy spine spiritual awakening activation">
+      <div class="proto-id">S1</div>
+      <div class="proto-info">
+        <div class="proto-name">Kundalini Awakening Energy Ladder</div>
+        <div class="proto-chips"><span class="chip chip-freq">7 Hz + 40 Hz</span><span class="chip chip-dur">30 min</span></div>
+        <div class="proto-goal">⚠ Level IV · energy flow · spiritual activation · release</div>
+      </div>
+      <div class="ev-dot ev4" title="Evidence Level IV"></div>
+    </div>
+    <div class="proto-row" data-tags="third eye pineal intuition visionary perception expanded">
+      <div class="proto-id">S2</div>
+      <div class="proto-info">
+        <div class="proto-name">Third Eye Activation</div>
+        <div class="proto-chips"><span class="chip chip-freq">40 Hz + 7.83 Hz</span><span class="chip chip-dur">30 min</span></div>
+        <div class="proto-goal">⚠ Level IV · visual phenomena · intuition ↑ · expanded perception</div>
+      </div>
+      <div class="ev-dot ev4" title="Evidence Level IV"></div>
+    </div>
+    <div class="proto-row" data-tags="manifestation subconscious reprogramming belief visualization">
+      <div class="proto-id">S3</div>
+      <div class="proto-info">
+        <div class="proto-name">Manifestation Protocol</div>
+        <div class="proto-chips"><span class="chip chip-freq">5–7 Hz Theta</span><span class="chip chip-dur">25 min</span></div>
+        <div class="proto-goal">⚠ Level V · subconscious access · belief + visualization potency ↑</div>
+      </div>
+      <div class="ev-dot ev5" title="Evidence Level V"></div>
+    </div>
+    <div class="proto-row" data-tags="gratitude appreciation heart positive affect warm 528">
+      <div class="proto-id">S4</div>
+      <div class="proto-info">
+        <div class="proto-name">Gratitude Amplifier</div>
+        <div class="proto-chips"><span class="chip chip-freq">40 Hz + 528 Hz</span><span class="chip chip-dur">20 min</span></div>
+        <div class="proto-goal">Gratitude ↑200% · positive affect · heart-center · morning</div>
+      </div>
+      <div class="ev-dot ev3" title="Evidence Level III"></div>
+    </div>
+    <div class="proto-row" data-tags="transcendence unity spiritual meditation peak experience oneness">
+      <div class="proto-id">S5</div>
+      <div class="proto-info">
+        <div class="proto-name">Transcendence Portal / Divine Connection</div>
+        <div class="proto-chips"><span class="chip chip-freq">7 Hz + 40 Hz + 528 Hz</span><span class="chip chip-dur">45–60 min</span></div>
+        <div class="proto-goal">⚠ Level IV · unity consciousness · ego dissolution · meaning ↑↑</div>
+      </div>
+      <div class="ev-dot ev4" title="Evidence Level IV"></div>
+    </div>
+  </div>
+
+  <div id="empty-state">No protocols match your search. Try different keywords.</div>
+</div>
+
+<div id="legend">
+  <span class="legend-title">Evidence:</span>
+  <span class="legend-item"><span class="ev-dot ev1"></span> Level I — Gold Standard RCTs</span>
+  <span class="legend-item"><span class="ev-dot ev2"></span> Level II — Strong Evidence</span>
+  <span class="legend-item"><span class="ev-dot ev3"></span> Level III — Mechanistic</span>
+  <span class="legend-item"><span class="ev-dot ev4"></span> Level IV — Theoretical</span>
+  <span class="legend-item"><span class="ev-dot ev5"></span> Level V — Speculative</span>
+  <span class="legend-item" style="margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-dim)">SynSync Pro · github.com/knowurknottty/synsyncpro</span>
+</div>
+
+<script>
+let activeCategory = 'all';
+
+function filterProtocols() {
+  const q = document.getElementById('search-input').value.toLowerCase().trim();
+  const rows = document.querySelectorAll('.proto-row');
+  const sections = document.querySelectorAll('.cat-section');
+  let totalVisible = 0;
+
+  sections.forEach(section => {
+    const catMatch = activeCategory === 'all' || section.dataset.cat === activeCategory;
+    let sectionVisible = 0;
+    
+    if (!catMatch) {
+      section.style.display = 'none';
+      return;
+    }
+    section.style.display = 'flex';
+
+    section.querySelectorAll('.proto-row').forEach(row => {
+      const name = row.querySelector('.proto-name').textContent.toLowerCase();
+      const goal = row.querySelector('.proto-goal').textContent.toLowerCase();
+      const tags = (row.dataset.tags || '').toLowerCase();
+      const match = !q || name.includes(q) || goal.includes(q) || tags.includes(q);
+      row.style.display = match ? 'flex' : 'none';
+      if (match) { sectionVisible++; totalVisible++; }
+    });
+
+    if (sectionVisible === 0) section.style.display = 'none';
+  });
+
+  document.getElementById('empty-state').style.display = totalVisible === 0 ? 'block' : 'none';
+}
+
+function filterAll(btn) {
+  activeCategory = 'all';
+  setActiveBtn(btn);
+  document.getElementById('search-input').value = '';
+  filterProtocols();
+}
+
+function filterCat(cat, btn) {
+  activeCategory = cat;
+  setActiveBtn(btn);
+  document.getElementById('search-input').value = '';
+  filterProtocols();
+}
+
+function setActiveBtn(activeBtn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  activeBtn.classList.add('active');
+}
+</script>
+</body>
+</html>

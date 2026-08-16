@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SynSync Pro — The Linux of Brain Technology</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="manifest" href="/manifest.json">
+<style>
+:root{--bg:#030508;--cyan:#00d4ff;--purple:#9b6dff;--green:#22d3a0;--gold:#fbbf24;--white:#ffffff;--offwhite:#c8d4e8;--dim:#5a6a88;--surface:rgba(13,16,33,0.7);--border:rgba(255,255,255,0.06)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--offwhite);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;opacity:.4;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");pointer-events:none}
+.blob{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
+.b1{width:600px;height:600px;top:-200px;left:-100px;background:radial-gradient(circle,rgba(0,212,255,.12) 0%,transparent 70%)}
+.b2{width:500px;height:500px;bottom:0;right:-100px;background:radial-gradient(circle,rgba(155,109,255,.10) 0%,transparent 70%)}
+.b3{width:400px;height:400px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(34,211,160,.05) 0%,transparent 70%)}
+.page{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 32px}
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 0 60px;position:relative}
+.eyebrow{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--cyan);margin-bottom:24px;display:flex;align-items:center;gap:16px}
+.eyebrow::before{content:'';display:block;width:48px;height:1px;background:var(--cyan)}
+.headline{font-family:Impact,"Arial Narrow",system-ui,sans-serif;font-size:clamp(72px,14vw,160px);line-height:.88;letter-spacing:0;color:var(--white);margin-bottom:32px}
+.headline .c{color:var(--cyan)}.headline .p{color:var(--purple)}
+.sub{font-size:clamp(17px,3vw,22px);font-weight:500;color:var(--offwhite);max-width:580px;line-height:1.5;margin-bottom:40px}
+.sub strong{color:var(--white)}
+.cta-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.btn-p{display:inline-flex;align-items:center;gap:10px;background:var(--cyan);color:#030508;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:14px 28px;border-radius:4px;text-decoration:none;transition:all .2s}
+.btn-p:hover{background:#33dcff;transform:translateY(-1px)}
+.btn-s{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:12px;letter-spacing:.15em;color:var(--dim);text-decoration:none;text-transform:uppercase;border-bottom:1px solid var(--dim);padding-bottom:2px;transition:color .2s,border-color .2s}
+.btn-s:hover{color:var(--offwhite);border-color:var(--offwhite)}
+.stats{display:flex;gap:48px;margin-top:56px;flex-wrap:wrap}
+.sn{font-family:Impact,"Arial Narrow",system-ui,sans-serif;font-size:48px;line-height:1;color:var(--white)}
+.sn .u{font-size:28px;color:var(--cyan)}
+.sl{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-top:4px}
+section{padding:100px 0}
+.sec-lbl{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.sec-lbl::before{content:'';display:block;width:32px;height:1px;background:var(--cyan)}
+.sec-title{font-family:Impact,"Arial Narrow",system-ui,sans-serif;font-size:clamp(40px,6vw,72px);line-height:.95;color:var(--white);margin-bottom:20px}
+.sec-body{font-size:18px;color:var(--dim);max-width:560px;line-height:1.65}
+.sec-body strong{color:var(--offwhite)}
+#manifesto{border-top:1px solid var(--border)}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-top:48px}
+.mi{background:var(--bg);padding:32px 28px;position:relative}
+.mi::after{content:attr(data-n);position:absolute;top:16px;right:20px;font-family:Impact,"Arial Narrow",system-ui,sans-serif;font-size:64px;color:rgba(255,255,255,.03);line-height:1}
+.mi-t{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:8px;line-height:1.2}
+.mi-t .h{color:var(--cyan)}
+.mi-b{font-size:15px;color:var(--dim);line-height:1.55}
+#science{border-top:1px solid var(--border)}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.sc{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px 20px;transition:border-color .2s}
+.sc:hover{border-color:rgba(0,212,255,.2)}
+.sf{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:13px;color:var(--cyan);letter-spacing:.1em;margin-bottom:8px}
+.sn2{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:6px}
+.se{font-size:13px;color:var(--dim);line-height:1.5}
+.sb{display:inline-block;margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;border-radius:3px;letter-spacing:.1em;text-transform:uppercase}
+.bg{background:rgba(34,211,160,.12);color:var(--green);border:1px solid rgba(34,211,160,.3)}
+.bb{background:rgba(0,212,255,.08);color:var(--cyan);border:1px solid rgba(0,212,255,.25)}
+.bp{background:rgba(155,109,255,.1);color:var(--purple);border:1px solid rgba(155,109,255,.3)}
+#proof{border-top:1px solid var(--border)}
+.plist{margin-top:48px;display:flex;flex-direction:column;gap:1px}
+.pi{display:flex;gap:24px;align-items:flex-start;padding:24px 0;border-bottom:1px solid var(--border)}
+.pi:last-child{border-bottom:none}
+.pn{font-family:Impact,"Arial Narrow",system-ui,sans-serif;font-size:48px;line-height:1;color:var(--cyan);min-width:80px;opacity:.6}
+.pt{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:20px;font-weight:700;color:var(--white);margin-bottom:4px}
+.pc{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:11px;color:var(--dim);letter-spacing:.06em}
+#philosophy{border-top:1px solid var(--border)}
+.quote{font-family:Impact,"Arial Narrow",system-ui,sans-serif;font-size:clamp(32px,5vw,58px);line-height:1.05;color:var(--white);margin:40px 0;max-width:700px;border-left:3px solid var(--purple);padding-left:28px}
+.quote em{color:var(--cyan);font-style:normal}
+.ppillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.pillar{padding:20px;border:1px solid var(--border);border-radius:6px}
+.pico{font-size:24px;margin-bottom:10px}
+.ptitle{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;font-weight:700;color:var(--white);margin-bottom:6px;letter-spacing:.05em;text-transform:uppercase}
+.pbody{font-size:14px;color:var(--dim);line-height:1.5}
+#protocols{border-top:1px solid var(--border)}
+.pfams{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:48px}
+.fam{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px 24px;display:flex;gap:16px;align-items:flex-start;transition:border-color .2s}
+.fam:hover{border-color:rgba(0,212,255,.2)}
+.ficon{font-size:28px;flex-shrink:0}
+.ft{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:17px;font-weight:700;color:var(--white);margin-bottom:2px}
+.fc{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:10px;color:var(--cyan);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+.fb{font-size:13px;color:var(--dim);line-height:1.4}
+#privacy{border-top:1px solid var(--border)}
+.pvgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.pvi{text-align:center;padding:24px 16px}
+.pvi .pvico{font-size:36px;margin-bottom:12px}
+.pvi .pvt{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:16px;font-weight:700;color:var(--white);margin-bottom:6px;text-transform:uppercase;letter-spacing:.06em}
+.pvi .pvb{font-size:14px;color:var(--dim)}
+#cta{border-top:1px solid var(--border);text-align:center;padding-bottom:120px}
+.cta-h{font-family:Impact,"Arial Narrow",system-ui,sans-serif;font-size:clamp(48px,8vw,100px);line-height:.9;color:var(--white);margin-bottom:24px}
+.cta-h .c{color:var(--cyan)}
+.cta-s{font-size:18px;color:var(--dim);max-width:480px;margin:0 auto 40px;line-height:1.5}
+.cta-btns{display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:wrap}
+.btn-g{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.15);color:var(--offwhite);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:14px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:12px 24px;border-radius:4px;text-decoration:none;transition:all .2s}
+.btn-g:hover{border-color:rgba(0,212,255,.4);color:var(--cyan)}
+.cta-foot{margin-top:48px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:11px;color:var(--dim);letter-spacing:.15em;text-transform:uppercase}
+.cta-foot a{color:var(--dim);text-decoration:underline}
+.cta-foot a:hover{color:var(--offwhite)}
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{animation:fadeSlideUp .6s ease .1s both}
+.headline{animation:fadeSlideUp .6s ease .2s both}
+.sub{animation:fadeSlideUp .6s ease .35s both}
+.cta-row{animation:fadeSlideUp .6s ease .45s both}
+.stats{animation:fadeSlideUp .6s ease .55s both}
+@media(max-width:700px){.page{padding:0 20px}.mgrid,.sgrid,.ppillars,.pvgrid{grid-template-columns:1fr}.pfams{grid-template-columns:1fr}.stats{gap:28px}}
+</style>
+</head>
+<body>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<section id="hero">
+<div class="page">
+<div class="eyebrow">Open Source · Privacy First · Community Validated</div>
+<h1 class="headline">Your<br><span class="c">Brain.</span><br>Your<span class="p"> Rules.</span></h1>
+<p class="sub"><strong>SynSync Pro</strong> is the open-source brainwave entrainment platform that gives you the same neuroscience tools used in military research, clinical therapy, and elite performance training — <strong>free, transparent, and completely under your control.</strong></p>
+<div class="cta-row">
+<a href="/demo" class="btn-p">▶ Try It Free — No Account</a>
+</div>
+<div class="stats">
+<div><div class="sn">81<span class="u">+</span></div><div class="sl">Protocols</div></div>
+<div><div class="sn">100<span class="u">+</span></div><div class="sl">Peer-Reviewed Citations</div></div>
+<div><div class="sn">0<span class="u">$</span></div><div class="sl">Forever Free</div></div>
+<div><div class="sn">0<span class="u">kb</span></div><div class="sl">Data Sent Without Consent</div></div>
+</div>
+</div>
+</section>
+
+<section id="manifesto">
+<div class="page">
+<div class="sec-lbl">Why We Built This</div>
+<h2 class="sec-title">The System<br>Isn't Broken.<br>It's Working<br>Against You.</h2>
+<p class="sec-body">The neuroscience of brainwave entrainment has been locked inside pharmaceutical boardrooms, $300/session clinics, and classified government programs for decades. The research is real. The effects are documented. The access has been gatekept. <strong>We're done with that.</strong></p>
+<div class="mgrid">
+<div class="mi" data-n="01"><div class="mi-t">Pharmaceutical companies charge you for <span class="h">neurochemistry you can generate yourself</span></div><div class="mi-b">Every pill manipulates the same neurotransmitters that precise frequency entrainment activates naturally — without dependency, withdrawal, or a prescription.</div></div>
+<div class="mi" data-n="02"><div class="mi-t">Clinical neurofeedback costs <span class="h">$150–300 per session</span></div><div class="mi-b">The same SMR training that's FDA-cleared for ADHD. The same alpha-theta protocol with 80% addiction recovery rates. It was always about money, not access.</div></div>
+<div class="mi" data-n="03"><div class="mi-t"><span class="h">Your neurological data</span> is not a product</div><div class="mi-b">Wellness apps harvest your most intimate behavioral data and sell it. We process everything locally. Your brain's patterns belong to you, period.</div></div>
+<div class="mi" data-n="04"><div class="mi-t">The science is <span class="h">already proven</span></div><div class="mi-b">80+ peer-reviewed studies. Multiple meta-analyses. FDA-cleared mechanisms. DARPA research programs. We didn't invent this — we just refused to keep it locked up.</div></div>
+</div>
+</div>
+</section>
+
+<section id="science">
+<div class="page">
+<div class="sec-lbl">The Mechanism</div>
+<h2 class="sec-title">This Is<br>Neuroscience,<br>Not Magic.</h2>
+<p class="sec-body">The Frequency Following Response (FFR) is documented neurophysiology. When your brain is exposed to a precise rhythmic stimulus, it synchronizes. That synchronized state produces measurable neurochemical changes. Those changes produce real, documented outcomes.</p>
+<div class="sgrid">
+<div class="sc"><div class="sf">0.5–4 Hz · Delta</div><div class="sn2">Deep Sleep &amp; Pain Relief</div><div class="se">Thalamus entrained → slow-wave sleep ↑20–40% · Endorphins ↑ · Cortisol ↓ · Growth hormone ↑</div><span class="sb bg">Evidence Level I</span></div>
+<div class="sc"><div class="sf">4–8 Hz · Theta</div><div class="sn2">Learning &amp; Trauma Processing</div><div class="se">Hippocampal encoding ↑30–50% · Memory ↑40% · Alpha-theta crossover: 80% addiction recovery</div><span class="sb bb">Evidence Level II</span></div>
+<div class="sc"><div class="sf">8–12 Hz · Alpha</div><div class="sn2">Anxiety &amp; Calm Focus</div><div class="se">Anxiety ↓15–25% (multiple RCTs) · Pain threshold ↑25% · Thalamocortical dysrhythmia interrupted</div><span class="sb bb">Evidence Level II</span></div>
+<div class="sc"><div class="sf">12–15 Hz · SMR</div><div class="sn2">ADHD &amp; Impulse Control</div><div class="se">ADHD symptoms ↓30–50% · FDA-cleared mechanism · Replicated 1976–2024</div><span class="sb bg">Evidence Level I–II</span></div>
+<div class="sc"><div class="sf">15–20 Hz · Beta</div><div class="sn2">Focus, Drive &amp; Executive Function</div><div class="se">Left PFC activation · Dopamine ↑ · Motivation ↑ · Decision quality ↑</div><span class="sb bb">Evidence Level II</span></div>
+<div class="sc"><div class="sf">40 Hz · Gamma</div><div class="sn2">Flow State &amp; Peak Performance</div><div class="se">Consciousness binding · Cross-cortical synchrony · Insight ↑ · Output reported ×3</div><span class="sb bp">Evidence Level II–III</span></div>
+</div>
+</div>
+</section>
+
+<section id="proof">
+<div class="page">
+<div class="sec-lbl">The Research</div>
+<h2 class="sec-title">Numbers<br>Don't Lie.</h2>
+<p class="sec-body">We don't ask you to trust us. We ask you to read the studies.</p>
+<div class="plist">
+<div class="pi"><div class="pn">80%</div><div><div class="pt">Sustained abstinence at 2-year follow-up for addiction</div><div class="pc">Peniston &amp; Kulkosky (1989) · Alpha-theta protocol · vs. 20% control · Alcoholism: Clinical &amp; Experimental Research</div></div></div>
+<div class="pi"><div class="pn">40%</div><div><div class="pt">Increase in slow-wave sleep with delta entrainment</div><div class="pc">Marshall et al. (2006) · 0.75 Hz oscillations · Memory consolidation +30–40% · Nature, 444</div></div></div>
+<div class="pi"><div class="pn">50%</div><div><div class="pt">Reduction in ADHD symptoms with SMR neurofeedback</div><div class="pc">Arns et al. (2009) meta-analysis · Large effect sizes · Clinical EEG &amp; Neuroscience · FDA-cleared mechanism</div></div></div>
+<div class="pi"><div class="pn">25%</div><div><div class="pt">Increase in pain threshold with 10 Hz alpha entrainment</div><div class="pc">Osada et al. (2011) · European Journal of Pain · Endorphin mechanism confirmed</div></div></div>
+<div class="pi"><div class="pn">84</div><div><div class="pt">Studies in integrative brainwave entrainment meta-analysis</div><div class="pc">Solcà et al. (2025) · Conclusion: promising for pain, sleep, mood, cognition · Our protocols implement validated mechanisms</div></div></div>
+</div>
+</div>
+</section>
+
+<section id="philosophy">
+<div class="page">
+<div class="sec-lbl">Our Philosophy</div>
+<h2 class="sec-title">We Are<br>the Linux of<br>Brain Technology.</h2>
+<blockquote class="quote">"The tools for optimizing your own neurology should be <em>free, transparent, and owned by the community</em> — not locked behind a paywall or a prescription pad."</blockquote>
+<div class="ppillars">
+<div class="pillar"><div class="pico">🔓</div><div class="ptitle">Radical Transparency</div><div class="pbody">Every protocol carries an honest evidence rating. Level I is gold standard. Level V is speculative. We tell you which is which. Always.</div></div>
+<div class="pillar"><div class="pico">🧬</div><div class="ptitle">You Are the Researcher</div><div class="pbody">Every session you run is an experiment. You're not a patient or a customer — you're a co-researcher advancing the science of human neurological optimization.</div></div>
+<div class="pillar"><div class="pico">🛡</div><div class="ptitle">Privacy Is Non-Negotiable</div><div class="pbody">Zero backend. Zero tracking. All data local. You choose what you share, to whom, and when. Your neurological patterns belong to exactly one person: you.</div></div>
+</div>
+</div>
+</section>
+
+<section id="protocols">
+<div class="page">
+<div class="sec-lbl">What's Inside</div>
+<h2 class="sec-title">81 Protocols.<br>7 Families.<br>Every State<br>of Mind.</h2>
+<p class="sec-body">From clinical-grade ADHD optimization to legal psychedelic alternatives. From deep sleep restoration to real-time flow induction. Complete with research citations and honest evidence ratings for every protocol.</p>
+<div class="pfams">
+<div class="fam"><div class="ficon">🛌</div><div><div class="ft">Suffering Reduction</div><div class="fc">12 Protocols · Evidence Level I–II</div><div class="fb">Sleep, chronic pain, anxiety, depression, trauma, grief, and burnout recovery.</div></div></div>
+<div class="fam"><div class="ficon">⚡</div><div><div class="ft">Performance &amp; Focus</div><div class="fc">9 Protocols · Evidence Level II</div><div class="fb">ADHD, deep work, accelerated learning, working memory, test performance, peak drive.</div></div></div>
+<div class="fam"><div class="ficon">🌊</div><div><div class="ft">Flow State Sequence</div><div class="fc">5 Phases · 76 Minutes · Evidence Level II</div><div class="fb">The complete neurological arc from entry to peak performance to integration. Output ×3.</div></div></div>
+<div class="fam"><div class="ficon">💎</div><div><div class="ft">Emotional Mastery &amp; Relationships</div><div class="fc">18 Protocols · Evidence Level II–III</div><div class="fb">Emotional processing, fear dissolution, confidence, empathy, intimacy, conflict resolution.</div></div></div>
+<div class="fam"><div class="ficon">🌀</div><div><div class="ft">Altered States</div><div class="fc">24 Protocols · Evidence Level III</div><div class="fb">Legal cannabis, MDMA, stimulant, and psychedelic alternatives. Real neurochemistry. No substances.</div></div></div>
+<div class="fam"><div class="ficon">🔬</div><div><div class="ft">Advanced &amp; Experimental</div><div class="fc">13 Protocols · Evidence Level II–V</div><div class="fb">Athletic performance, addiction recovery, vagus nerve reset, and honest frontier exploration.</div></div></div>
+</div>
+</div>
+</section>
+
+<section id="privacy">
+<div class="page">
+<div class="sec-lbl">Data Sovereignty</div>
+<h2 class="sec-title">Your Data<br>Stays Yours.</h2>
+<p class="sec-body">SynSync Pro is built frontend-only. No servers. No accounts required. No cloud sync unless you explicitly initiate it. Your neurological data is the most personal data that exists — we treat it that way.</p>
+<div class="pvgrid">
+<div class="pvi"><div class="pvico">💻</div><div class="pvt">100% Local Processing</div><div class="pvb">Everything runs in your browser. Zero data transmitted to any server during normal use.</div></div>
+<div class="pvi"><div class="pvico">🔑</div><div class="pvt">You Own the Export</div><div class="pvb">Your session history is yours. Export anytime in JSON or CSV. Delete anytime, instantly.</div></div>
+<div class="pvi"><div class="pvico">🤝</div><div class="pvt">Opt-In Research Only</div><div class="pvb">Want to contribute to science? You choose what to share, stripped of all identifiers, on your terms.</div></div>
+</div>
+</div>
+</section>
+
+<section id="cta">
+<div class="page">
+<div class="sec-lbl">Get Started</div>
+<h2 class="cta-h">Start Your<br>First Session<br><span class="c">Tonight.</span></h2>
+<p class="cta-s">No download. No account. No payment. Open in your browser, put on headphones, and begin. Your nervous system will do the rest.</p>
+<div class="cta-btns">
+<a href="https://github.com/knowurknottty/synsyncpro" class="btn-p">▶ Open SynSync Pro Free</a>
+<a href="https://github.com/knowurknottty/synsyncpro" class="btn-g">⭐ Star on GitHub</a>
+<a href="https://github.com/knowurknottty/synsyncpro" class="btn-g">📖 Read the Manual</a>
+</div>
+<div class="cta-foot">Open Source · MIT License · <br>Not a medical device · Evidence ratings disclosed for every protocol · Community-built, community-owned</div>
+</div>
+</section>
+</body>
+</html>

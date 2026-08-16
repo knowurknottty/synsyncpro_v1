@@ -1,0 +1,534 @@
+{
+  "schema_version": "1.0.0",
+  "type": "synsync-protocol-plan",
+
+  "meta": {
+    "id": "plan-12345678-90ab-cdef-1234-567890abcdef",
+    "created_at": "2026-02-23T15:00:00Z",
+    "expires_at": "2026-04-23T15:00:00Z",
+    "version": 1,
+    "practitioner": {
+      "name": "Dr. Jane Smith",
+      "credentials": "PhD, Clinical Neurotherapy, Licensed Psychologist",
+      "email": "dr.smith@neurotherapy.com",
+      "phone": "+1-555-0100",
+      "license_number": "PSY-CA-12345",
+      "organization": "NeuroWellness Center"
+    },
+    "patient": {
+      "anonymous_id": "patient-a7b3f8d9c2e1f4a6b5c8d9e2f1a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0",
+      "initials": "JD",
+      "age_range": "28-35",
+      "assigned_at": "2026-02-23T15:00:00Z"
+    }
+  },
+
+  "plan": {
+    "title": "Anxiety Reduction Protocol - 8 Weeks",
+    "description": "Progressive brainwave entrainment protocol designed to reduce generalized anxiety through theta-alpha training. Combines deep relaxation protocols with cognitive enhancement to build resilience and emotional regulation.",
+    "category": "anxiety_reduction",
+    "duration_weeks": 8,
+    "intensity": "moderate",
+    "evidence_level": "II",
+
+    "goals": [
+      "Reduce baseline anxiety by 30-40% (measured by GAD-7 scale)",
+      "Establish daily meditation practice (minimum 5 days/week)",
+      "Improve sleep onset time by 15-20 minutes",
+      "Increase alpha wave dominance during rest (8-13 Hz)"
+    ],
+
+    "contraindications": [
+      "History of seizures or epilepsy",
+      "Photosensitive epilepsy",
+      "Active psychosis or severe mental illness",
+      "Severe tinnitus or hearing impairment",
+      "Pacemaker or other medical implants"
+    ]
+  },
+
+  "schedule": {
+    "timezone": "America/Los_Angeles",
+    "start_date": "2026-02-24",
+    "flexible_scheduling": true,
+    "grace_period_minutes": 120,
+
+    "phases": [
+      {
+        "phase_number": 1,
+        "title": "Foundation Phase - Establishing Baseline",
+        "description": "Introduce deep theta rhythms and establish consistent practice. Focus on relaxation and stress reduction.",
+        "start_day": 0,
+        "duration_days": 14,
+        "mandatory": true,
+
+        "sessions": [
+          {
+            "id": "morning-alpha-calm",
+            "protocol_id": "acsw",
+            "protocol_version": "2.0",
+            "frequency": "daily",
+            "time_of_day": "morning",
+            "preferred_time": "08:00",
+            "time_window": "07:00-10:00",
+            "mandatory": true,
+            "settings": {
+              "volume": 0.6,
+              "hdEnabled": true,
+              "complexity": 0.4,
+              "visualizer": "neural"
+            },
+            "instructions": {
+              "before": "Find a quiet space free from distractions. Use stereo headphones. Sit in a comfortable chair or lie down.",
+              "during": "Close your eyes and focus on your breath. Allow the audio to guide you into a relaxed state. Don't fight any thoughts - just observe them passing.",
+              "after": "Take 2-3 minutes to gently return to awareness. Journal any insights or feelings. Note your mood before and after."
+            }
+          },
+          {
+            "id": "evening-theta-deep",
+            "protocol_id": "atb-10",
+            "protocol_version": "2.0",
+            "frequency": "5x_per_week",
+            "time_of_day": "evening",
+            "preferred_time": "20:00",
+            "time_window": "19:00-22:00",
+            "mandatory": false,
+            "settings": {
+              "volume": 0.5,
+              "hdEnabled": true,
+              "complexity": 0.3,
+              "visualizer": "cosmic"
+            },
+            "instructions": {
+              "before": "Dim the lights. Use this protocol 2 hours before intended sleep time. Create a calm environment.",
+              "during": "Allow yourself to drift. Don't resist drowsiness - this protocol is designed to prepare you for sleep.",
+              "after": "Transition directly to your bedtime routine. Avoid screens for 30 minutes. Consider reading or gentle stretching."
+            }
+          }
+        ],
+
+        "weekly_targets": {
+          "min_sessions": 7,
+          "recommended_sessions": 10,
+          "rest_days": ["sunday"]
+        },
+
+        "progression_criteria": {
+          "min_completion_rate": 0.7,
+          "required_consecutive_days": 7,
+          "allow_phase_skip": false
+        }
+      },
+
+      {
+        "phase_number": 2,
+        "title": "Deepening Phase - Theta Integration",
+        "description": "Increase theta depth with cross-frequency coupling protocols. Begin building theta-gamma connections for improved emotional regulation.",
+        "start_day": 14,
+        "duration_days": 21,
+        "mandatory": true,
+
+        "sessions": [
+          {
+            "id": "morning-theta-gamma",
+            "protocol_id": "tg-cfc",
+            "protocol_version": "2.0",
+            "frequency": "daily",
+            "time_of_day": "morning",
+            "preferred_time": "08:00",
+            "time_window": "07:00-10:00",
+            "mandatory": true,
+            "settings": {
+              "volume": 0.7,
+              "hdEnabled": true,
+              "complexity": 0.6,
+              "visualizer": "neural"
+            },
+            "instructions": {
+              "before": "This protocol is more intensive. Ensure you have 35+ minutes uninterrupted.",
+              "during": "You may experience deeper relaxation or mild altered states. This is normal and safe.",
+              "after": "Take 5 minutes to ground yourself. Drink water. Move slowly back into your day."
+            }
+          },
+          {
+            "id": "afternoon-cognitive-boost",
+            "protocol_id": "ti-pbm",
+            "protocol_version": "2.0",
+            "frequency": "3x_per_week",
+            "time_of_day": "afternoon",
+            "preferred_time": "14:00",
+            "time_window": "13:00-16:00",
+            "mandatory": false,
+            "settings": {
+              "volume": 0.6,
+              "hdEnabled": true,
+              "complexity": 0.5
+            },
+            "instructions": {
+              "before": "Use this protocol during afternoon energy dips or before cognitive tasks.",
+              "during": "Focus on clarity and alertness. This protocol is activating, not sedating.",
+              "after": "Use this refreshed state for productive work or study."
+            },
+            "conditions": [
+              {
+                "metric": "energy_level",
+                "operator": "<",
+                "value": 5,
+                "action": "suggest"
+              }
+            ]
+          },
+          {
+            "id": "evening-deep-rest",
+            "protocol_id": "atb-10",
+            "protocol_version": "2.0",
+            "frequency": "5x_per_week",
+            "time_of_day": "evening",
+            "preferred_time": "20:30",
+            "mandatory": false,
+            "settings": {
+              "volume": 0.5,
+              "complexity": 0.3
+            }
+          }
+        ],
+
+        "weekly_targets": {
+          "min_sessions": 10,
+          "recommended_sessions": 14,
+          "rest_days": ["sunday"]
+        },
+
+        "progression_criteria": {
+          "min_completion_rate": 0.75,
+          "required_consecutive_days": 10,
+          "allow_phase_skip": false
+        }
+      },
+
+      {
+        "phase_number": 3,
+        "title": "Integration Phase - Building Resilience",
+        "description": "Final phase focuses on maintaining gains and building long-term resilience. Reduced frequency to establish sustainable practice.",
+        "start_day": 35,
+        "duration_days": 21,
+        "mandatory": true,
+
+        "sessions": [
+          {
+            "id": "morning-maintenance",
+            "protocol_id": "acsw",
+            "frequency": "5x_per_week",
+            "time_of_day": "morning",
+            "preferred_time": "08:00",
+            "mandatory": true,
+            "settings": {
+              "volume": 0.6,
+              "complexity": 0.5
+            }
+          },
+          {
+            "id": "as-needed-support",
+            "protocol_id": "tg-cfc",
+            "frequency": "2x_per_week",
+            "time_of_day": "anytime",
+            "mandatory": false,
+            "settings": {
+              "volume": 0.7,
+              "complexity": 0.6
+            },
+            "instructions": {
+              "before": "Use this protocol when you notice anxiety rising or need extra support.",
+              "during": "Trust the process. You've built the neural pathways - this is reinforcement.",
+              "after": "Reflect on how your response to stress has changed over these 8 weeks."
+            }
+          }
+        ],
+
+        "weekly_targets": {
+          "min_sessions": 7,
+          "recommended_sessions": 9
+        },
+
+        "progression_criteria": {
+          "min_completion_rate": 0.7,
+          "allow_phase_skip": false
+        }
+      }
+    ],
+
+    "maintenance_phase": {
+      "enabled": true,
+      "start_after_completion": true,
+      "title": "Maintenance - Sustaining Progress",
+      "description": "Continue at reduced frequency to maintain neuroplastic changes. This phase can continue indefinitely.",
+      "sessions": [
+        {
+          "id": "weekly-maintenance",
+          "protocol_id": "acsw",
+          "frequency": "3x_per_week",
+          "time_of_day": "morning",
+          "settings": {
+            "volume": 0.6,
+            "complexity": 0.5
+          }
+        }
+      ]
+    }
+  },
+
+  "protocols": {
+    "allowed": ["acsw", "atb-10", "tg-cfc", "ti-pbm"],
+    "restricted": ["dmt-epic", "salvia-mimicry", "psilocybin-journey"],
+    "recommended_visualizers": ["neural", "cosmic", "cymatics"],
+    "intensity_limits": {
+      "volume_max": 0.8,
+      "complexity_max": 0.7
+    }
+  },
+
+  "tracking": {
+    "required_metrics": [
+      "completion_status",
+      "session_duration",
+      "actual_start_time",
+      "protocol_used",
+      "settings_used"
+    ],
+
+    "optional_metrics": [
+      {
+        "id": "mood_before",
+        "label": "Mood Before Session",
+        "type": "scale",
+        "min": 1,
+        "max": 10,
+        "required": false,
+        "frequency": "per_session"
+      },
+      {
+        "id": "mood_after",
+        "label": "Mood After Session",
+        "type": "scale",
+        "min": 1,
+        "max": 10,
+        "required": false,
+        "frequency": "per_session"
+      },
+      {
+        "id": "anxiety_level",
+        "label": "Current Anxiety Level",
+        "type": "scale",
+        "min": 1,
+        "max": 10,
+        "required": true,
+        "frequency": "daily"
+      },
+      {
+        "id": "sleep_quality",
+        "label": "Last Night's Sleep Quality",
+        "type": "scale",
+        "min": 1,
+        "max": 10,
+        "required": false,
+        "frequency": "daily"
+      },
+      {
+        "id": "energy_level",
+        "label": "Current Energy Level",
+        "type": "scale",
+        "min": 1,
+        "max": 10,
+        "required": false,
+        "frequency": "per_session"
+      },
+      {
+        "id": "session_notes",
+        "label": "Session Notes",
+        "type": "text",
+        "required": false,
+        "frequency": "per_session"
+      }
+    ],
+
+    "check_ins": [
+      {
+        "day": 7,
+        "title": "Week 1 Check-In",
+        "questions": [
+          "How are you feeling overall after your first week?",
+          "Are the session times working well for your schedule?",
+          "Have you noticed any changes in your anxiety levels or sleep?",
+          "Any difficulties or challenges with the protocols?"
+        ]
+      },
+      {
+        "day": 14,
+        "title": "Phase 1 Complete - Foundation Check",
+        "questions": [
+          "Have you noticed a reduction in baseline anxiety?",
+          "Is the practice feeling natural and sustainable?",
+          "Are you ready to move to deeper theta-gamma work?",
+          "Any concerns or questions before Phase 2?"
+        ]
+      },
+      {
+        "day": 35,
+        "title": "Phase 2 Complete - Integration Check",
+        "questions": [
+          "How has your emotional regulation changed?",
+          "Are you noticing improved stress resilience?",
+          "What protocols have been most helpful?",
+          "Ready to transition to maintenance phase?"
+        ]
+      },
+      {
+        "day": 56,
+        "title": "Program Complete - Final Assessment",
+        "questions": [
+          "Overall, how would you rate the program's effectiveness?",
+          "What specific improvements have you noticed?",
+          "Do you feel equipped to continue independently?",
+          "What would you like to discuss in our follow-up session?"
+        ]
+      }
+    ],
+
+    "milestones": [
+      {
+        "day": 7,
+        "title": "First Week Complete!",
+        "required_sessions": 7,
+        "reward": "You've successfully established a daily practice. This is the hardest week - well done!",
+        "badge": "foundation-week"
+      },
+      {
+        "day": 14,
+        "title": "Foundation Phase Complete",
+        "required_sessions": 10,
+        "reward": "Two weeks of consistent practice. You're building real neuroplastic changes!",
+        "badge": "foundation-complete"
+      },
+      {
+        "day": 30,
+        "title": "One Month Milestone",
+        "required_sessions": 30,
+        "reward": "30 days of dedicated practice. Your brain has formed new neural pathways!",
+        "badge": "30-day-warrior"
+      },
+      {
+        "day": 56,
+        "title": "Program Complete - 8 Weeks!",
+        "required_sessions": 50,
+        "reward": "Congratulations! You've completed the full 8-week protocol. You've built lasting neuroplastic changes.",
+        "badge": "program-complete"
+      }
+    ]
+  },
+
+  "conditional_logic": [
+    {
+      "condition": {
+        "metric": "missed_sessions_consecutive",
+        "operator": ">=",
+        "value": 3
+      },
+      "action": "show_reminder",
+      "priority": "high",
+      "message": "You've missed 3 consecutive sessions. Consistency is key for neuroplastic changes. Would you like to adjust your schedule or reach out to Dr. Smith?"
+    },
+    {
+      "condition": {
+        "metric": "anxiety_level",
+        "operator": ">",
+        "value": 8,
+        "duration_days": 3
+      },
+      "action": "suggest_extra_session",
+      "protocol_id": "acsw",
+      "priority": "high",
+      "message": "Your anxiety has been elevated for 3 days. An extra Alpha Deep Rest session may provide relief. If anxiety persists, please contact Dr. Smith."
+    },
+    {
+      "condition": {
+        "metric": "completion_rate_weekly",
+        "operator": "<",
+        "value": 0.5
+      },
+      "action": "show_warning",
+      "priority": "medium",
+      "message": "Your weekly completion rate is below 50%. Research shows best results with >70% adherence. Would you like to adjust your session schedule?"
+    },
+    {
+      "condition": {
+        "metric": "sleep_quality",
+        "operator": "<",
+        "value": 5,
+        "duration_days": 5
+      },
+      "action": "suggest_protocol",
+      "protocol_id": "atb-10",
+      "priority": "medium",
+      "message": "Sleep quality has been low for 5 days. Consider adding an evening Alpha-Theta Bridge session to improve sleep onset."
+    }
+  ],
+
+  "instructions": {
+    "general": {
+      "setup": "Find a quiet, comfortable space where you won't be disturbed. Use stereo headphones (required for binaural protocols). Sit in a comfortable chair or lie down. Ensure your phone is on silent mode.",
+      "during": "Close your eyes and focus on your breath. Allow the audio to guide you. Don't try to force anything - just observe. Thoughts will come and go - this is normal. If you feel uncomfortable, you can pause at any time.",
+      "after": "Take 2-3 minutes before resuming normal activities. Stretch gently. Drink water. Journal your experience if desired. Note any shifts in mood or awareness.",
+      "safety": "If you experience dizziness, nausea, anxiety, or any uncomfortable sensations, pause immediately and contact Dr. Smith. These effects are rare but should not be ignored. Never use while driving or operating machinery."
+    },
+
+    "emergency_contacts": [
+      {
+        "role": "Your Practitioner",
+        "name": "Dr. Jane Smith",
+        "phone": "+1-555-0100",
+        "email": "dr.smith@neurotherapy.com",
+        "hours": "Mon-Fri 9am-5pm PST",
+        "available": "Business hours"
+      },
+      {
+        "role": "After Hours Support",
+        "name": "NeuroWellness Crisis Line",
+        "phone": "+1-555-0911",
+        "available": "24/7"
+      },
+      {
+        "role": "National Crisis Support",
+        "name": "988 Suicide & Crisis Lifeline",
+        "phone": "988",
+        "available": "24/7"
+      }
+    ]
+  },
+
+  "consent": {
+    "required": true,
+    "text": "INFORMED CONSENT FOR BRAINWAVE ENTRAINMENT PROTOCOL\n\nBy accepting this protocol plan, I acknowledge and agree to the following:\n\n1. NATURE OF TREATMENT: This protocol uses brainwave entrainment (binaural beats, isochronic tones) to influence brainwave patterns. This is NOT FDA-approved medical treatment.\n\n2. NOT MEDICAL ADVICE: This protocol is provided for informational and wellness purposes only. It is not a substitute for professional medical or mental health treatment.\n\n3. HEALTH DISCLOSURE: I have disclosed all relevant health conditions to Dr. Smith, including:\n   - History of seizures or epilepsy\n   - Mental health diagnoses\n   - Current medications\n   - Any other relevant medical conditions\n\n4. CONTRAINDICATIONS: I have reviewed the contraindications list and confirm I have no disqualifying conditions.\n\n5. RESPONSIBILITY: I am responsible for my own safety and wellbeing. I will stop immediately if I experience adverse effects and contact Dr. Smith.\n\n6. DATA PRIVACY: All session data is stored locally on my device. I control what data is shared and when. I can export or delete my data at any time.\n\n7. DISCONTINUATION: I may pause or discontinue this protocol at any time without penalty.\n\n8. RESEARCH: I understand that brainwave entrainment is an emerging field. While there is research support (Evidence Level II), individual results may vary.\n\n9. FOLLOW-UP: I will attend scheduled check-ins and communicate any concerns to Dr. Smith.\n\n10. ACKNOWLEDGMENT: I have read and understood this consent form. I have had the opportunity to ask questions.\n\nBy clicking \"Accept\", I provide my informed consent to begin this protocol under the guidance of Dr. Smith.",
+
+    "patient_signature": {
+      "signed": false,
+      "signed_at": null,
+      "ip_address": null,
+      "user_agent": null
+    }
+  },
+
+  "security": {
+    "plan_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+    "practitioner_signature": null,
+    "tamper_detection": true,
+    "encryption": "none",
+    "audit_log_enabled": true
+  },
+
+  "export_permissions": {
+    "allow_user_export": true,
+    "export_formats": ["json", "pdf", "csv"],
+    "include_subjective_data": true,
+    "anonymize_on_export": true
+  }
+}

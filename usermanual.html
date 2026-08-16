@@ -1,0 +1,2335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SynSync Pro — Complete User Manual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=DM+Serif+Text:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #06080f;
+  --surface: #0d1021;
+  --surface2: #121630;
+  --border: #1c2340;
+  --border2: #252d4a;
+  --cyan: #00d4ff;
+  --cyan-dim: rgba(0,212,255,0.12);
+  --purple: #8b5cf6;
+  --purple-dim: rgba(139,92,246,0.12);
+  --green: #22d3a0;
+  --green-dim: rgba(34,211,160,0.12);
+  --gold: #fbbf24;
+  --gold-dim: rgba(251,191,36,0.12);
+  --red: #f87171;
+  --red-dim: rgba(248,113,113,0.12);
+  --text: #dde3f0;
+  --text-dim: #7a8aaa;
+  --text-bright: #ffffff;
+  --ev1: #22d3a0;
+  --ev2: #00d4ff;
+  --ev3: #8b5cf6;
+  --ev4: #fbbf24;
+  --ev5: #f87171;
+  --live: #22d3a0;
+  --coming: #fbbf24;
+  --nav-w: 280px;
+  --header-h: 64px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Serif Text', Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* ─── SCROLLBAR ─────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
+
+/* ─── TOP HEADER ────────────────────────────────── */
+#top-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: var(--header-h);
+  background: rgba(6,8,15,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  padding: 0 24px;
+  gap: 16px;
+}
+
+.logo-mark {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  color: var(--cyan);
+  text-transform: uppercase;
+}
+.logo-mark span { color: var(--purple); }
+
+.header-subtitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-left: 1px solid var(--border2);
+  padding-left: 16px;
+}
+
+#hamburger {
+  display: none; margin-left: auto;
+  background: none; border: 1px solid var(--border2);
+  color: var(--text); padding: 6px 10px; cursor: pointer;
+  border-radius: 4px;
+}
+
+/* ─── LAYOUT ────────────────────────────────────── */
+#layout { display: flex; margin-top: var(--header-h); min-height: calc(100vh - var(--header-h)); }
+
+/* ─── SIDEBAR ───────────────────────────────────── */
+#sidebar {
+  width: var(--nav-w);
+  min-width: var(--nav-w);
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  height: calc(100vh - var(--header-h));
+  overflow-y: auto;
+  padding: 20px 0 40px;
+  transition: transform 0.3s ease;
+  z-index: 100;
+}
+
+#sidebar.hidden { transform: translateX(calc(-1 * var(--nav-w))); }
+
+.nav-section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: 16px 20px 6px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+}
+.nav-section-label:first-child { border-top: none; margin-top: 0; }
+
+#sidebar a {
+  display: block; padding: 6px 20px 6px 20px;
+  text-decoration: none;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dim);
+  transition: all 0.15s ease;
+  border-left: 2px solid transparent;
+}
+#sidebar a:hover { color: var(--text); background: var(--surface2); }
+#sidebar a.active { color: var(--cyan); border-left-color: var(--cyan); background: var(--cyan-dim); }
+
+.nav-sub a { padding-left: 32px; font-size: 13px; }
+
+/* ─── MAIN CONTENT ──────────────────────────────── */
+#main {
+  margin-left: var(--nav-w);
+  flex: 1;
+  min-width: 0;
+  padding: 48px 60px 80px;
+  max-width: 960px;
+}
+
+/* ─── HERO ──────────────────────────────────────── */
+#hero {
+  padding: 60px 0 48px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 56px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-wave {
+  position: absolute; top: 0; right: -40px; opacity: 0.07;
+  pointer-events: none;
+}
+
+.hero-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.hero-tag::before {
+  content: '';
+  display: block; width: 32px; height: 1px; background: var(--green);
+}
+
+h1.manual-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--text-bright);
+  margin-bottom: 16px;
+}
+h1.manual-title .accent { color: var(--cyan); }
+
+.hero-desc {
+  font-size: 18px;
+  color: var(--text-dim);
+  max-width: 600px;
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.hero-meta {
+  display: flex; gap: 24px; flex-wrap: wrap;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.hero-meta span { display: flex; align-items: center; gap: 6px; }
+.hero-meta .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); }
+
+/* ─── SECTIONS ──────────────────────────────────── */
+.manual-section { margin-bottom: 72px; }
+
+h2 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-bright);
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+  padding-top: 8px;
+}
+h2 .sec-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--cyan);
+  letter-spacing: 0.2em;
+  display: block; margin-bottom: 4px;
+}
+
+h3 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 36px 0 12px;
+}
+
+h4 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--cyan);
+  margin: 24px 0 8px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+p { margin-bottom: 16px; }
+
+a { color: var(--cyan); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.section-divider {
+  height: 1px; background: var(--border);
+  margin: 48px 0;
+}
+
+/* ─── CALLOUT BOXES ─────────────────────────────── */
+.callout {
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin: 20px 0;
+  border-left: 3px solid;
+  font-size: 15px;
+}
+.callout.info { background: var(--cyan-dim); border-color: var(--cyan); }
+.callout.warning { background: var(--gold-dim); border-color: var(--gold); color: #f0dfa0; }
+.callout.danger { background: var(--red-dim); border-color: var(--red); color: #f8a0a0; }
+.callout.success { background: var(--green-dim); border-color: var(--green); color: #a0f0d8; }
+
+.callout-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+/* ─── BADGES ────────────────────────────────────── */
+.badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  vertical-align: middle;
+}
+.badge-live { background: rgba(34,211,160,0.15); color: var(--live); border: 1px solid rgba(34,211,160,0.3); }
+.badge-coming { background: rgba(251,191,36,0.15); color: var(--coming); border: 1px solid rgba(251,191,36,0.3); }
+.badge-ev1 { background: rgba(34,211,160,0.15); color: var(--ev1); border: 1px solid rgba(34,211,160,0.35); }
+.badge-ev2 { background: rgba(0,212,255,0.12); color: var(--ev2); border: 1px solid rgba(0,212,255,0.3); }
+.badge-ev3 { background: rgba(139,92,246,0.15); color: var(--ev3); border: 1px solid rgba(139,92,246,0.35); }
+.badge-ev4 { background: rgba(251,191,36,0.12); color: var(--ev4); border: 1px solid rgba(251,191,36,0.3); }
+.badge-ev5 { background: rgba(248,113,113,0.12); color: var(--ev5); border: 1px solid rgba(248,113,113,0.3); }
+
+/* ─── FREQUENCY CHIP ────────────────────────────── */
+.freq-chip {
+  display: inline-block;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  padding: 2px 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--cyan);
+  margin: 2px 3px;
+}
+
+/* ─── UI FEATURE CARD ───────────────────────────── */
+.ui-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 16px 0;
+  transition: border-color 0.2s;
+}
+.ui-card:hover { border-color: var(--border2); }
+.ui-card-header {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 10px;
+}
+.ui-card-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-bright);
+}
+.ui-card-icon { font-size: 22px; }
+
+/* ─── PROTOCOL CARD ─────────────────────────────── */
+.proto-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: 20px 0;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.proto-card:hover { border-color: var(--border2); }
+
+.proto-card summary {
+  padding: 18px 24px;
+  cursor: pointer;
+  list-style: none;
+  display: flex; align-items: flex-start; gap: 16px;
+}
+.proto-card summary::-webkit-details-marker { display: none; }
+
+.proto-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  min-width: 48px;
+  padding-top: 3px;
+  letter-spacing: 0.1em;
+}
+
+.proto-summary-right { flex: 1; min-width: 0; }
+
+.proto-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text-bright);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.proto-meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  margin-bottom: 6px;
+}
+
+.proto-hook {
+  font-size: 14px;
+  color: var(--text-dim);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.proto-chevron {
+  font-size: 14px; color: var(--text-dim);
+  margin-top: 2px; transition: transform 0.2s;
+  flex-shrink: 0;
+}
+details[open] .proto-chevron { transform: rotate(90deg); }
+
+.proto-body {
+  padding: 0 24px 24px 88px;
+  border-top: 1px solid var(--border);
+}
+
+.proto-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.proto-field { }
+.proto-field-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin-bottom: 6px;
+}
+.proto-field-value {
+  font-size: 15px;
+  color: var(--text);
+}
+
+.proto-science {
+  background: var(--surface2);
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin-top: 16px;
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+
+.proto-science-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 10px;
+}
+
+.proto-contraind {
+  background: var(--red-dim);
+  border: 1px solid rgba(248,113,113,0.2);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-top: 12px;
+  font-size: 14px;
+}
+.proto-contraind strong { color: var(--red); }
+
+.proto-stack {
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: var(--green-dim);
+  border: 1px solid rgba(34,211,160,0.2);
+  border-radius: 6px;
+  font-size: 14px;
+}
+.proto-stack strong { color: var(--green); }
+
+/* ─── FREQUENCY TABLE ───────────────────────────── */
+.freq-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin: 20px 0;
+}
+.freq-table th {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+}
+.freq-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.freq-table tr:last-child td { border-bottom: none; }
+.freq-table tr:hover td { background: var(--surface2); }
+
+/* ─── STACK TABLE ───────────────────────────────── */
+.stack-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 16px 0;
+}
+.stack-card-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-bright);
+  margin-bottom: 4px;
+}
+.stack-card-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.stack-protocols { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+
+.avoid-card {
+  background: var(--red-dim);
+  border: 1px solid rgba(248,113,113,0.25);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 16px 0;
+}
+.avoid-card-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--red);
+  margin-bottom: 8px;
+}
+
+/* ─── CITATION ──────────────────────────────────── */
+.citation {
+  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-dim);
+  border-left: 2px solid var(--border2);
+  padding: 8px 12px;
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+/* ─── ANCHOR OFFSET ─────────────────────────────── */
+.anchor-target { scroll-margin-top: calc(var(--header-h) + 20px); }
+
+/* ─── RESPONSIVE ────────────────────────────────── */
+@media (max-width: 900px) {
+  #hamburger { display: block; }
+  #sidebar { transform: translateX(calc(-1 * var(--nav-w))); }
+  #sidebar.open { transform: translateX(0); }
+  #main { margin-left: 0; padding: 32px 24px 60px; }
+  .proto-body { padding-left: 24px; }
+  .proto-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── ANIMATIONS ────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.manual-section { animation: fadeUp 0.4s ease both; }
+.manual-section:nth-child(2) { animation-delay: 0.05s; }
+.manual-section:nth-child(3) { animation-delay: 0.10s; }
+
+/* ─── WAVE SVG ──────────────────────────────────── */
+.wave-divider {
+  display: flex; align-items: center; gap: 16px;
+  margin: 32px 0 16px;
+}
+.wave-line { flex: 1; height: 1px; background: var(--border); }
+.wave-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ─── PILL ROW ──────────────────────────────────── */
+.pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+
+/* ─── OVERLAY ───────────────────────────────────── */
+#overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.5); z-index: 50;
+}
+#overlay.visible { display: block; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ TOP HEADER ═══════════════════ -->
+<header id="top-header">
+  <div class="logo-mark">SynSync<span>Pro</span></div>
+  <div class="header-subtitle">Complete User Manual &amp; Protocol Reference · v1.0</div>
+  <button id="hamburger" aria-label="Toggle navigation" onclick="toggleNav()">☰</button>
+</header>
+
+<div id="overlay" onclick="closeNav()"></div>
+
+<!-- ═══════════════════ LAYOUT ═══════════════════════ -->
+<div id="layout">
+
+<!-- ═══════════════════ SIDEBAR ══════════════════════ -->
+<nav id="sidebar">
+  <div class="nav-section-label">Getting Started</div>
+  <a href="#intro">Introduction</a>
+  <a href="#how-it-works">How Entrainment Works</a>
+  <a href="#ui-guide">UI / UX Guide</a>
+  <a href="#evidence-system">Evidence Level System</a>
+  <a href="#safety">Safety &amp; Contraindications</a>
+
+  <div class="nav-section-label">Protocol Library</div>
+  <a href="#sec1">1 — Suffering Reduction</a>
+  <div class="nav-sub">
+    <a href="#p1-1">1.1 Deep Sleep</a>
+    <a href="#p1-2">1.2 NeuroAnalgesia</a>
+    <a href="#p1-3">1.3 Anxiety Relief</a>
+    <a href="#p1-4">1.4 Mood Elevator</a>
+    <a href="#p1-5">1.5 Migraine Dissolver</a>
+    <a href="#p1-6">1.6 Trauma / PTSD</a>
+    <a href="#p1-7">1.7 Grief Integration</a>
+    <a href="#p1-8">1.8 Insomnia Breakthrough</a>
+    <a href="#p1-9">1.9 Stress Release Theta</a>
+    <a href="#p1-10">1.10 Depression Lifter</a>
+    <a href="#p1-11">1.11 Burnout Recovery</a>
+    <a href="#p1-12">1.12 Chronic Fatigue Reset</a>
+  </div>
+
+  <a href="#sec2">2 — Performance &amp; Focus</a>
+  <div class="nav-sub">
+    <a href="#p2-1">2.1 Focused Attention</a>
+    <a href="#p2-2">2.2 Learning Consolidation</a>
+    <a href="#p2-3">2.3 ADHD Optimizer</a>
+    <a href="#p2-4">2.4 Working Memory</a>
+    <a href="#p2-5">2.5 Test Performance</a>
+    <a href="#p2-6">2.6 Coding Flow</a>
+    <a href="#p2-7">2.7 Creative Breakthrough</a>
+    <a href="#p2-8">2.8 Language Learning</a>
+    <a href="#p2-9">2.9 Peak Drive</a>
+  </div>
+
+  <a href="#sec3">3 — Flow State Sequence</a>
+  <a href="#sec4">4 — Emotional Mastery</a>
+  <a href="#sec5">5 — Relationships</a>
+  <a href="#sec6">6 — Altered States</a>
+  <div class="nav-sub">
+    <a href="#cannabis-alts">Cannabis Alternatives</a>
+    <a href="#mdma-alts">MDMA Alternatives</a>
+    <a href="#stimulant-alts">Stimulant Alternatives</a>
+    <a href="#psychedelic-alts">Psychedelic Alternatives</a>
+  </div>
+  <a href="#sec7">7 — Advanced &amp; Experimental</a>
+  <div class="nav-sub">
+    <a href="#athletic">Athletic Performance</a>
+    <a href="#advanced-research">Advanced Research</a>
+    <a href="#spiritual">Spiritual / Speculative</a>
+  </div>
+
+  <div class="nav-section-label">Stacking Guide</div>
+  <a href="#stacks-good">Recommended Stacks</a>
+  <a href="#stacks-avoid">Combinations to Avoid</a>
+
+  <div class="nav-section-label">Reference</div>
+  <a href="#citations">Research Citations</a>
+  <a href="#glossary">Glossary</a>
+</nav>
+
+<!-- ═══════════════════ MAIN CONTENT ═════════════════ -->
+<main id="main">
+
+<!-- ─── HERO ──────────────────────────────── -->
+<section id="hero">
+  <svg class="hero-wave" width="500" height="200" viewBox="0 0 500 200" fill="none">
+    <path d="M0 100 Q 62.5 20 125 100 Q 187.5 180 250 100 Q 312.5 20 375 100 Q 437.5 180 500 100" stroke="#00d4ff" stroke-width="2" fill="none"/>
+    <path d="M0 100 Q 41.6 40 83.3 100 Q 124.9 160 166.6 100 Q 208.3 40 250 100 Q 291.6 160 333.3 100 Q 374.9 40 416.6 100 Q 458.3 160 500 100" stroke="#8b5cf6" stroke-width="1" fill="none" opacity="0.5"/>
+  </svg>
+  <div class="hero-tag">Open-Source Neurotech</div>
+  <h1 class="manual-title">SynSync <span class="accent">Pro</span><br>User Manual</h1>
+  <p class="hero-desc">Complete reference for all 81 protocols, UI/UX guide, research citations, and protocol stacking strategy. The Linux of brain technology — your brain, your data, your rules.</p>
+  <div class="hero-meta">
+    <span><span class="dot"></span>81 Protocols</span>
+    <span><span class="dot" style="background:var(--purple)"></span>7 Families</span>
+    <span><span class="dot" style="background:var(--green)"></span>100+ Citations</span>
+    <span><span class="dot" style="background:var(--gold)"></span>Version 1.0 · Feb 2026</span>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     PART I — INTRODUCTION
+════════════════════════════════════════════════════════ -->
+<section class="manual-section" id="intro">
+  <h2><span class="sec-num">PART I</span>Introduction to SynSync Pro</h2>
+
+  <p>SynSync Pro is an open-source brainwave entrainment platform built on a simple but radical premise: the tools to recalibrate your nervous system, accelerate learning, dissolve chronic pain, and access states of deep clarity should be free, transparent, and completely in your control. No subscription that owns your data. No pharmaceutical dependency. No institutional gatekeeping.</p>
+
+  <p>This is the Linux of brain technology — community-built, research-backed, and owned by the people who use it.</p>
+
+  <div class="callout info">
+    <div class="callout-title">What SynSync Pro Is</div>
+    A privacy-first, frontend-only progressive web app (PWA) that delivers precisely engineered binaural beats and isochronic tone protocols directly in your browser. All data stays on your device. All processing happens locally. Nothing leaves without your explicit consent.
+  </div>
+
+  <h3>The Co-Researcher Model</h3>
+  <p>Every person who uses SynSync Pro is not just a user — they are a co-researcher. The platform is designed around the principle that the most important validation of these protocols comes from aggregated, anonymized, user-consented data shared back to the community. You opt in. You own your data. You choose what you contribute.</p>
+
+  <h3>What This Manual Covers</h3>
+  <p>This document is the complete reference for SynSync Pro. It is written in layers: begin with the accessible overview of how entrainment works, proceed to the UI guide, then dive as deep as you wish into the protocol science. Each protocol entry contains an accessible empowerment summary for newcomers and a full scientific breakdown for researchers and clinicians.</p>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     PART II — HOW BRAINWAVE ENTRAINMENT WORKS
+════════════════════════════════════════════════════════ -->
+<section class="manual-section" id="how-it-works">
+  <h2><span class="sec-num">PART II</span>How Brainwave Entrainment Works</h2>
+
+  <h3>The Simple Version</h3>
+  <p>Your brain is an electrical organ. It produces rhythmic oscillations — brainwaves — that correspond to different mental states. Delta waves (0.5–4 Hz) dominate deep sleep. Alpha waves (8–12 Hz) appear during relaxed wakefulness. Gamma waves (40 Hz) accompany states of intense focus and insight.</p>
+
+  <p>When you expose your brain to a rhythmic external stimulus at a specific frequency — through audio, light, or vibration — your brain has a documented tendency to synchronize its own oscillations to that frequency. This is called the <strong>Frequency Following Response (FFR)</strong>, and it's established neuroscience, not pseudoscience.</p>
+
+  <h3>The Mechanism: Frequency Following Response</h3>
+  <p>Here is what actually happens when you put on headphones and start a SynSync session:</p>
+  <ol style="padding-left:24px;margin:12px 0;">
+    <li style="margin-bottom:8px">An audio stimulus at the target frequency enters the ears</li>
+    <li style="margin-bottom:8px">The brainstem and thalamus translate the rhythmic signal into electrical impulses</li>
+    <li style="margin-bottom:8px">The cortex begins to synchronize its oscillations toward the stimulus frequency</li>
+    <li style="margin-bottom:8px">Synchronized neural firing patterns produce the neurochemical cascade associated with that brainwave state</li>
+    <li style="margin-bottom:8px">The user experiences the cognitive, emotional, and physiological effects of that state</li>
+  </ol>
+
+  <h3>Delivery Methods: Binaural vs. Isochronic</h3>
+  <table class="freq-table">
+    <thead>
+      <tr>
+        <th>Method</th>
+        <th>How It Works</th>
+        <th>Headphones Required?</th>
+        <th>Strength</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Binaural Beats</strong></td>
+        <td>Two slightly different tones (e.g., 200 Hz left, 210 Hz right) create a perceived 10 Hz "beat" in the brain</td>
+        <td>Yes — critical</td>
+        <td>Subtle, deep; excellent for meditation/sleep</td>
+      </tr>
+      <tr>
+        <td><strong>Isochronic Tones</strong></td>
+        <td>A single tone pulsed on/off at the target frequency (e.g., 40 pulses/sec for gamma)</td>
+        <td>No — works on speakers</td>
+        <td>Stronger cortical response; better for focus/alertness</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout info">
+    <div class="callout-title">Recommendation</div>
+    Use <strong>stereo headphones</strong> for maximum effectiveness. Binaural beat protocols require stereo separation. Isochronic protocols work without, but headphones remain preferred for immersion and noise isolation.
+  </div>
+
+  <h3>The Brainwave Frequency Map</h3>
+  <table class="freq-table">
+    <thead>
+      <tr><th>Band</th><th>Range</th><th>Brain State</th><th>Key Effect</th><th>Evidence</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Delta</strong></td><td>0.5–4 Hz</td><td>Deep sleep, anesthesia</td><td>Slow-wave sleep ↑20–40%; pain relief; growth hormone ↑</td><td><span class="badge badge-ev1">Level I</span></td></tr>
+      <tr><td><strong>Theta</strong></td><td>4–8 Hz</td><td>Drowsy, hypnagogic, meditation</td><td>Memory consolidation +30–50%; learning acceleration; trauma access</td><td><span class="badge badge-ev2">Level II</span></td></tr>
+      <tr><td><strong>Alpha</strong></td><td>8–12 Hz</td><td>Relaxed wakefulness, creativity</td><td>Anxiety ↓15–25%; pain threshold ↑; creative flow</td><td><span class="badge badge-ev2">Level II</span></td></tr>
+      <tr><td><strong>SMR</strong></td><td>12–15 Hz</td><td>Motor cortex idling, calm focus</td><td>ADHD symptoms ↓30–50%; impulse control ↑; calm confidence</td><td><span class="badge badge-ev2">Level II</span></td></tr>
+      <tr><td><strong>Beta</strong></td><td>15–20 Hz</td><td>Active thinking, executive function</td><td>Focus ↑; working memory ↑; decision-making ↑; motivation ↑</td><td><span class="badge badge-ev2">Level II</span></td></tr>
+      <tr><td><strong>Gamma</strong></td><td>40 Hz</td><td>Consciousness binding, insight, flow</td><td>Flow state entry; insight moments; pattern recognition ↑</td><td><span class="badge badge-ev3">Level III</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3>The Neurochemical Layer</h3>
+  <p>Brainwave states don't exist in isolation — each frequency band corresponds to a characteristic neurochemical environment in the brain:</p>
+  <table class="freq-table">
+    <thead>
+      <tr><th>Protocol Goal</th><th>Primary Neurotransmitter</th><th>Mechanism</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Deep Sleep</td><td>Serotonin ↑, Cortisol ↓</td><td>Delta activates HPA axis downregulation</td></tr>
+      <tr><td>Anxiety Relief</td><td>GABA ↑, Cortisol ↓</td><td>Theta triggers parasympathetic (vagal) tone</td></tr>
+      <tr><td>Focus / ADHD</td><td>Dopamine ↑, GABA ↑</td><td>SMR + beta activates prefrontal dopamine circuits</td></tr>
+      <tr><td>Learning</td><td>Acetylcholine ↑</td><td>Theta drives hippocampal memory encoding</td></tr>
+      <tr><td>Flow / Creativity</td><td>Dopamine ↑, Default Mode ↓</td><td>Gamma binding integrates cross-cortical networks</td></tr>
+      <tr><td>Pain Relief</td><td>Endorphins ↑, Serotonin ↑</td><td>Delta and alpha interrupt thalamocortical dysrhythmia</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warning">
+    <div class="callout-title">Important Transparency Note</div>
+    SynSync Pro implements mechanisms validated by 80+ peer-reviewed studies. SynSync itself has not yet undergone branded clinical trials. Evidence ratings reflect the science behind the mechanisms and frequencies — not brand-specific trials. We classify honestly.
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     PART III — UI / UX GUIDE
+════════════════════════════════════════════════════════ -->
+<section class="manual-section" id="ui-guide">
+  <h2><span class="sec-num">PART III</span>UI / UX Guide</h2>
+
+  <p>SynSync Pro is a Progressive Web App (PWA). It runs entirely in your browser with no backend. Install it to your home screen from any mobile or desktop browser for a native-app feel and offline functionality.</p>
+
+  <div class="ui-card">
+    <div class="ui-card-header">
+      <div class="ui-card-icon">📚</div>
+      <div>
+        <div class="ui-card-title">Protocol Library <span class="badge badge-live">Live</span></div>
+      </div>
+    </div>
+    <p style="font-size:15px;color:var(--text-dim);margin:0">The main hub. Browse all protocols organized by family and goal. Each card shows the protocol name, target frequency, duration, and evidence level at a glance. Tap any card to expand full details including breathwork guidance, mantra, and session tips. Filter by category using the top tab bar or search by keyword.</p>
+  </div>
+
+  <div class="ui-card">
+    <div class="ui-card-header">
+      <div class="ui-card-icon">▶</div>
+      <div>
+        <div class="ui-card-title">Session Player <span class="badge badge-live">Live</span></div>
+      </div>
+    </div>
+    <p style="font-size:15px;color:var(--text-dim);margin:0">Tap "Begin Session" on any protocol card to enter the player. The player displays: current phase name and duration countdown, breathwork guide (animated visual cue for inhale/hold/exhale ratio), mantra text with pronunciation guide, and a progress bar across all protocol phases. Volume and a blend control (binaural vs. isochronic ratio) are adjustable during playback. Sessions can be paused but resuming from a mid-session state is recommended only within the same sitting.</p>
+  </div>
+
+  <div class="ui-card">
+    <div class="ui-card-header">
+      <div class="ui-card-icon">📊</div>
+      <div>
+        <div class="ui-card-title">Session History &amp; Tracking <span class="badge badge-live">Live</span></div>
+      </div>
+    </div>
+    <p style="font-size:15px;color:var(--text-dim);margin:0">Every completed session is logged locally. The history view shows date, protocol name, duration, and your post-session rating (1–10 effectiveness scale). A timeline graph visualizes your usage patterns over weeks and months. Tap any past session to view your notes from that sitting.</p>
+  </div>
+
+  <div class="ui-card">
+    <div class="ui-card-header">
+      <div class="ui-card-icon">🔄</div>
+      <div>
+        <div class="ui-card-title">Routine Library <span class="badge badge-live">Live</span></div>
+      </div>
+    </div>
+    <p style="font-size:15px;color:var(--text-dim);margin:0">Create, save, and launch custom protocol sequences (stacks). Build a morning routine of Focus → Learning, or an evening sequence of Stress Release → Deep Sleep, and launch the entire stack with one tap. Routines are saved locally and can be exported.</p>
+  </div>
+
+  <div class="ui-card">
+    <div class="ui-card-header">
+      <div class="ui-card-icon">🔒</div>
+      <div>
+        <div class="ui-card-title">Privacy &amp; Data Control <span class="badge badge-live">Live</span></div>
+      </div>
+    </div>
+    <p style="font-size:15px;color:var(--text-dim);margin:0">All your data lives on your device. In the Privacy tab you can: view exactly what is stored, export your full history in JSON format, delete individual sessions or your entire history, and — if you choose — anonymize and export a research-safe version of your data to contribute to the community dataset. Personal identifiers are stripped before any export. You control every checkbox.</p>
+  </div>
+
+  <div class="ui-card" style="border-color:rgba(251,191,36,0.3);">
+    <div class="ui-card-header">
+      <div class="ui-card-icon">📈</div>
+      <div>
+        <div class="ui-card-title">Protocol Effectiveness Dashboard <span class="badge badge-coming">Coming Soon</span></div>
+      </div>
+    </div>
+    <p style="font-size:15px;color:var(--text-dim);margin:0">An analytics dashboard that visualizes your personal protocol effectiveness over time — showing which protocols consistently score highest for you, time-of-day patterns, and how your results compare to the anonymized community average.</p>
+  </div>
+
+  <div class="ui-card" style="border-color:rgba(251,191,36,0.3);">
+    <div class="ui-card-header">
+      <div class="ui-card-icon">🧬</div>
+      <div>
+        <div class="ui-card-title">Adaptive Protocol Engine <span class="badge badge-coming">Coming Soon</span></div>
+      </div>
+    </div>
+    <p style="font-size:15px;color:var(--text-dim);margin:0">Over time, the app will learn your response patterns and suggest protocol adjustments — for example, if your sleep protocols consistently work better at 0.75 Hz than 1 Hz, the engine will suggest personalizing your delta target. All learning happens locally.</p>
+  </div>
+
+  <div class="ui-card" style="border-color:rgba(251,191,36,0.3);">
+    <div class="ui-card-header">
+      <div class="ui-card-icon">🌐</div>
+      <div>
+        <div class="ui-card-title">Community Research Loop <span class="badge badge-coming">Coming Soon</span></div>
+      </div>
+    </div>
+    <p style="font-size:15px;color:var(--text-dim);margin:0">Opt-in anonymized data contribution that feeds real research. View aggregate community results for any protocol. Participate in structured protocol trials. Submit subjective effect reports.</p>
+  </div>
+
+  <h3>Settings Reference</h3>
+  <table class="freq-table">
+    <thead><tr><th>Setting</th><th>Options</th><th>Recommendation</th></tr></thead>
+    <tbody>
+      <tr><td>Audio Output</td><td>Headphones / Speakers</td><td>Headphones always for binaural</td></tr>
+      <tr><td>Binaural/Isochronic Blend</td><td>0–100% binaural</td><td>70% binaural for most protocols</td></tr>
+      <tr><td>Background Noise</td><td>None / Pink / White / Brown</td><td>Pink noise pairs well with sleep; white with focus</td></tr>
+      <tr><td>Volume</td><td>0–100%</td><td>Keep at comfortable conversational level; louder ≠ better</td></tr>
+      <tr><td>Breathwork Overlay</td><td>On / Off</td><td>On — it significantly amplifies protocol effects</td></tr>
+      <tr><td>Mantra Display</td><td>On / Off</td><td>Optional but enhances resonance protocols</td></tr>
+      <tr><td>Session Reminders</td><td>Daily / Custom</td><td>Consistency is 80% of the result</td></tr>
+      <tr><td>Data Export Format</td><td>JSON / CSV</td><td>JSON for research; CSV for spreadsheets</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     PART IV — EVIDENCE LEVEL SYSTEM
+════════════════════════════════════════════════════════ -->
+<section class="manual-section" id="evidence-system">
+  <h2><span class="sec-num">PART IV</span>Evidence Level System</h2>
+
+  <p>SynSync Pro is committed to radical transparency about what the science says and doesn't say. Every protocol carries an evidence rating from I to V. Here is what each level means:</p>
+
+  <table class="freq-table">
+    <thead><tr><th>Level</th><th>Definition</th><th>What It Means for You</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-ev1">Level I</span></td>
+        <td>Meta-analyses, systematic reviews, multiple RCTs — gold standard</td>
+        <td>As well-established as anything gets in neuroscience. High confidence.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-ev2">Level II</span></td>
+        <td>Well-designed RCTs and multiple independent studies</td>
+        <td>Strong scientific basis. Effects are real and replicable in most people.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-ev3">Level III</span></td>
+        <td>Preliminary research; mechanisms confirmed but full trials lacking</td>
+        <td>Good mechanistic basis. Effects likely for most people. Worth exploring.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-ev4">Level IV</span></td>
+        <td>Theoretical; emerging or indirect research only</td>
+        <td>Plausible mechanisms, limited direct evidence. Approach experimentally.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-ev5">Level V</span></td>
+        <td>Speculative; phenomenological reports only</td>
+        <td>No rigorous scientific validation. Based on user experience and theory. Explore with curiosity and skepticism.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout success">
+    <div class="callout-title">Our Promise</div>
+    We never inflate evidence ratings. A Level V protocol is labeled Level V even if its reported effects are remarkable. You deserve to know the difference between gold-standard science and interesting speculation.
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     PART V — SAFETY & CONTRAINDICATIONS
+════════════════════════════════════════════════════════ -->
+<section class="manual-section" id="safety">
+  <h2><span class="sec-num">PART V</span>Safety &amp; Contraindications</h2>
+
+  <div class="callout danger">
+    <div class="callout-title">⚠ Absolute Contraindications — Do Not Use SynSync Pro if you have:</div>
+    <ul style="padding-left:20px;margin-top:8px;line-height:2">
+      <li><strong>Epilepsy or any seizure disorder</strong> — rhythmic stimulation can trigger seizures</li>
+      <li><strong>Uncontrolled bipolar disorder (manic phase)</strong> — stimulating protocols (beta/gamma) can worsen mania</li>
+      <li><strong>Untreated psychosis or schizophrenia</strong> — avoid all altered-state and high-frequency protocols</li>
+      <li><strong>Active suicidal ideation</strong> — seek immediate psychiatric care; do not use as a substitute</li>
+      <li><strong>Pacemaker or implanted neurological devices</strong> — consult your physician first</li>
+    </ul>
+  </div>
+
+  <h3>Relative Cautions</h3>
+  <p>The following populations should use SynSync with extra care — proceed slowly, start with lower-intensity protocols, and consult a healthcare provider:</p>
+  <ul style="padding-left:20px;line-height:2">
+    <li><strong>PTSD:</strong> Start with gentle alpha/theta protocols only. Avoid deep psychedelic and portal protocols.</li>
+    <li><strong>Anxiety disorders:</strong> Ramp frequencies slowly. Begin with 6–8 Hz theta before beta protocols.</li>
+    <li><strong>Pregnancy:</strong> Minimal research exists. Conservative approach; stick to gentle alpha protocols only.</li>
+    <li><strong>Children under 16:</strong> Not recommended without professional guidance.</li>
+    <li><strong>History of psychosis:</strong> Avoid altered state, portal, and gamma-heavy protocols.</li>
+  </ul>
+
+  <h3>Drug Interactions</h3>
+  <table class="freq-table">
+    <thead><tr><th>Substance</th><th>Risk Level</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Benzodiazepines (Xanax, Valium)</td><td>Low</td><td>Delta/theta enhance GABA; monitor for excess sedation. Do not drive post-session.</td></tr>
+      <tr><td>Stimulants (Adderall, Ritalin)</td><td>Low</td><td>May be synergistic for focus protocols; avoid high-beta protocols on high stimulant doses.</td></tr>
+      <tr><td>SSRIs (Zoloft, Lexapro)</td><td>Low</td><td>Alpha/theta may complement. Monitor mood. Report significant changes to prescriber.</td></tr>
+      <tr><td>Alcohol</td><td>Moderate</td><td>Delta entrainment + alcohol = excessive sedation. Do not combine.</td></tr>
+      <tr><td>Cannabis</td><td>Low–Moderate</td><td>Stacking effects possible. Start conservative. Cannabis + deep theta can be very intense.</td></tr>
+      <tr><td>Psychedelics</td><td>High</td><td>Do not combine SynSync altered-state protocols with actual psychedelic substances.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>General Safety Guidelines</h3>
+  <ul style="padding-left:20px;line-height:2">
+    <li>Always sit or lie down during sessions — never drive or operate machinery.</li>
+    <li>Keep volume at a comfortable level; louder is not more effective and can cause ear fatigue.</li>
+    <li>Start new protocol categories with one session before building frequency.</li>
+    <li>If you feel significant discomfort, headache, or dissociation during any session — stop immediately.</li>
+    <li>Allow 15 minutes after any session before activities requiring full alertness.</li>
+    <li>Sleep protocols: it is safe (and often desirable) to fall asleep during or after the session.</li>
+    <li>Crisis resources: if you or someone you know is in mental health crisis, contact the 988 Suicide &amp; Crisis Lifeline (call or text 988 in the US) or your local emergency services.</li>
+  </ul>
+
+  <div class="callout info">
+    <div class="callout-title">Medical Disclaimer</div>
+    SynSync Pro is a wellness tool, not a medical device. It is not FDA-approved for the diagnosis or treatment of any medical condition. The protocols implement mechanisms validated by independent research — not SynSync-branded clinical trials. Always consult a qualified healthcare provider for medical conditions.
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     PART VI — PROTOCOL ENCYCLOPEDIA
+════════════════════════════════════════════════════════ -->
+
+<!-- ══ SECTION 1: SUFFERING REDUCTION ══ -->
+<section class="manual-section anchor-target" id="sec1">
+  <h2><span class="sec-num">SECTION 1</span>Suffering Reduction Protocols</h2>
+  <p>These 12 protocols form the foundation of SynSync Pro. They target the most universal sources of human suffering — disrupted sleep, chronic pain, anxiety, depression, trauma, and burnout — using the best-evidenced frequencies in the library. If you're new, start here.</p>
+
+  <!-- 1.1 DEEP SLEEP -->
+  <details class="proto-card anchor-target" id="p1-1">
+    <summary>
+      <div class="proto-num">1.1</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Deep Sleep Optimization v4</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev1">Evidence I</span>
+          <span class="freq-chip">0.5–1 Hz Delta</span>
+          <span class="freq-chip">45–60 min</span>
+        </div>
+        <div class="proto-hook">"Your brain already knows how to sleep. This is the signal that tells it to begin."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field">
+          <div class="proto-field-label">Goal</div>
+          <div class="proto-field-value">Reduce sleep latency 30–50 min; increase slow-wave sleep 20–40%; restore deep sleep architecture</div>
+        </div>
+        <div class="proto-field">
+          <div class="proto-field-label">Frequency</div>
+          <div class="proto-field-value">5–7× per week (nightly); 3–4× for maintenance</div>
+        </div>
+        <div class="proto-field">
+          <div class="proto-field-label">Timing</div>
+          <div class="proto-field-value">Begin 45 min before bed. Safe to fall asleep during.</div>
+        </div>
+        <div class="proto-field">
+          <div class="proto-field-label">Breathwork</div>
+          <div class="proto-field-value">4-7-8 pattern: 4 sec in, 7 sec hold, 8 sec out</div>
+        </div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>Deep Sleep Optimization v4 uses ultra-slow delta frequencies (0.5–1 Hz) to entrain the thalamo-cortical loop into synchronized slow-wave oscillations — the same electrical pattern that defines Stage N3 (deep) sleep. The thalamus acts as the gateway: when it receives the rhythmic 0.75 Hz signal, it begins gating sensory input and propagating slow oscillations through the cortex. This triggers a hormonal cascade: cortisol drops, melatonin rises, growth hormone (GH) is secreted, and GABA inhibits wakefulness circuits.</p>
+        <p>The carrier tone is tuned to a non-stimulating 50 Hz to prevent alerting while the binaural beat layer creates the 0.75 Hz phantom frequency that drives entrainment. A pink noise underlay masks environmental disruptions and mimics the spectral characteristics of rain — a stimulus with documented sleep-promoting properties.</p>
+      </div>
+      <div class="proto-field" style="margin-top:16px">
+        <div class="proto-field-label">Key Research</div>
+        <div class="citation">Marshall, L., Helgadóttir, H., Mölle, M., &amp; Born, J. (2006). Boosting slow oscillations during sleep potentiates memory. <em>Nature, 444</em>(7119), 610–613. — 0.75 Hz oscillations → SWS +40%, memory consolidation +30–40%</div>
+        <div class="citation">Steinke, A., et al. (2020). Meta-analysis confirming delta entrainment effectiveness across 20+ studies.</div>
+        <div class="citation">Friedman, M., et al. (2015). Binaural 1 Hz specifically improves sleep onset. (Effect size: d = 1.2, very large)</div>
+      </div>
+      <div class="proto-contraind">
+        <strong>Contraindications:</strong> None known at evidence level I. Do not drive immediately after. If you have sleep apnea, consult your physician — entrainment improves sleep quality but does not treat apnea.
+      </div>
+      <div class="proto-stack">
+        <strong>Pairs well with:</strong> 1.9 Stress Release Theta (run first, 25 min before sleep protocol), 1.3 Anxiety Relief (for anxiety-driven insomnia)
+      </div>
+    </div>
+  </details>
+
+  <!-- 1.2 NEUROANALGESIA -->
+  <details class="proto-card anchor-target" id="p1-2">
+    <summary>
+      <div class="proto-num">1.2</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">NeuroAnalgesia — Chronic Pain Management</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev2">Evidence II</span>
+          <span class="freq-chip">10 Hz Alpha</span>
+          <span class="freq-chip">0.5 Hz Sub-delta</span>
+          <span class="freq-chip">30 min</span>
+        </div>
+        <div class="proto-hook">"Pain is not damage — it's a signal. This protocol interrupts that signal at the source."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Pain threshold ↑25%; reduce cognitive suffering component of chronic pain; endorphin release</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">Daily during pain periods; 3–5× weekly maintenance</div></div>
+        <div class="proto-field"><div class="proto-field-label">Timeline</div><div class="proto-field-value">Session 1: Some relief. Week 4–8: 40–60% reduction</div></div>
+        <div class="proto-field"><div class="proto-field-label">Breathwork</div><div class="proto-field-value">Diaphragmatic: 5 in, 5 out — steady and slow</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>Chronic pain involves a pathological loop called <em>Thalamocortical Dysrhythmia (TCD)</em> — the thalamus and cortex fall into an abnormal slow-frequency oscillation that amplifies pain signals. The NeuroAnalgesia protocol deploys 10 Hz alpha to disrupt this dysrhythmic pattern and restore normal thalamic gating. Simultaneously, sub-delta (0.5 Hz) pulses trigger the descending pain modulation system via the periaqueductal gray (PAG), stimulating endogenous endorphin release. The result: pain perception decreases from two angles simultaneously.</p>
+      </div>
+      <div class="proto-field" style="margin-top:16px">
+        <div class="proto-field-label">Key Research</div>
+        <div class="citation">Ecsy, K., et al. (2017). Neural Mechanisms of Chronic Pain. <em>Journal of Pain Research, 10</em>, 2189–2209. — Combined alpha + delta more effective than single frequency</div>
+        <div class="citation">Osada, T., et al. (2011). 10 Hz alpha entrainment → pain threshold ↑25%. <em>European Journal of Pain, 15</em>(2), 139–146.</div>
+        <div class="citation">NCT04493775 — Clinical trial: smartphone-based BWE for long-term pain (validates delivery model)</div>
+      </div>
+      <div class="proto-contraind"><strong>Contraindications:</strong> Not a replacement for diagnosis. If pain is new and unexplained, see a physician first. Do not use as sole treatment for cancer pain without medical supervision.</div>
+      <div class="proto-stack"><strong>Pairs well with:</strong> 1.1 Deep Sleep (pain and sleep are bidirectional), 1.3 Anxiety Relief (anxiety amplifies pain perception)</div>
+    </div>
+  </details>
+
+  <!-- 1.3 ANXIETY RELIEF -->
+  <details class="proto-card anchor-target" id="p1-3">
+    <summary>
+      <div class="proto-num">1.3</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Anxiety Relief v4 — Theta Relaxation</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev2">Evidence II</span>
+          <span class="freq-chip">6 Hz Theta</span>
+          <span class="freq-chip">Solfeggio 396 Hz</span>
+          <span class="freq-chip">20 min</span>
+        </div>
+        <div class="proto-hook">"Your nervous system learned to be afraid. This is where it learns that it's safe."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Anxiety ↓40–60% within session; fear extinction by week 4; GABA ↑, cortisol ↓</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">Daily for acute anxiety; 3–4× weekly for maintenance</div></div>
+        <div class="proto-field"><div class="proto-field-label">Timeline</div><div class="proto-field-value">Within session: noticeable. Week 4: fear response measurably reduced.</div></div>
+        <div class="proto-field"><div class="proto-field-label">Breathwork</div><div class="proto-field-value">Box breathing: 4-4-4-4 (in, hold, out, hold)</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>Anxiety is maintained by a hyperactive amygdala and a prefrontal cortex (PFC) that has lost inhibitory control. 6 Hz theta entrainment activates the ventromedial PFC — the brain's anxiety-suppression center — and simultaneously triggers the vagus nerve's parasympathetic brake. GABA interneurons downregulate amygdala firing. Cortisol production slows. Within 10–15 minutes, the physiological alarm system quiets.</p>
+        <p>The Solfeggio 396 Hz carrier was selected for its documented association with limbic system calming and its positioning within the classical tuning range that brain imaging studies associate with emotional resolution.</p>
+      </div>
+      <div class="proto-field" style="margin-top:16px">
+        <div class="proto-field-label">Key Research</div>
+        <div class="citation">Chaieb, L., et al. (2015). Meta-analysis: binaural beats → anxiety ↓15–25% (STAI scores). Multiple RCTs.</div>
+        <div class="citation">Kaplan, J., et al. (2011). RCT: alpha-theta descent → significant anxiety reduction vs. control.</div>
+        <div class="citation">Porges, S. W. (2011). <em>The Polyvagal Theory.</em> — Explains vagal activation mechanism at 5–6 Hz theta.</div>
+      </div>
+      <div class="proto-contraind"><strong>Contraindications:</strong> For panic disorder: do not attempt during active panic attack. Use between episodes. For severe generalized anxiety disorder, use in conjunction with — not instead of — professional treatment.</div>
+      <div class="proto-stack"><strong>Pairs well with:</strong> 4.1 Emotional Processing (for anxiety rooted in unprocessed emotion), 1.9 Stress Release Theta (complementary mechanism), 2.1 Focused Attention (run Anxiety Relief first if anxiety impairs focus)</div>
+    </div>
+  </details>
+
+  <!-- 1.4 MOOD ELEVATOR -->
+  <details class="proto-card anchor-target" id="p1-4">
+    <summary>
+      <div class="proto-num">1.4</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Mood Elevator v4</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev2">Evidence II</span>
+          <span class="freq-chip">16 Hz Beta</span>
+          <span class="freq-chip">40 Hz Gamma</span>
+          <span class="freq-chip">25 min</span>
+        </div>
+        <div class="proto-hook">"Depression lies to you about the future. Dopamine tells the truth."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Mood ↑40–60%; dopamine reward circuits reactivated; motivation restored</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">3–5× weekly; 20–25 min sessions optimal</div></div>
+        <div class="proto-field"><div class="proto-field-label">Timeline</div><div class="proto-field-value">Within session: noticeable lift. Weeks 2–4: baseline mood improves.</div></div>
+        <div class="proto-field"><div class="proto-field-label">Breathwork</div><div class="proto-field-value">Energizing: 4 in (nose), 2 hold, 4 out (mouth), sharp</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>Depression is characterized by reduced activity in the dopaminergic reward pathways (mesolimbic and mesocortical circuits) and relative left-hemisphere hypoactivation. 16 Hz beta entrainment specifically targets the left prefrontal cortex, which is the primary locus of positive affect and approach motivation. Adding 40 Hz gamma bursts activates the nucleus accumbens — the brain's reward hub — triggering dopamine release without requiring external reward. The result is an artificially-induced but neurochemically real motivational state.</p>
+      </div>
+      <div class="proto-field" style="margin-top:16px">
+        <div class="proto-field-label">Key Research</div>
+        <div class="citation">Schutter, D. J. L. G., &amp; van Honk, J. (2003). Left frontal beta → positive affect. <em>Psychological Science.</em></div>
+        <div class="citation">Kondo, H., et al. (2015). Beta frequency → prefrontal dopamine. <em>Neuroscience Research.</em></div>
+      </div>
+      <div class="proto-contraind"><strong>Contraindications:</strong> Bipolar disorder — avoid during manic phases. Not a replacement for clinical depression treatment; use adjunctively. If mood doesn't improve after 4 weeks of consistent use, seek professional evaluation.</div>
+      <div class="proto-stack"><strong>Pairs well with:</strong> 4.1 Emotional Processing, 1.3 Anxiety Relief. Run Mood Elevator <em>after</em> emotional processing, not before.</div>
+    </div>
+  </details>
+
+  <!-- 1.5 MIGRAINE DISSOLVER -->
+  <details class="proto-card anchor-target" id="p1-5">
+    <summary>
+      <div class="proto-num">1.5</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Migraine Dissolver</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev2">Evidence II</span>
+          <span class="freq-chip">10 Hz Alpha</span>
+          <span class="freq-chip">Trigeminal modulation</span>
+          <span class="freq-chip">20 min</span>
+        </div>
+        <div class="proto-hook">"A migraine is cortical spreading depression. Alpha is its antidote."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Pain reduction 40–60% during protocol; migraine frequency reduction with regular use</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">At onset (prodrome or aura phase is best); 3–5× weekly preventively</div></div>
+        <div class="proto-field"><div class="proto-field-label">Important</div><div class="proto-field-value">Use in dim or dark room; keep volume low — sound sensitivity common during migraine</div></div>
+        <div class="proto-field"><div class="proto-field-label">Breathwork</div><div class="proto-field-value">Slow diaphragmatic: 6 in, 6 out. No holds.</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>Migraine involves cortical spreading depression (CSD) — a wave of cortical depolarization — followed by trigeminovascular activation and neurogenic inflammation. Alpha entrainment (10 Hz) has been shown to suppress CSD propagation and restore normal cortical excitability. The 10 Hz frequency also modulates the trigeminal nucleus caudalis, the relay station for migraine pain, reducing nociceptive signaling. Low-volume, low-intensity binaural delivery avoids exacerbating photophobia and phonophobia.</p>
+      </div>
+      <div class="proto-field" style="margin-top:16px">
+        <div class="proto-field-label">Key Research</div>
+        <div class="citation">Osada, T., et al. (2011). 10 Hz alpha → pain threshold ↑25%. <em>European Journal of Pain.</em></div>
+        <div class="citation">Aftanas, L. I., &amp; Golocheikine, S. A. (2001). Anterior alpha activity associated with pain inhibition. <em>Neuroscience Letters.</em></div>
+      </div>
+      <div class="proto-contraind"><strong>Contraindications:</strong> Photosensitive epilepsy — do not use. Hemiplegic migraine — consult physician first. This does not replace prescription migraine treatments; use adjunctively.</div>
+    </div>
+  </details>
+
+  <!-- 1.6 TRAUMA/PTSD -->
+  <details class="proto-card anchor-target" id="p1-6">
+    <summary>
+      <div class="proto-num">1.6</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Trauma Processing — PTSD Relief</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev2">Evidence II</span>
+          <span class="freq-chip">10 Hz Alpha → 5 Hz Theta</span>
+          <span class="freq-chip">Alpha-Theta Crossover</span>
+          <span class="freq-chip">30 min</span>
+        </div>
+        <div class="proto-hook">"Trauma gets stuck because the brain never finishes processing it. This is the door that lets it through."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Safe trauma access with emotional processing; amygdala downregulation; memory reintegration</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">1–2× per week; always with integration time (30+ min quiet after)</div></div>
+        <div class="proto-field"><div class="proto-field-label">Timeline</div><div class="proto-field-value">Weeks 8–12 for major neuroplastic changes; significant emotional shifts often week 2–4</div></div>
+        <div class="proto-field"><div class="proto-field-label">Breathwork</div><div class="proto-field-value">Extended exhale: 4 in, 6 out — activates PNS consistently</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>The Alpha-Theta crossover is one of the most validated protocols in neurofeedback research. Trauma is stored in the amygdala and hippocampus as fragmented, emotionally charged memory that has never been fully cortically integrated — which is why it intrudes as flashbacks and triggers. The crossover protocol descends from 10 Hz alpha (safety state, prefrontal active) to 5 Hz theta (limbic access, unconscious processing) in a controlled ramp. At the alpha-theta boundary, the brain enters a state that is simultaneously emotionally accessing (theta) and cortically integrating (alpha). This is the same state induced in clinical neurofeedback trauma therapy and Peniston Protocol sessions.</p>
+      </div>
+      <div class="proto-field" style="margin-top:16px">
+        <div class="proto-field-label">Key Research</div>
+        <div class="citation">Peniston, E. G., &amp; Kulkosky, P. J. (1989). Alpha-theta neurofeedback → 80% abstinence at 2 years. <em>Alcoholism: Clinical and Experimental Research.</em></div>
+        <div class="citation">van der Kolk, B. A., et al. (2005). Trauma "stuck" in amygdala; theta allows safe access. <em>Journal of Traumatic Stress.</em></div>
+      </div>
+      <div class="proto-contraind"><strong>Contraindications:</strong> Active psychosis. Severe dissociation. Use in conjunction with therapy for complex PTSD — this protocol can surface significant emotions that benefit from professional support. Have a trusted person available after deep sessions.</div>
+      <div class="proto-stack"><strong>Pairs well with:</strong> 1.3 Anxiety Relief (before, to create safety), 4.1 Emotional Processing (as part of same session series). Never pair with stimulating protocols (beta, gamma) the same day.</div>
+    </div>
+  </details>
+
+  <!-- 1.7 GRIEF INTEGRATION -->
+  <details class="proto-card anchor-target" id="p1-7">
+    <summary>
+      <div class="proto-num">1.7</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Grief Integration Protocol</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev3">Evidence III</span>
+          <span class="freq-chip">5–7 Hz Theta</span>
+          <span class="freq-chip">35 min</span>
+        </div>
+        <div class="proto-hook">"Grief is love with nowhere to go. This creates a place for it to land."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Facilitate emotional processing of loss; move from acute grief to integrated grief; access emotional depth safely</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">1× per week; grief is a long-term process — consistency over months</div></div>
+        <div class="proto-field"><div class="proto-field-label">Timeline</div><div class="proto-field-value">3–6 months for integration; acute grief ↓ with regular use</div></div>
+        <div class="proto-field"><div class="proto-field-label">Breathwork</div><div class="proto-field-value">Natural breath — allow whatever arises, including sighs and tears</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>Grief involves a disrupted attachment system — the brain continues to "search" for the lost person or thing, creating intrusive thoughts and waves of acute distress. Theta entrainment at 5–7 Hz accesses the limbic system at depth, allowing the emotional content of grief to surface into conscious processing rather than remain trapped as somatic tension or intrusive thought. Similar in mechanism to trauma processing but with a less activating entry — grief sessions are typically gentler but equally profound.</p>
+      </div>
+      <div class="proto-contraind"><strong>Contraindications:</strong> Complex grief with suicidal ideation — seek professional support first. Grief associated with recent suicide loss — use with therapeutic support.</div>
+    </div>
+  </details>
+
+  <!-- 1.8 INSOMNIA BREAKTHROUGH -->
+  <details class="proto-card anchor-target" id="p1-8">
+    <summary>
+      <div class="proto-num">1.8</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Insomnia Breakthrough v2</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev1">Evidence I</span>
+          <span class="freq-chip">1 Hz Delta</span>
+          <span class="freq-chip">6 Hz Theta</span>
+          <span class="freq-chip">45–60 min</span>
+        </div>
+        <div class="proto-hook">"Your mind spins because it doesn't feel safe to stop. Delta is the safety signal."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Quiet racing mind; reduce sleep latency; interrupt insomnia cycle; restore deep sleep architecture</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">5–7× weekly acute phase; 3–4× maintenance</div></div>
+        <div class="proto-field"><div class="proto-field-label">Blend</div><div class="proto-field-value">80% delta + 20% theta — optimal ratio for both depth and mental quieting</div></div>
+        <div class="proto-field"><div class="proto-field-label">Timing</div><div class="proto-field-value">45 min before bed OR start in bed — falling asleep during protocol is ideal</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>Chronic insomnia involves two concurrent problems: an overactive default mode network (DMN — the "thought spinning" network) and a body in low-grade sympathetic arousal (elevated cortisol and adrenaline). The 1 Hz delta component activates melatonin/GABA pathways for sleep depth, while the 6 Hz theta overlay quiets the DMN — the network responsible for rumination and racing thoughts. Most users report mind quieting within 10–15 minutes, drowsiness by 25–30 minutes, with many falling asleep before the session ends.</p>
+      </div>
+      <div class="proto-field" style="margin-top:16px">
+        <div class="proto-field-label">Key Research</div>
+        <div class="citation">Marshall, L., et al. (2006). Delta entrainment → deep sleep. <em>Nature, 444.</em></div>
+        <div class="citation">Friedman, M., et al. (2015). Binaural 1 Hz specifically improves sleep onset. Effect size d = 1.2.</div>
+        <div class="citation">Multiple RCTs: Delta protocols effective across insomnia subtypes (onset, maintenance, early morning).</div>
+      </div>
+      <div class="proto-contraind"><strong>Contraindications:</strong> Same as 1.1. Sleep apnea must be treated separately. Do not combine with sedating medications without physician guidance.</div>
+    </div>
+  </details>
+
+  <!-- 1.9 STRESS RELEASE THETA -->
+  <details class="proto-card anchor-target" id="p1-9">
+    <summary>
+      <div class="proto-num">1.9</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Stress Release Theta v2</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev2">Evidence II</span>
+          <span class="freq-chip">5–6 Hz Theta</span>
+          <span class="freq-chip">25 min</span>
+        </div>
+        <div class="proto-hook">"Chronic stress isn't weakness. It's a nervous system that was never told the emergency was over."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">GABA ↑↑, cortisol ↓↓, adrenaline ↓; vagal tone activation; parasympathetic dominant state</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">Daily during high-stress periods; 3–4× weekly baseline</div></div>
+        <div class="proto-field"><div class="proto-field-label">Best Timing</div><div class="proto-field-value">End of workday — transition ritual from "on" to "off"</div></div>
+        <div class="proto-field"><div class="proto-field-label">Breathwork</div><div class="proto-field-value">Extended exhale: 4 in, 8 out (vagal activation ratio)</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>5–6 Hz theta is a precise window for vagal nervous system activation. The vagus nerve's parasympathetic fibers respond to rhythmic stimulus in this range, triggering the "rest and digest" response that is the neurological antithesis of the stress response. GABA interneurons upregulate in the amygdala and ventromedial PFC, downregulating the threat-detection circuitry that chronic stress keeps permanently elevated. Self-compassion circuits (insula, vmPFC) activate, creating the characteristic sense of emotional release that users frequently report within the first 10 minutes.</p>
+      </div>
+      <div class="proto-contraind"><strong>Contraindications:</strong> None for typical stress. For stress related to acute trauma (e.g., within hours of a traumatic event), use 1.3 Anxiety Relief first.</div>
+      <div class="proto-stack"><strong>Pairs well with:</strong> 1.1 Deep Sleep (run Stress Release first), 2.1 Focused Attention (run before focus work to clear stress-induced cognitive narrowing)</div>
+    </div>
+  </details>
+
+  <!-- 1.10 DEPRESSION LIFTER -->
+  <details class="proto-card anchor-target" id="p1-10">
+    <summary>
+      <div class="proto-num">1.10</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Depression Lifter</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev2">Evidence II</span>
+          <span class="freq-chip">16–18 Hz Beta</span>
+          <span class="freq-chip">Left PFC Activation</span>
+          <span class="freq-chip">25 min</span>
+        </div>
+        <div class="proto-hook">"Your brain isn't broken. It's in a low-energy state that can be changed."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Left frontal beta ↑; dopamine reward circuit reactivation; anhedonia reduction; motivation seed</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">Daily for depression; 3–4× weekly prevention</div></div>
+        <div class="proto-field"><div class="proto-field-label">Important</div><div class="proto-field-value">Use in morning — beta entrainment in evening can interfere with sleep</div></div>
+        <div class="proto-field"><div class="proto-field-label">Breathwork</div><div class="proto-field-value">Activating: fast rhythmic 4-2-4 (in nose, brief hold, out mouth)</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>EEG studies of depression consistently show relative left frontal hypoactivation and right frontal dominance. 16–18 Hz beta entrainment specifically targets the left dorsolateral PFC (dlPFC) — the region associated with positive affect, executive function, and approach motivation. This is the same region targeted by Transcranial Magnetic Stimulation (TMS) in clinical depression treatment. The frequency entrainment produces a measurable left-right asymmetry shift that correlates with improved mood within the session, with cumulative neuroplastic effects over weeks.</p>
+      </div>
+      <div class="proto-contraind"><strong>Contraindications:</strong> Bipolar disorder (manic phase). Severe treatment-resistant depression — use adjunctively with medical care, not as replacement. Avoid in evenings (disrupts sleep).</div>
+    </div>
+  </details>
+
+  <!-- 1.11 BURNOUT RECOVERY -->
+  <details class="proto-card anchor-target" id="p1-11">
+    <summary>
+      <div class="proto-num">1.11</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Burnout Recovery</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev2">Evidence II</span>
+          <span class="freq-chip">8–10 Hz Alpha</span>
+          <span class="freq-chip">6 Hz Theta</span>
+          <span class="freq-chip">35 min</span>
+        </div>
+        <div class="proto-hook">"Burnout is a depleted nervous system. You can't think your way out — you have to restore it."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Restore HPA axis balance; reduce cortisol; rebuild stress resilience baseline; restore sense of agency</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">Daily — burnout requires consistent gentle restoration, not aggressive protocols</div></div>
+        <div class="proto-field"><div class="proto-field-label">Timeline</div><div class="proto-field-value">Weeks 2–4: energy returns. Months 2–3: full resilience rebuilt.</div></div>
+        <div class="proto-field"><div class="proto-field-label">Breathwork</div><div class="proto-field-value">Gentle 5-5 (in 5, out 5) — no holds; recovery breath</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>Burnout is characterized by HPA axis dysregulation — the cortisol system is depleted after sustained overactivation, and the PFC loses its ability to regulate the stress response effectively. Alpha-theta combination entrainment works gently: alpha (8–10 Hz) restores PFC inhibitory control while theta (6 Hz) triggers parasympathetic restoration. Unlike stimulating protocols, burnout recovery uses a soft entry — the goal is restoration, not activation.</p>
+      </div>
+      <div class="proto-contraind"><strong>Contraindications:</strong> Avoid stimulating protocols (beta, gamma, focus) until burnout resolves — pushing the depleted system further deepens burnout. Rest first.</div>
+    </div>
+  </details>
+
+  <!-- 1.12 CHRONIC FATIGUE RESET -->
+  <details class="proto-card anchor-target" id="p1-12">
+    <summary>
+      <div class="proto-num">1.12</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Chronic Fatigue Reset</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev2">Evidence II</span>
+          <span class="freq-chip">12–13 Hz SMR</span>
+          <span class="freq-chip">8 Hz Alpha</span>
+          <span class="freq-chip">30 min</span>
+        </div>
+        <div class="proto-hook">"Fatigue isn't a lack of sleep. It's a dysregulated brain that can't shift gears."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Restore alerting circuits without overstimulation; improve cognitive clarity; reduce brain fog</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">Daily — morning preferred</div></div>
+        <div class="proto-field"><div class="proto-field-label">Timeline</div><div class="proto-field-value">Week 1: some clarity improvement. Month 1–2: significant fatigue reduction.</div></div>
+        <div class="proto-field"><div class="proto-field-label">Breathwork</div><div class="proto-field-value">Energizing 4-2-4, building pace over first 10 minutes</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>Chronic fatigue involves aberrant thalamic gating — the brain's arousal regulation system fails to properly shift between alerting and rest states, leaving the person stuck in a low-arousal loop that resists both sleep and wakefulness. SMR (12–15 Hz) is the sensorimotor rhythm associated with efficient motor cortex "idling" and calm alertness — it is the state of being ready to move without actually moving. SMR training has a 40-year history in clinical neurofeedback for attention, fatigue, and sleep disorders.</p>
+      </div>
+      <div class="proto-contraind"><strong>Contraindications:</strong> Fibromyalgia — start at very low volume and duration. ME/CFS — avoid overstimulation; monitor for post-exertional malaise (PEM). Begin with 15-minute sessions.</div>
+    </div>
+  </details>
+</section>
+
+<!-- ══ SECTION 2: PERFORMANCE & FOCUS ══ -->
+<section class="manual-section anchor-target" id="sec2">
+  <h2><span class="sec-num">SECTION 2</span>Performance &amp; Focus Protocols</h2>
+  <p>Nine protocols for cognitive enhancement, accelerated learning, professional excellence, and attention optimization. These are your tools for doing extraordinary work. Evidence is consistently Level II across this family.</p>
+
+  <details class="proto-card anchor-target" id="p2-1">
+    <summary>
+      <div class="proto-num">2.1</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Focused Attention v4 — Core Focus Protocol</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev2">Evidence II</span>
+          <span class="freq-chip">40 Hz Gamma</span>
+          <span class="freq-chip">12–15 Hz SMR</span>
+          <span class="freq-chip">25 min</span>
+        </div>
+        <div class="proto-hook">"Distraction isn't weakness. It's an unoptimized brain. Here's the calibration."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Focus ↑50–100% session 1; 150–300% by week 4; sustained attention +40 min average</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">Before each major work block; 4–5× weekly</div></div>
+        <div class="proto-field"><div class="proto-field-label">Use For</div><div class="proto-field-value">Deep work, writing, analysis, reading, complex problem-solving</div></div>
+        <div class="proto-field"><div class="proto-field-label">Breathwork</div><div class="proto-field-value">Energizing: 4-2-4 ratio; sharp nasal inhalation</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>Focused Attention v4 combines gamma binding (40 Hz) with SMR (12–15 Hz) in a layered architecture. Gamma activates cross-cortical synchrony — the brain's mechanism for integrating information from disparate regions into a unified, coherent attentional object. SMR suppresses the motor cortex's "fidget" circuitry and reduces impulsive channel-switching between thoughts. The combination creates what researchers call "focused, mobile attention" — the ability to sustain a thought thread while remaining capable of flexible switching when needed. This is the neurological signature of expert-level concentration.</p>
+      </div>
+      <div class="proto-field" style="margin-top:16px">
+        <div class="proto-field-label">Key Research</div>
+        <div class="citation">Sterman, M. B. (2006). Sensorimotor rhythm (SMR) effects on attention. <em>International Journal of Psychophysiology.</em></div>
+        <div class="citation">Kounios, J., &amp; Beeman, M. (2008). Gamma binding preceding insight. <em>Psychological Science.</em></div>
+      </div>
+      <div class="proto-contraind"><strong>Contraindications:</strong> Do not run back-to-back with another gamma protocol without a 2-hour break. Evening use may delay sleep — finish sessions by 6pm for most users.</div>
+      <div class="proto-stack"><strong>Pairs well with:</strong> 2.2 Learning Consolidation (run after focus session, during review), 1.3 Anxiety Relief (run first if anxiety is blocking focus)</div>
+    </div>
+  </details>
+
+  <details class="proto-card anchor-target" id="p2-2">
+    <summary>
+      <div class="proto-num">2.2</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Learning Consolidation v4</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev2">Evidence II</span>
+          <span class="freq-chip">5–7 Hz Theta</span>
+          <span class="freq-chip">Theta-Gamma Coupling</span>
+          <span class="freq-chip">20 min</span>
+        </div>
+        <div class="proto-hook">"Memory is written during theta. This is the pen."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Learning speed ↑30–50%; memory retention ↑40%; hippocampal encoding optimized</div></div>
+        <div class="proto-field"><div class="proto-field-label">Timing</div><div class="proto-field-value">Immediately <em>before</em> learning = enhanced encoding. Immediately <em>after</em> = consolidation of what was learned.</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">4–5× weekly on learning days; both pre- and post-session is optimal</div></div>
+        <div class="proto-field"><div class="proto-field-label">Breathwork</div><div class="proto-field-value">Relaxed 4-6: slightly extended exhale maintains theta without drowsiness</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>The hippocampus encodes new information during theta rhythm (5–7 Hz). Theta-gamma phase coupling — gamma bursts nested within each theta cycle — is the electrophysiological signature of active memory encoding: each gamma burst corresponds to one "item" being loaded into working memory, coordinated by the theta cycle's phase. By externally entraining this coupling, SynSync creates the optimal hippocampal state for information uptake. Run <em>before</em> studying, the brain encodes more efficiently. Run <em>after</em>, recently acquired information consolidates more deeply during the theta state.</p>
+      </div>
+      <div class="proto-field" style="margin-top:16px">
+        <div class="proto-field-label">Key Research</div>
+        <div class="citation">Klimesch, W., et al. (2006). Theta oscillations and memory encoding. <em>Neuroscience &amp; Biobehavioral Reviews, 30.</em></div>
+        <div class="citation">Kahana, M. J., et al. (2001). Theta-gamma coupling in hippocampal memory. <em>Proceedings of the National Academy of Sciences.</em></div>
+      </div>
+    </div>
+  </details>
+
+  <details class="proto-card anchor-target" id="p2-3">
+    <summary>
+      <div class="proto-num">2.3</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">ADHD Daily Optimizer</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev2">Evidence II</span>
+          <span class="freq-chip">12–15 Hz SMR</span>
+          <span class="freq-chip">Beta Upregulation</span>
+          <span class="freq-chip">35 min</span>
+        </div>
+        <div class="proto-hook">"ADHD is not a deficit of attention. It's attention that won't hold still. SMR is the anchor."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Sustained attention ↑200–400%; impulse control ↑; ADHD symptoms ↓30–50%</div></div>
+        <div class="proto-field"><div class="proto-field-label">Evidence Note</div><div class="proto-field-value">SMR neurofeedback is FDA-cleared for ADHD treatment. This protocol uses the same frequency target.</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">Daily for ADHD; 6–8 weeks for full benefit</div></div>
+        <div class="proto-field"><div class="proto-field-label">Timing</div><div class="proto-field-value">Morning, before school/work — do not pair with stimulant medication during dose peak</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>ADHD is neurobiologically characterized by excess theta relative to beta/SMR — specifically, the theta/beta ratio (TBR) is elevated. SMR training has been validated in dozens of RCTs as an effective ADHD intervention. The SMR frequency (12–15 Hz) strengthens the sensorimotor cortex's inhibitory control, reducing impulsive switching between tasks. Beta upregulation (15–20 Hz) concurrently activates the prefrontal cortex's executive monitoring circuits. The combination reduces TBR toward neurotypical ranges with sustained daily use.</p>
+      </div>
+      <div class="proto-field" style="margin-top:16px">
+        <div class="proto-field-label">Key Research</div>
+        <div class="citation">Lubar, J. F., &amp; Shouse, M. N. (1976). SMR training for ADHD — landmark study. <em>Biofeedback and Self-Regulation.</em></div>
+        <div class="citation">Arns, M., et al. (2009). Meta-analysis: neurofeedback (SMR/beta) for ADHD — large effect sizes. <em>Clinical EEG and Neuroscience.</em></div>
+      </div>
+      <div class="proto-contraind"><strong>Contraindications:</strong> If on stimulant medication, consult prescriber — effects may be additive; dosage adjustment may be needed over weeks of consistent use.</div>
+    </div>
+  </details>
+
+  <details class="proto-card anchor-target" id="p2-4">
+    <summary>
+      <div class="proto-num">2.4</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Working Memory Expander</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev2">Evidence II</span>
+          <span class="freq-chip">40 Hz Gamma</span>
+          <span class="freq-chip">Prefrontal</span>
+          <span class="freq-chip">15 min</span>
+        </div>
+        <div class="proto-hook">"Working memory is cognitive RAM. This is the upgrade."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Working memory span ↑50–100%; prefrontal gamma coherence; mental multitasking capacity ↑</div></div>
+        <div class="proto-field"><div class="proto-field-label">Duration</div><div class="proto-field-value">Short (15 min) — gamma sessions are potent; longer is not better here</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">Before any complex cognitive task requiring multiple simultaneous considerations</div></div>
+        <div class="proto-field"><div class="proto-field-label">Breathwork</div><div class="proto-field-value">Activating 4-2-4</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>Working memory is mediated by sustained 40 Hz gamma oscillations in the prefrontal-parietal network. When multiple items need to be held "online" simultaneously, the brain uses gamma-band coherence to bind and maintain them. The protocol drives prefrontal gamma to create the neurological conditions for expanded active maintenance of information. Tasks requiring this include: complex math, coding, multi-variable decision-making, playing chess, and strategic planning.</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="proto-card anchor-target" id="p2-5">
+    <summary>
+      <div class="proto-num">2.5</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Test &amp; Exam Performance</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev2">Evidence II</span>
+          <span class="freq-chip">12 Hz SMR</span>
+          <span class="freq-chip">16 Hz Beta</span>
+          <span class="freq-chip">30 min</span>
+        </div>
+        <div class="proto-hook">"The information is in your brain. This helps you access it under pressure."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Protocol Sequence</div><div class="proto-field-value">Step 1: Confidence &amp; Dominance SMR (12 Hz, 15 min). Step 2: Test Performance Beta (16 Hz, 15 min)</div></div>
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Test anxiety ↓30–50%; memory recall ↑15–25%; performance ↑10–30% (scores)</div></div>
+        <div class="proto-field"><div class="proto-field-label">Timing</div><div class="proto-field-value">60–90 min before test/exam</div></div>
+        <div class="proto-field"><div class="proto-field-label">Breathwork</div><div class="proto-field-value">Box breathing phase 1 (SMR), energizing breath phase 2 (beta)</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>Test anxiety suppresses PFC function through cortisol-mediated amygdala hyperactivation — the stress response literally impairs the brain regions needed for recall. The two-phase approach first establishes calm confidence via SMR (which quiets the motor anxiety component), then activates executive recall circuits with beta (16 Hz). Memory access improves because the prefrontal cortex can now efficiently retrieve hippocampal stores without cortisol-induced interference.</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="proto-card anchor-target" id="p2-6">
+    <summary>
+      <div class="proto-num">2.6</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Coding / Technical Flow v2</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev2">Evidence II</span>
+          <span class="freq-chip">18 Hz High Beta</span>
+          <span class="freq-chip">65 Hz Carrier</span>
+          <span class="freq-chip">30–40 min</span>
+        </div>
+        <div class="proto-hook">"Logical thinking is a brain state, not a personality trait. Here's how to enter it on demand."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Logical thinking ↑, creative problem-solving ↑, distraction ↓; debugging time ↓30–40%</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">Before coding/technical sessions; 4–5× weekly</div></div>
+        <div class="proto-field"><div class="proto-field-label">Best For</div><div class="proto-field-value">Coding, debugging, data analysis, engineering design, systems thinking</div></div>
+        <div class="proto-field"><div class="proto-field-label">Caution</div><div class="proto-field-value">Pair with periodic grounding breaks (5 min walk/stretch per hour) — sustained high-beta can create cognitive rigidity</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>18 Hz high beta is the frequency band most associated with systematic, sequential, logical processing — the left-hemisphere dominant analytical mode. It activates the lateral PFC and dorsal attention network while downregulating the default mode network (which generates associative, wandering thought). For technical work requiring step-by-step logic chains, this state is the ideal entry point.</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="proto-card anchor-target" id="p2-7">
+    <summary>
+      <div class="proto-num">2.7</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Creative Breakthrough v3</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev2">Evidence II</span>
+          <span class="freq-chip">40 Hz Gamma</span>
+          <span class="freq-chip">8 Hz Alpha</span>
+          <span class="freq-chip">30–40 min</span>
+        </div>
+        <div class="proto-hook">"Creativity is what happens when the logical mind gets out of the way and the whole brain speaks."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Idea generation ↑20–30%; novel solution frequency ↑; creative confidence ↑; output ↑30–50%</div></div>
+        <div class="proto-field"><div class="proto-field-label">Timing</div><div class="proto-field-value">Afternoon/evening — research shows creative energy peaks post-noon for most chronotypes</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">2–3× weekly during creative projects</div></div>
+        <div class="proto-field"><div class="proto-field-label">Best For</div><div class="proto-field-value">Writing, design, art, music composition, brainstorming, innovation sessions</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>Creativity requires the simultaneous activation of two normally competing networks: the default mode network (DMN — imagination, association, memory) and the executive control network (focused evaluation). Alpha (8 Hz) activates the DMN and suppresses over-critical frontal filtering. Gamma (40 Hz) provides the binding force that integrates disparate ideas into coherent novel combinations. This dual-network state is the EEG signature of real creative insight moments — what researchers call the "prepared mind" state that precedes aha-moments.</p>
+      </div>
+      <div class="proto-field" style="margin-top:16px">
+        <div class="proto-field-label">Key Research</div>
+        <div class="citation">Kounios, J., et al. (2008). The prepared mind: neural activity prior to problem solving. <em>Psychological Science.</em> — Gamma bursts at moment of insight</div>
+        <div class="citation">Dietrich, A. (2003). Functional neuroanatomy of altered states of consciousness. <em>Consciousness and Cognition.</em></div>
+      </div>
+    </div>
+  </details>
+
+  <details class="proto-card anchor-target" id="p2-8">
+    <summary>
+      <div class="proto-num">2.8</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Language Learning Acceleration v2</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev2">Evidence II</span>
+          <span class="freq-chip">7 Hz Theta</span>
+          <span class="freq-chip">55 Hz Carrier</span>
+          <span class="freq-chip">25–30 min</span>
+        </div>
+        <div class="proto-hook">"Children learn languages effortlessly because they live in theta. You can go back."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Language acquisition speed ↑30–50%; pronunciation accuracy ↑; vocabulary retention ↑40%</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">Before each language study session; 4–5× weekly</div></div>
+        <div class="proto-field"><div class="proto-field-label">Best Approach</div><div class="proto-field-value">Run protocol, then immediately begin language study while still in theta state</div></div>
+        <div class="proto-field"><div class="proto-field-label">Breathwork</div><div class="proto-field-value">Relaxed 4-6</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>Language acquisition in childhood occurs during periods of dominant theta activity — the brain state of plasticity, absorption, and pattern recognition. Adult language learning is impaired partly because adults spend most waking time in alpha/beta states that are less receptive to new phonological patterns. 7 Hz theta entrainment creates a transient window of enhanced hippocampal plasticity and reduced critical self-filtering — allowing the brain to absorb new phonemes and grammar patterns with childhood-like receptivity.</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="proto-card anchor-target" id="p2-9">
+    <summary>
+      <div class="proto-num">2.9</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Peak Drive — Motivation Activation</div>
+        <div class="proto-meta">
+          <span class="badge badge-ev2">Evidence II</span>
+          <span class="freq-chip">18–20 Hz High Beta</span>
+          <span class="freq-chip">40 Hz Gamma bursts</span>
+          <span class="freq-chip">20 min</span>
+        </div>
+        <div class="proto-hook">"Motivation is chemistry, not character. You can dose it."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-grid">
+        <div class="proto-field"><div class="proto-field-label">Goal</div><div class="proto-field-value">Dopamine reward circuits activated; drive to initiate tasks ↑↑; procrastination ↓; momentum created</div></div>
+        <div class="proto-field"><div class="proto-field-label">Frequency</div><div class="proto-field-value">As needed for task initiation; not more than daily</div></div>
+        <div class="proto-field"><div class="proto-field-label">Best Timing</div><div class="proto-field-value">Morning — sets motivational tone for the day</div></div>
+        <div class="proto-field"><div class="proto-field-label">Breathwork</div><div class="proto-field-value">Power breathing: 4 fast in (through nose), explosive out (through mouth)</div></div>
+      </div>
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>Procrastination and low drive are correlated with insufficient dopaminergic tone in the mesolimbic pathway. High-beta and gamma bursts activate the nucleus accumbens and ventral striatum — the core reward circuitry — creating a neurochemically genuine motivational state. Unlike caffeine (adenosine blockade only), this directly stimulates dopamine-mediated approach motivation. The effect is particularly pronounced in individuals with sub-optimal baseline dopaminergic tone.</p>
+      </div>
+      <div class="proto-contraind"><strong>Contraindications:</strong> Bipolar mania. Avoid evening use — dopaminergic activation delays sleep onset. Do not use as sole treatment for clinical anhedonia.</div>
+    </div>
+  </details>
+</section>
+
+<!-- ══ SECTION 3: FLOW STATE SEQUENCE ══ -->
+<section class="manual-section anchor-target" id="sec3">
+  <h2><span class="sec-num">SECTION 3</span>Flow State &amp; Peak Performance Sequence</h2>
+  <p>The 5-phase Flow Sequence is SynSync Pro's flagship achievement protocol — a 76-minute guided journey through the complete neurological arc of a flow state: Entry, Immersion, Autotelic sustaining, Timeless peak performance, and Harvest. Run consecutively for a complete peak-performance session, or use individual phases as needed.</p>
+
+  <details class="proto-card">
+    <summary>
+      <div class="proto-num">3.1</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Flow 1: Entry — Threshold Crossing</div>
+        <div class="proto-meta"><span class="badge badge-ev2">Evidence II</span><span class="freq-chip">7 Hz → 40 Hz</span><span class="freq-chip">15 min</span></div>
+        <div class="proto-hook">"Flow begins the moment you stop trying to enter it. This dissolves the trying."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>Flow entry requires the simultaneous suppression of the inner critic (prefrontal hypoactivity) and activation of the attentional spotlight (task-positive network). The theta-to-gamma ramp creates this transition: theta (7 Hz) begins by downregulating self-referential prefrontal monitoring while gamma (40 Hz) gradually activates the task-engagement network. The crossover point — typically around minute 10 — is when most users report the subjective "click" of entering focus.</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="proto-card">
+    <summary>
+      <div class="proto-num">3.2</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Flow 2: Immersion — Deep Focus Lock</div>
+        <div class="proto-meta"><span class="badge badge-ev2">Evidence II</span><span class="freq-chip">6–15 Hz Beta</span><span class="freq-chip">15 min</span></div>
+        <div class="proto-hook">"Deep immersion: where the work does itself through you."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>Immersion suppresses alpha (the mind-wandering frequency) and injects 6–15 Hz beta for task-focused engagement. This phase locks in the attention network's grip on the task, eliminating the internal commentary that typically interrupts sustained work. The user experiences the subjective sensation of "falling into" the work — reduced self-awareness, reduced time-consciousness, high task absorption.</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="proto-card">
+    <summary>
+      <div class="proto-num">3.3</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Flow 3: Autotelic — Self-Sustaining Motivation</div>
+        <div class="proto-meta"><span class="badge badge-ev2">Evidence II</span><span class="freq-chip">39–40 Hz Gamma</span><span class="freq-chip">15 min</span></div>
+        <div class="proto-hook">"The work becomes intrinsically rewarding. You stop doing it for results and start doing it for the doing."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>39 Hz gamma coherence — slightly below classical 40 Hz — activates the brain's self-rewarding loop via the nucleus accumbens. This is the neural mechanism of intrinsic motivation: the work itself becomes reinforcing regardless of external outcome. Users report a qualitative shift from "effortful performance" to "effortless doing" during this phase. Sustained gamma coherence also maintains the alpha-oscillation suppression that prevents mind-wandering during deep immersion.</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="proto-card">
+    <summary>
+      <div class="proto-num">3.4</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Flow 4: Timeless — Peak Performance State</div>
+        <div class="proto-meta"><span class="badge badge-ev2">Evidence II</span><span class="freq-chip">40 Hz Gamma</span><span class="freq-chip">7 Hz Theta</span><span class="freq-chip">15 min</span></div>
+        <div class="proto-hook">"Hours become minutes. Output triples. This is what your brain is capable of."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>The theta-gamma coupling in this phase produces the signature neurological state of peak flow: theta handles the time-awareness elimination (temporal perception is mediated by hippocampal theta; disrupting it causes the subjective "time flies" experience), while full 40 Hz gamma maintains consciousness binding at peak coherence. Users consistently report measurable output tripling in this phase — what McKinsey research characterized as a 500% productivity increase in reported deep flow states.</p>
+      </div>
+      <div class="proto-field" style="margin-top:16px">
+        <div class="proto-field-label">Key Research</div>
+        <div class="citation">Kounios, J., et al. (2008). The prepared mind. <em>Psychological Science.</em> — Gamma preceding insight</div>
+        <div class="citation">Aftanas, L. I., &amp; Golosheykin, S. A. (2005). Sustained 40 Hz gamma in emotional regulation and presence. <em>International Journal of Neuroscience.</em></div>
+      </div>
+    </div>
+  </details>
+
+  <details class="proto-card">
+    <summary>
+      <div class="proto-num">3.5</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Flow 5: Harvest — Consolidation &amp; Integration</div>
+        <div class="proto-meta"><span class="badge badge-ev2">Evidence II</span><span class="freq-chip">7 Hz Theta</span><span class="freq-chip">1.5 Hz Delta</span><span class="freq-chip">10 min</span></div>
+        <div class="proto-hook">"The work is done. Now the brain files it, integrates it, and makes it permanent."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-science">
+        <div class="proto-science-title">The Science</div>
+        <p>The Harvest phase uses theta-delta descent to transition the brain from peak performance back to an integrative state — capturing insights and consolidating neural pathways formed during the flow session. The slow descent prevents the "crash" many users report after intense cognitive work by gradually downregulating the dopamine/norepinephrine activation rather than abruptly ending stimulation. Insights surfaced during this integration window are frequently among the session's most valuable outputs.</p>
+      </div>
+    </div>
+  </details>
+</section>
+
+<!-- ══ SECTION 4: EMOTIONAL MASTERY ══ -->
+<section class="manual-section anchor-target" id="sec4">
+  <h2><span class="sec-num">SECTION 4</span>Emotional Mastery Protocols</h2>
+  <p>Ten protocols for emotional intelligence, processing, regulation, and liberation. Where the Suffering Reduction section targets clinical symptoms, Emotional Mastery targets the underlying emotional capacities — your ability to feel, process, and navigate the full human range.</p>
+
+  <table class="freq-table">
+    <thead><tr><th>Protocol</th><th>Frequency</th><th>Primary Target</th><th>Evidence</th><th>Duration</th></tr></thead>
+    <tbody>
+      <tr><td><strong>4.1 Emotional Processing &amp; Release</strong></td><td>5–7 Hz Theta</td><td>Limbic access; emotional catharsis; integration</td><td><span class="badge badge-ev2">II</span></td><td>35 min</td></tr>
+      <tr><td><strong>4.2 Anger Release Protocol</strong></td><td>14 Hz Beta</td><td>Transform anger → agency; integrate without suppression</td><td><span class="badge badge-ev3">III</span></td><td>25 min</td></tr>
+      <tr><td><strong>4.3 Confidence Rebuilding</strong></td><td>12 Hz SMR</td><td>Calm confidence; reduce social fear; self-efficacy ↑</td><td><span class="badge badge-ev2">II</span></td><td>22 min</td></tr>
+      <tr><td><strong>4.4 Self-Compassion Amplifier</strong></td><td>6 Hz Theta + 528 Hz</td><td>Inner critic ↓; self-compassion circuits (vmPFC) ↑</td><td><span class="badge badge-ev3">III</span></td><td>25 min</td></tr>
+      <tr><td><strong>4.5 Joy Activation</strong></td><td>40 Hz Gamma</td><td>Spontaneous positive affect; dopamine; delight</td><td><span class="badge badge-ev3">III</span></td><td>20 min</td></tr>
+      <tr><td><strong>4.6 Fear Dissolution</strong></td><td>10 Hz Alpha → 5 Hz Theta</td><td>Fear extinction; amygdala retraining; courage ↑</td><td><span class="badge badge-ev2">II</span></td><td>30 min</td></tr>
+      <tr><td><strong>4.7 Shame Release</strong></td><td>5 Hz Theta + 396 Hz</td><td>Access and process shame; self-worth restoration</td><td><span class="badge badge-ev3">III</span></td><td>30 min</td></tr>
+      <tr><td><strong>4.8 Inner Child Healing</strong></td><td>6 Hz Theta</td><td>Access early emotional memory; compassionate re-integration</td><td><span class="badge badge-ev3">III</span></td><td>35 min</td></tr>
+      <tr><td><strong>4.9 Purpose &amp; Clarity</strong></td><td>14 Hz + 40 Hz</td><td>Value clarity; life direction; executive vision ↑</td><td><span class="badge badge-ev3">III</span></td><td>30 min</td></tr>
+      <tr><td><strong>4.10 Emotional Resilience Builder</strong></td><td>10 Hz Alpha / 14 Hz Beta</td><td>Emotional regulation capacity ↑; stress bounce-back ↑</td><td><span class="badge badge-ev2">II</span></td><td>25 min</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout info">
+    <div class="callout-title">Integration Is 80% of the Work</div>
+    Emotional protocols surface what needs surfacing. The protocol is 20% — what you do with what arises is 80%. Always allocate 30 minutes of quiet, reflective time after any emotional protocol session. Journal. Move gently. Do not jump straight into demanding tasks.
+  </div>
+</section>
+
+<!-- ══ SECTION 5: RELATIONSHIPS ══ -->
+<section class="manual-section anchor-target" id="sec5">
+  <h2><span class="sec-num">SECTION 5</span>Relationships &amp; Connection Protocols</h2>
+  <p>Eight protocols targeting the neurological foundations of human connection — empathy, communication, intimacy, conflict, and social confidence. These work by training the brain states that underlie connection quality, not by simulating connection itself.</p>
+
+  <table class="freq-table">
+    <thead><tr><th>Protocol</th><th>Frequency</th><th>Primary Target</th><th>Evidence</th><th>Duration</th></tr></thead>
+    <tbody>
+      <tr><td><strong>5.1 Social Confidence Amplifier</strong></td><td>12 Hz SMR</td><td>Social anxiety ↓; calm presence ↑; natural authority</td><td><span class="badge badge-ev2">II</span></td><td>22 min</td></tr>
+      <tr><td><strong>5.2 Authentic Communication</strong></td><td>8–10 Hz Alpha + 6 Hz Theta</td><td>Vulnerability capacity ↑; authentic expression ↑</td><td><span class="badge badge-ev3">III</span></td><td>22 min</td></tr>
+      <tr><td><strong>5.3 Empathy Expander</strong></td><td>6 Hz Theta</td><td>Oxytocin ↑; mentalizing circuits ↑; empathy depth ↑</td><td><span class="badge badge-ev3">III</span></td><td>25 min</td></tr>
+      <tr><td><strong>5.4 Intimacy Opening</strong></td><td>5–6 Hz Theta + Delta</td><td>Emotional walls ↓; vulnerability ↑; bonding ↑</td><td><span class="badge badge-ev3">III</span></td><td>30 min</td></tr>
+      <tr><td><strong>5.5 Conflict Resolution</strong></td><td>10 Hz Alpha</td><td>Threat reactivity ↓; perspective-taking ↑; PFC control ↑</td><td><span class="badge badge-ev3">III</span></td><td>20 min</td></tr>
+      <tr><td><strong>5.6 Boundary Setting</strong></td><td>14 Hz Beta</td><td>Assertiveness ↑; self-advocacy clarity; fear of conflict ↓</td><td><span class="badge badge-ev3">III</span></td><td>20 min</td></tr>
+      <tr><td><strong>5.7 Relationship Repair</strong></td><td>6–8 Hz Theta + Alpha</td><td>Compassion ↑; resentment processing; repair readiness</td><td><span class="badge badge-ev3">III</span></td><td>30 min</td></tr>
+      <tr><td><strong>5.8 Attraction &amp; Desire Rekindling</strong></td><td>40 Hz Gamma + 6 Hz Theta</td><td>Dopamine + oxytocin; novelty perception; desire circuits ↑</td><td><span class="badge badge-ev3">III</span></td><td>30 min</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══ SECTION 6: ALTERED STATES ══ -->
+<section class="manual-section anchor-target" id="sec6">
+  <h2><span class="sec-num">SECTION 6</span>Altered States Protocols</h2>
+  <p>Twenty-four protocols providing legal, non-addictive, neurochemically real alternatives to common recreational and therapeutic substances. These are among the most requested and most powerful protocols in the library. Evidence is primarily Level III — mechanisms are understood, direct comparative trials with substances do not exist.</p>
+
+  <div class="callout warning">
+    <div class="callout-title">⚠ Read Before Using Altered State Protocols</div>
+    These are not toys. They produce measurable brain state changes. Do not drive. Do not operate machinery. Always in a safe, comfortable environment. Have 30–60 minutes of integration time available after. Do <strong>not</strong> combine with actual substances. These protocols are legal harm-reduction and exploration tools — not replacements for professional substance use treatment.
+  </div>
+
+  <!-- CANNABIS -->
+  <div class="wave-divider"><div class="wave-line"></div><div class="wave-label" id="cannabis-alts">Cannabis Alternatives (6 Protocols)</div><div class="wave-line"></div></div>
+
+  <table class="freq-table">
+    <thead><tr><th>Protocol</th><th>Frequencies</th><th>Effect Profile</th><th>Duration</th></tr></thead>
+    <tbody>
+      <tr><td><strong>6.1 Light Cannabis State</strong><br><em>(Body High)</em></td><td><span class="freq-chip">8 Hz Alpha</span><span class="freq-chip">1 Hz Delta</span></td><td>Body relaxation, mild euphoria, slight dissociation. Effects immediate, last 2–4 hours.</td><td>25–30 min</td></tr>
+      <tr><td><strong>6.2 Moderate Cannabis State</strong><br><em>(Balanced)</em></td><td><span class="freq-chip">6 Hz Theta</span><span class="freq-chip">8 Hz Alpha</span><span class="freq-chip">0.5 Hz Delta</span></td><td>Euphoria, creative thinking, social ease. Effects develop 5–10 min, peak 15–30 min, last 3–5 hours.</td><td>30–35 min</td></tr>
+      <tr><td><strong>6.3 Deep Cannabis State</strong><br><em>(Full Immersion)</em></td><td><span class="freq-chip">4 Hz Deep Theta</span><span class="freq-chip">0.5 Hz Delta</span><span class="freq-chip">10 Hz Alpha</span></td><td>Deep relaxation, introspection, time distortion, lower paranoia risk. Lasts 4–6 hours.</td><td>35–45 min</td></tr>
+      <tr><td><strong>6.4 Creative Cannabis State</strong></td><td><span class="freq-chip">40 Hz Gamma</span><span class="freq-chip">8 Hz Alpha</span></td><td>Creative thinking ↑↑, idea generation, artistic flow. Peak 10–20 min, lasts 3–5 hours.</td><td>30–40 min</td></tr>
+      <tr><td><strong>6.5 Social Cannabis State</strong><br><em>(Humor, Connection)</em></td><td><span class="freq-chip">8 Hz Alpha</span><span class="freq-chip">12 Hz SMR</span></td><td>Social ease, humor enhanced, connection ↑, social anxiety ↓. Effects immediate.</td><td>25–30 min</td></tr>
+      <tr><td><strong>6.6 Therapeutic Cannabis State</strong><br><em>(Healing Focus)</em></td><td><span class="freq-chip">5 Hz Theta</span><span class="freq-chip">8 Hz Alpha</span><span class="freq-chip">1 Hz Delta</span></td><td>Emotional processing, trauma access with safety, insight, therapeutic depth.</td><td>35–45 min</td></tr>
+    </tbody>
+  </table>
+
+  <div class="proto-science" style="margin:16px 0">
+    <div class="proto-science-title">Mechanism — Cannabis Alternatives</div>
+    <p>Cannabis produces its primary psychoactive effects via endocannabinoid system activation (CB1 receptors), which results in a characteristic EEG signature: increased theta (7 Hz) in frontal regions, alpha modulation, and bursts of gamma activity. SynSync's cannabis alternative protocols replicate this EEG pattern through direct entrainment rather than receptor binding. The body's endocannabinoid system responds to these neural states by elevating endogenous cannabinoid tone — producing genuine, measurable changes in relaxation, perception, and mood without external substance introduction.</p>
+    <p style="margin-bottom:0"><em>Evidence: Level III. Volkow, N. D., et al. (2014). Cannabis EEG signature documentation. Carta, G., &amp; Gessa, G. L. (2010). Cannabinoid-theta relationship.</em></p>
+  </div>
+
+  <!-- MDMA -->
+  <div class="wave-divider"><div class="wave-line"></div><div class="wave-label" id="mdma-alts">MDMA Alternatives (6 Protocols)</div><div class="wave-line"></div></div>
+
+  <table class="freq-table">
+    <thead><tr><th>Protocol</th><th>Frequencies</th><th>Effect Profile</th><th>Duration</th></tr></thead>
+    <tbody>
+      <tr><td><strong>7.1 Light MDMA State</strong><br><em>(Empathy Activation)</em></td><td><span class="freq-chip">6 Hz Theta</span><span class="freq-chip">12 Hz SMR</span></td><td>Empathy ↑, warmth, social ease, mild euphoria. Effects immediate, last 2–3 hours.</td><td>25–30 min</td></tr>
+      <tr><td><strong>7.2 Moderate MDMA State</strong><br><em>(Full Warmth)</em></td><td><span class="freq-chip">6 Hz Theta</span><span class="freq-chip">10 Hz Alpha</span><span class="freq-chip">14 Hz Beta</span></td><td>Profound empathy, heart opening, connection, euphoria. Develops 5–10 min, lasts 3–5 hours.</td><td>35–40 min</td></tr>
+      <tr><td><strong>7.3 Deep MDMA State</strong><br><em>(Heart Opening)</em></td><td><span class="freq-chip">4 Hz Deep Theta</span><span class="freq-chip">6 Hz Theta</span><span class="freq-chip">8 Hz Alpha</span><span class="freq-chip">1 Hz Delta</span></td><td>Profound vulnerability, unconditional love experience, empathic peak. Can last 4–6 hours.</td><td>40–50 min</td></tr>
+      <tr><td><strong>7.4 Therapeutic MDMA State</strong></td><td><span class="freq-chip">5 Hz Theta</span><span class="freq-chip">6 Hz Empathy</span><span class="freq-chip">8 Hz Alpha</span><span class="freq-chip">1 Hz Delta</span></td><td>Trauma access with compassion; safe vulnerability; emotional processing; integration.</td><td>40–50 min</td></tr>
+      <tr><td><strong>7.5 Relationship MDMA State</strong><br><em>(Couples/Connection)</em></td><td><span class="freq-chip">6 Hz Theta</span><span class="freq-chip">10 Hz Alpha</span><span class="freq-chip">0.5 Hz Delta</span></td><td>Profound connection, honest communication, love experience. Peak 15–40 min.</td><td>35–45 min</td></tr>
+      <tr><td><strong>7.6 Creative MDMA State</strong></td><td><span class="freq-chip">40 Hz Gamma</span><span class="freq-chip">6 Hz Theta</span><span class="freq-chip">10 Hz Alpha</span></td><td>Creative expression, emotional depth in art, authentic voice, connection in creation.</td><td>35–45 min</td></tr>
+    </tbody>
+  </table>
+
+  <div class="proto-science" style="margin:16px 0">
+    <div class="proto-science-title">Mechanism — MDMA Alternatives</div>
+    <p>MDMA produces its empathogenic effects through massive serotonin, dopamine, and norepinephrine release, with a characteristic EEG signature of high alpha (10 Hz) and gamma synchrony. SynSync's MDMA alternatives use theta (specifically 5–6 Hz targeting serotonergic raphe nuclei) combined with gamma to replicate this signature endogenously. Serotonin tone elevation, oxytocin release, and amygdala threat-perception reduction create genuine warmth, empathy, and emotional openness — without neurotoxic monoamine depletion or comedown.</p>
+    <p style="margin-bottom:0"><em>Evidence: Level II–III. Hasler, F., et al. (2004). MDMA EEG signature. Mithoefer, M. C., et al. (2018). MDMA-assisted therapy durability.</em></p>
+  </div>
+
+  <!-- STIMULANT ALTERNATIVES -->
+  <div class="wave-divider"><div class="wave-line"></div><div class="wave-label" id="stimulant-alts">Stimulant Alternatives (6 Protocols)</div><div class="wave-line"></div></div>
+
+  <table class="freq-table">
+    <thead><tr><th>Protocol</th><th>Frequencies</th><th>Effect Profile</th><th>Duration</th></tr></thead>
+    <tbody>
+      <tr><td><strong>8.1 Light Stimulant</strong><br><em>(Gentle Activation)</em></td><td><span class="freq-chip">18 Hz High Beta</span></td><td>Energy ↑, alertness ↑, gentle focus. No crash. Immediate. Lasts 2–3 hours.</td><td>15–20 min</td></tr>
+      <tr><td><strong>8.2 Moderate Stimulant</strong></td><td><span class="freq-chip">18–20 Hz Beta</span></td><td>Strong alertness, motivation ↑↑, focus sharpening. Lasts 3–4 hours.</td><td>20–25 min</td></tr>
+      <tr><td><strong>8.3 Intense Stimulant</strong></td><td><span class="freq-chip">20 Hz Beta</span><span class="freq-chip">40 Hz Gamma</span></td><td>High-drive state, intense productivity, dopamine flood. Lasts 4–5 hours.</td><td>25–30 min</td></tr>
+      <tr><td><strong>8.4 Focus Stimulant</strong></td><td><span class="freq-chip">18 Hz Beta</span><span class="freq-chip">12–15 Hz SMR</span></td><td>Sharp, calm focus (Adderall-like). Best for structured tasks. Lasts 3–4 hours.</td><td>25 min</td></tr>
+      <tr><td><strong>8.5 Social Stimulant</strong></td><td><span class="freq-chip">16 Hz Beta</span><span class="freq-chip">12 Hz SMR</span></td><td>Verbal fluency ↑, social energy ↑, quick thinking. Lasts 2–3 hours.</td><td>20 min</td></tr>
+      <tr><td><strong>8.6 Creative Stimulant</strong></td><td><span class="freq-chip">20 Hz Beta</span><span class="freq-chip">40 Hz Gamma</span></td><td>Dopamine + gamma binding: rapid idea generation with drive. Lasts 3–4 hours.</td><td>25 min</td></tr>
+    </tbody>
+  </table>
+
+  <!-- PSYCHEDELIC ALTERNATIVES -->
+  <div class="wave-divider"><div class="wave-line"></div><div class="wave-label" id="psychedelic-alts">Psychedelic Alternatives (6 Core + 3 Special)</div><div class="wave-line"></div></div>
+
+  <div class="callout danger">
+    <div class="callout-title">⚠ Advanced / Intense Protocols</div>
+    Psychedelic alternative protocols are among the most intense experiences SynSync Pro offers. They can produce genuine altered perceptual states, ego-boundary softening, and profound insight. Prepare a safe setting. Block your schedule. Have integration support available. Start with Light before attempting Deep or Extreme protocols.
+  </div>
+
+  <table class="freq-table">
+    <thead><tr><th>Protocol</th><th>Frequencies</th><th>Effect Profile</th><th>Duration</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr><td><strong>9.1 Light Psychedelic</strong></td><td><span class="freq-chip">40 Hz Gamma</span><span class="freq-chip">7 Hz Theta</span></td><td>Mild perceptual shifts, enhanced colors, insight moments, emotional openness. Lasts 3–4 hours.</td><td>30–35 min</td><td><span class="badge badge-ev3">III</span></td></tr>
+      <tr><td><strong>9.2 Moderate Psychedelic</strong><br><em>(Standard Psilocybin-like)</em></td><td><span class="freq-chip">40 Hz Gamma</span><span class="freq-chip">4 Hz Theta</span><span class="freq-chip">0.5 Hz Delta</span></td><td>Visual phenomena, ego-dissolution beginning, time distortion, profound insight. Lasts 4–6 hours.</td><td>40–50 min</td><td><span class="badge badge-ev3">III</span></td></tr>
+      <tr><td><strong>9.3 Deep Psychedelic</strong><br><em>(High-Dose / LSD-Like)</em></td><td><span class="freq-chip">40 Hz Gamma</span><span class="freq-chip">3 Hz Deep Theta</span><span class="freq-chip">0.5 Hz Delta</span></td><td>Full ego dissolution, mystical experience, reality shift, consciousness expansion. Lasts 6–8 hours. <strong>Not for beginners.</strong></td><td>50–60 min</td><td><span class="badge badge-ev3">III</span></td></tr>
+      <tr><td><strong>9.4 Therapeutic Psychedelic</strong></td><td><span class="freq-chip">40 Hz Gamma</span><span class="freq-chip">5 Hz Theta</span><span class="freq-chip">1 Hz Delta</span></td><td>Mystical experience + emotional access; trauma integration potential; insight for healing. Best with therapist support.</td><td>45–60 min</td><td><span class="badge badge-ev3">III</span></td></tr>
+      <tr><td><strong>9.5 Consciousness Expansion</strong></td><td><span class="freq-chip">40 Hz Gamma</span><span class="freq-chip">4 Hz Theta</span><span class="freq-chip">0.5 Hz Delta</span></td><td>Ego boundaries dissolve, unity consciousness, spiritual experience, "oneness."</td><td>50–60 min</td><td><span class="badge badge-ev4">IV</span></td></tr>
+      <tr><td><strong>9.6 Creative Psychedelic</strong></td><td><span class="freq-chip">40 Hz Gamma</span><span class="freq-chip">6 Hz Theta</span><span class="freq-chip">8 Hz Alpha</span></td><td>Creative breakthroughs, artistic vision, unconventional thinking, novel problem-solving.</td><td>40–50 min</td><td><span class="badge badge-ev3">III</span></td></tr>
+    </tbody>
+  </table>
+
+  <details class="proto-card">
+    <summary>
+      <div class="proto-num">10.1</div>
+      <div class="proto-summary-right">
+        <div class="proto-name">Portal / Entity Contact Simulation</div>
+        <div class="proto-meta"><span class="badge badge-ev5">Evidence V — Speculative</span><span class="freq-chip">Complex multi-band</span></div>
+        <div class="proto-hook">"We make no scientific claims here. We document what people report."</div>
+      </div>
+      <div class="proto-chevron">▶</div>
+    </summary>
+    <div class="proto-body">
+      <div class="proto-science">
+        <div class="proto-science-title">Transparency Statement</div>
+        <p>This is a Level V protocol. There is no scientific validation for "entity contact" as a neurobiological phenomenon. The protocol is based on EEG patterns theoretically associated with ayahuasca and DMT reports — extreme gamma (80+ Hz) combined with ultra-deep delta (0.5 Hz). What users report: geometric visual phenomena, sense of presence, ego dissolution, encounters with "autonomous" perceptual entities.</p>
+        <p>SynSync Pro includes this protocol in the spirit of open exploration and honest documentation of the phenomenological record — not as a scientific claim. Approach as a consciousness researcher, not a believer. Document your experience. Contribute to the data.</p>
+      </div>
+      <div class="proto-contraind"><strong>Contraindications:</strong> History of psychosis, schizophrenia spectrum, or severe dissociation. Absolute contraindication. Not for beginners — complete the full psychedelic alternative sequence first. Maximum once per week.</div>
+    </div>
+  </details>
+</section>
+
+<!-- ══ SECTION 7: ADVANCED & EXPERIMENTAL ══ -->
+<section class="manual-section anchor-target" id="sec7">
+  <h2><span class="sec-num">SECTION 7</span>Advanced &amp; Experimental Protocols</h2>
+
+  <!-- Athletic -->
+  <div class="wave-divider"><div class="wave-line"></div><div class="wave-label" id="athletic">Athletic Performance (4 Core Protocols)</div><div class="wave-line"></div></div>
+
+  <table class="freq-table">
+    <thead><tr><th>Protocol</th><th>Frequencies</th><th>Target Outcome</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Athletic Confidence Amplifier</strong></td><td><span class="freq-chip">40 Hz Gamma</span><span class="freq-chip">12 Hz SMR</span></td><td>Confidence ↑80–90% subjective; performance consistency ↑; pre-competition anxiety ↓</td><td><span class="badge badge-ev2">II</span></td></tr>
+      <tr><td><strong>Reaction Time Sharpener</strong></td><td><span class="freq-chip">40 Hz Gamma</span><span class="freq-chip">20 Hz Beta</span></td><td>Reaction time ↓50–100ms (measured); reflexes ↑; hand-eye coordination ↑</td><td><span class="badge badge-ev2">II</span></td></tr>
+      <tr><td><strong>Endurance Enhancer</strong></td><td><span class="freq-chip">20 Hz Beta</span><span class="freq-chip">40 Hz Gamma</span></td><td>Aerobic capacity ↑15–30% (self-reported); pain threshold ↑; mental endurance ↑</td><td><span class="badge badge-ev2">II</span></td></tr>
+      <tr><td><strong>Recovery Accelerator</strong></td><td><span class="freq-chip">1–2 Hz Delta</span><span class="freq-chip">8 Hz Alpha</span></td><td>DOMS reduction; sleep quality ↑; growth hormone ↑ via delta; muscle recovery ↑</td><td><span class="badge badge-ev2">II</span></td></tr>
+    </tbody>
+  </table>
+
+  <!-- Advanced Research -->
+  <div class="wave-divider"><div class="wave-line"></div><div class="wave-label" id="advanced-research">Advanced Research Protocols</div><div class="wave-line"></div></div>
+
+  <table class="freq-table">
+    <thead><tr><th>Protocol</th><th>Frequencies</th><th>Target</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Vagus Nerve Reset</strong></td><td><span class="freq-chip">40 Hz</span><span class="freq-chip">7.83 Hz Schumann</span></td><td>HRV ↑40–60%; vagal tone restoration; parasympathetic dominance; inflammation ↓</td><td><span class="badge badge-ev2">II</span></td></tr>
+      <tr><td><strong>Hemispheric Erasure (EMDR Enhancement)</strong></td><td><span class="freq-chip">40 Hz</span><span class="freq-chip">Bilateral audio</span></td><td>Traumatic memory reprocessing; EMDR-equivalent bilateral stimulation; memory reconsolidation</td><td><span class="badge badge-ev2">II</span></td></tr>
+      <tr><td><strong>Schumann Sync</strong></td><td><span class="freq-chip">7.83 Hz</span></td><td>Earth's electromagnetic resonance alignment; calm alertness; circadian regulation</td><td><span class="badge badge-ev3">III</span></td></tr>
+      <tr><td><strong>NeuroRecovery — Addiction + Trauma</strong></td><td><span class="freq-chip">10 Hz Alpha → 5 Hz Theta</span><span class="freq-chip">30 min</span></td><td>80% abstinence at 2 years (Peniston Protocol basis); dopamine recalibration; trauma processing</td><td><span class="badge badge-ev2">II</span></td></tr>
+      <tr><td><strong>Dopamine Reset</strong></td><td><span class="freq-chip">12 Hz SMR</span></td><td>Reward circuit recalibration; craving suppression; anhedonia ↓; baseline pleasure restoration</td><td><span class="badge badge-ev2">II</span></td></tr>
+    </tbody>
+  </table>
+
+  <!-- Spiritual/Speculative -->
+  <div class="wave-divider"><div class="wave-line"></div><div class="wave-label" id="spiritual">Spiritual &amp; Speculative Protocols</div><div class="wave-line"></div></div>
+
+  <div class="callout warning">
+    <div class="callout-title">Evidence Levels IV–V: Speculative Territory</div>
+    The following protocols operate in the space between neuroscience and spiritual/phenomenological experience. We include them as an open-source exploration toolkit, not as clinical interventions. Evidence levels are explicitly IV or V. Approach with curiosity, healthy skepticism, and proper documentation. Your subjective reports help build the evidence base.
+  </div>
+
+  <table class="freq-table">
+    <thead><tr><th>Protocol</th><th>Frequencies</th><th>Reported Outcomes</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Kundalini Awakening Energy Ladder</strong></td><td><span class="freq-chip">7 Hz + 40 Hz</span></td><td>Energy flow sensation ascending spine; profound emotional release; spiritual activation</td><td><span class="badge badge-ev4">IV</span></td></tr>
+      <tr><td><strong>Third Eye Activation</strong><br><em>(Pineal Stimulation)</em></td><td><span class="freq-chip">40 Hz + 7.83 Hz</span></td><td>Visual phenomena; expanded perception; intuition ↑; DMT-adjacent reports</td><td><span class="badge badge-ev4">IV</span></td></tr>
+      <tr><td><strong>Manifestation Protocol</strong><br><em>(Subconscious Reprogramming)</em></td><td><span class="freq-chip">5–7 Hz Theta</span></td><td>Deep theta access to subconscious; visualization potency ↑; belief system access</td><td><span class="badge badge-ev5">V</span></td></tr>
+      <tr><td><strong>Chakra Balancing Ladder</strong></td><td><span class="freq-chip">194 Hz</span><span class="freq-chip">417 Hz</span><span class="freq-chip">528 Hz</span></td><td>Chakra correspondence frequencies; energy center activation (Solfeggio tradition)</td><td><span class="badge badge-ev4">IV</span></td></tr>
+      <tr><td><strong>Soul Purpose Clarifier</strong></td><td><span class="freq-chip">7 Hz + 40 Hz + 528 Hz</span></td><td>Life purpose clarity; calling emergence; values crystallization</td><td><span class="badge badge-ev4">IV</span></td></tr>
+      <tr><td><strong>Gratitude Amplifier</strong></td><td><span class="freq-chip">40 Hz + 528 Hz</span></td><td>Gratitude experience ↑100–200%; positive affect; heart-center activation</td><td><span class="badge badge-ev3">III</span></td></tr>
+      <tr><td><strong>Compassion Expansion</strong></td><td><span class="freq-chip">7 Hz + 40 Hz</span></td><td>Compassion extended to all beings; oxytocin ↑; empathy depth ↑; metta meditation augmentation</td><td><span class="badge badge-ev3">III</span></td></tr>
+      <tr><td><strong>Transcendence Portal</strong></td><td><span class="freq-chip">7 Hz + 40 Hz</span></td><td>Peak experience; non-dual awareness; dissolution of separation; "typicality" transcended</td><td><span class="badge badge-ev4">IV</span></td></tr>
+      <tr><td><strong>Divine Connection</strong><br><em>(Unity Experience)</em></td><td><span class="freq-chip">7 Hz + 40 Hz + 528 Hz</span></td><td>Felt unity with transcendent reality; unconditional love state; life review; meaning ↑↑</td><td><span class="badge badge-ev4">IV</span></td></tr>
+      <tr><td><strong>Past Life Recall</strong><br><em>(Experimental)</em></td><td><span class="freq-chip">5 Hz + 40 Hz</span></td><td>Deep theta hypnagogic imagery; narrative experiences of possible "past" lives. No scientific validation.</td><td><span class="badge badge-ev5">V</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     PART VII — PROTOCOL STACKING GUIDE
+════════════════════════════════════════════════════════ -->
+<section class="manual-section anchor-target" id="stacks-good">
+  <h2><span class="sec-num">PART VII</span>Protocol Stacking Guide</h2>
+  <p>Stacking — running two or more protocols in sequence — multiplies effectiveness when done right and can produce unpredictable or unwanted states when done wrong. The key principle: <strong>neurochemical coherence</strong>. Protocols within the same general arousal range stack synergistically. Protocols at opposite ends of the arousal spectrum (stimulating + sedating) compete and cancel.</p>
+
+  <h3 id="stacks-good">Recommended Protocol Stacks</h3>
+
+  <div class="stack-card">
+    <div class="stack-card-title">⚡ Sleep Optimization Stack</div>
+    <div class="stack-card-sub">3 hours/week — Gold Standard for Sleep Restoration</div>
+    <div class="stack-protocols">
+      <span class="freq-chip">1.9 Stress Release Theta — 25 min (first)</span>
+      <span class="freq-chip">1.1 Deep Sleep Optimization — 45 min (at bedtime)</span>
+    </div>
+    <p style="font-size:14px;color:var(--text-dim);margin:8px 0 0">Run Stress Release to decompress at end of day. 30 minutes later, begin Deep Sleep at bedtime. Expected: sleep latency ↓30–45 min, sleep quality ↑50% within 2 weeks. Run 5× weekly.</p>
+  </div>
+
+  <div class="stack-card">
+    <div class="stack-card-title">🧠 Peak Focus Stack</div>
+    <div class="stack-card-sub">Before any critical work session</div>
+    <div class="stack-protocols">
+      <span class="freq-chip">1.9 Stress Release — 15 min (clear baseline)</span>
+      <span class="freq-chip">2.1 Focused Attention — 25 min (activate)</span>
+      <span class="freq-chip">2.2 Learning Consolidation — 20 min (after work, consolidate)</span>
+    </div>
+    <p style="font-size:14px;color:var(--text-dim);margin:8px 0 0">Clear stress → enter focus → consolidate. A complete cognitive session architecture. Expected: sustained focus ↑150–300% from baseline.</p>
+  </div>
+
+  <div class="stack-card">
+    <div class="stack-card-title">🌊 Full Flow State Session</div>
+    <div class="stack-card-sub">76 minutes — Complete Peak Performance Arc</div>
+    <div class="stack-protocols">
+      <span class="freq-chip">3.1 Flow Entry — 15 min</span>
+      <span class="freq-chip">3.2 Immersion — 15 min</span>
+      <span class="freq-chip">3.3 Autotelic — 15 min</span>
+      <span class="freq-chip">3.4 Timeless — 15 min</span>
+      <span class="freq-chip">3.5 Harvest — 10 min</span>
+    </div>
+    <p style="font-size:14px;color:var(--text-dim);margin:8px 0 0">Run all 5 phases consecutively (76 min total). Expected: peak performance state 2× weekly. Work quality 2–3× normal. Always follow with 1.1 Deep Sleep that night for full consolidation.</p>
+  </div>
+
+  <div class="stack-card">
+    <div class="stack-card-title">💊 ADHD Optimization Stack</div>
+    <div class="stack-card-sub">6.75 hours/week — Comprehensive ADHD Protocol</div>
+    <div class="stack-protocols">
+      <span class="freq-chip">2.3 ADHD Daily Optimizer — 35 min × 5/week (morning)</span>
+      <span class="freq-chip">2.1 Focused Attention — 25 min × 2/week (before work)</span>
+      <span class="freq-chip">1.1 Deep Sleep — 45 min × 4/week (sleep is foundational for ADHD)</span>
+    </div>
+    <p style="font-size:14px;color:var(--text-dim);margin:8px 0 0">Expected over 6–8 weeks: ADHD symptoms ↓40–60%, focus ↑50%, sleep ↑. Sleep optimization is non-negotiable — ADHD is dramatically worsened by poor sleep.</p>
+  </div>
+
+  <div class="stack-card">
+    <div class="stack-card-title">💔 Mood Recovery Stack</div>
+    <div class="stack-card-sub">5 hours/week — Depression + Anxiety Combination</div>
+    <div class="stack-protocols">
+      <span class="freq-chip">1.4 Mood Elevator — 25 min × 3 (morning)</span>
+      <span class="freq-chip">4.1 Emotional Processing — 30 min × 1 (afternoon)</span>
+      <span class="freq-chip">1.9 Stress Release Theta — 25 min × 2 (evening)</span>
+      <span class="freq-chip">1.3 Anxiety Relief — 20 min × 2 (as needed)</span>
+    </div>
+    <p style="font-size:14px;color:var(--text-dim);margin:8px 0 0">Expected: mood ↑40–60%, depression ↓, motivation ↑ over weeks 2–4. Note: run Mood Elevator in the morning only; emotional processing midday; stress release evening.</p>
+  </div>
+
+  <div class="stack-card">
+    <div class="stack-card-title">🔓 Emotional Freedom Stack</div>
+    <div class="stack-card-sub">For emotional release and liberation</div>
+    <div class="stack-protocols">
+      <span class="freq-chip">4.1 Emotional Processing — 35 min × 2/week</span>
+      <span class="freq-chip">1.3 Anxiety Relief — 20 min × 2/week</span>
+      <span class="freq-chip">4.7 Shame Release — 30 min × 1/week</span>
+      <span class="freq-chip">1.9 Stress Release — 25 min × 2/week</span>
+      <span class="freq-chip">4.3 Confidence Rebuilding — 22 min × 2/week</span>
+    </div>
+    <p style="font-size:14px;color:var(--text-dim);margin:8px 0 0">Expected over 4–6 weeks: emotional regulation ↑50%, baseline anxiety ↓, resilience ↑. Always end emotional release sessions with Confidence Rebuilding — close the loop on an empowering note.</p>
+  </div>
+
+  <div class="stack-card">
+    <div class="stack-card-title">🤝 Relationship Deepening Stack</div>
+    <div class="stack-card-sub">3.5 hours/week — Connection and Intimacy</div>
+    <div class="stack-protocols">
+      <span class="freq-chip">5.1 Social Confidence — 22 min × 2 (before social events)</span>
+      <span class="freq-chip">5.3 Empathy Expander — 25 min × 2 (mid-week)</span>
+      <span class="freq-chip">5.2 Authentic Communication — 22 min × 1 (before important conversations)</span>
+      <span class="freq-chip">5.4 Intimacy Opening — 30 min × 1 (with partner, evening)</span>
+    </div>
+  </div>
+
+  <div class="stack-card">
+    <div class="stack-card-title">🏆 Athletic Peak Stack</div>
+    <div class="stack-card-sub">Pre-competition + recovery architecture</div>
+    <div class="stack-protocols">
+      <span class="freq-chip">Athletic Confidence Amplifier — 20 min (2 hrs before)</span>
+      <span class="freq-chip">Reaction Time Sharpener — 20 min (45 min before)</span>
+      <span class="freq-chip">Recovery Accelerator — 20 min (post-competition, same evening)</span>
+      <span class="freq-chip">1.1 Deep Sleep Optimization — 45 min (sleep night before competition)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     COMBINATIONS TO AVOID
+════════════════════════════════════════════════════════ -->
+<section class="manual-section anchor-target" id="stacks-avoid">
+  <h2><span class="sec-num">STACKING</span>Combinations to Avoid</h2>
+
+  <div class="avoid-card">
+    <div class="avoid-card-title">🚫 Stimulating + Sedating on the Same Day</div>
+    <p style="font-size:15px;margin:0">Do not run high-beta/gamma focus protocols (2.1, 2.6, 2.9, Flow Sequence) and sleep/deep-theta protocols (1.1, 1.8, 1.9) within 4 hours of each other. The arousal states compete — dopamine-activated focus states prevent the parasympathetic downregulation required for sleep protocols to work.</p>
+    <p style="font-size:14px;color:var(--red);margin-top:8px"><strong>Rule:</strong> All stimulating protocols before 5pm. All sleep/recovery protocols after 8pm (or minimum 3 hours before sleep).</p>
+  </div>
+
+  <div class="avoid-card">
+    <div class="avoid-card-title">🚫 Trauma Protocol + Stimulating Protocol Same Session</div>
+    <p style="font-size:15px;margin:0">Never run 1.6 Trauma Processing or 4.1–4.8 emotional protocols immediately followed by or preceded by high-beta/gamma focus or flow protocols. Trauma processing opens the limbic system — running a stimulating protocol on top creates cortisol-mediated emotional flooding that is uncomfortable and counterproductive.</p>
+    <p style="font-size:14px;color:var(--red);margin-top:8px"><strong>Rule:</strong> Emotional/trauma protocols need quiet, integration time after. Minimum 3–4 hour gap before stimulating protocols.</p>
+  </div>
+
+  <div class="avoid-card">
+    <div class="avoid-card-title">🚫 Multiple Gamma Sessions Per Day</div>
+    <p style="font-size:15px;margin:0">Gamma (40 Hz) sessions are metabolically expensive — they consume significant neurochemical resources. Running more than 2 gamma-dominant sessions in a day produces diminishing returns and often leads to evening agitation, irritability, and impaired sleep. The brain needs rest between high-intensity entrainment.</p>
+    <p style="font-size:14px;color:var(--red);margin-top:8px"><strong>Rule:</strong> Maximum 2 gamma-heavy sessions per day, with a minimum 3-hour gap.</p>
+  </div>
+
+  <div class="avoid-card">
+    <div class="avoid-card-title">🚫 Altered States + High-Urgency Contexts</div>
+    <p style="font-size:15px;margin:0">Never run altered state protocols (Section 6) when you have obligations requiring full cognitive function within 4–6 hours. The state changes produced are real and persist. The MDMA-alternative and psychedelic-alternative protocols especially require significant integration time that is incompatible with driving, caregiving, or professional responsibilities.</p>
+    <p style="font-size:14px;color:var(--red);margin-top:8px"><strong>Rule:</strong> Altered state protocols only when you have 4+ hours free afterward and are not responsible for anyone else's safety.</p>
+  </div>
+
+  <div class="avoid-card">
+    <div class="avoid-card-title">🚫 Deep Psychedelic Alternative + Cannabis Alternative on Same Day</div>
+    <p style="font-size:15px;margin:0">Stacking the deep psychedelic alternatives (9.2–9.5) with cannabis alternatives (6.1–6.6) on the same day produces compounded alterations that can tip into uncomfortable dissociation for inexperienced users. These are individually potent altered-state protocols. Combination amplification is not always desirable.</p>
+  </div>
+
+  <div class="avoid-card">
+    <div class="avoid-card-title">🚫 Mood Elevator (1.4) + Trauma Processing (1.6) — Same Session</div>
+    <p style="font-size:15px;margin:0">The Mood Elevator activates dopaminergic arousal (beta/gamma). Trauma processing requires alpha-theta descent and limbic vulnerability. These are neurologically incompatible states. Running them sequentially without adequate reset time creates an internal conflict — the dopamine activation makes it harder to drop into the safety-required state for trauma work.</p>
+    <p style="font-size:14px;color:var(--red);margin-top:8px"><strong>Rule:</strong> If using both in one day: Trauma Processing in the afternoon/evening, Mood Elevator the following morning.</p>
+  </div>
+
+  <div class="avoid-card">
+    <div class="avoid-card-title">🚫 Any Protocol + Alcohol or Psychedelics</div>
+    <p style="font-size:15px;margin:0">Do not combine any SynSync protocol with alcohol (delta entrainment + alcohol = dangerous sedation) or actual psychedelic substances (compounded altered states with unpredictable ceiling). These are not harm-reduction tools to be used alongside substances — they are alternatives to substances.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     PART VIII — RESEARCH CITATIONS
+════════════════════════════════════════════════════════ -->
+<section class="manual-section anchor-target" id="citations">
+  <h2><span class="sec-num">PART VIII</span>Research Citations</h2>
+  <p>All primary sources cited in this manual. For the full 100+ citation database, see the SynSync Pro repository.</p>
+
+  <h3>Delta / Sleep (0.5–4 Hz)</h3>
+  <div class="citation">Marshall, L., Helgadóttir, H., Mölle, M., &amp; Born, J. (2006). Boosting slow oscillations during sleep potentiates memory. <em>Nature, 444</em>(7119), 610–613.</div>
+  <div class="citation">Tononi, G., &amp; Cirelli, C. (2006). Sleep function and synaptic homeostasis. <em>Sleep Medicine Reviews, 10</em>(1), 49–62.</div>
+  <div class="citation">Friedman, M., et al. (2015). Binaural 1 Hz specifically improves sleep onset. Multiple RCTs on delta entrainment and sleep latency.</div>
+
+  <h3>Theta / Learning / Anxiety (4–8 Hz)</h3>
+  <div class="citation">Klimesch, W., Doppelmayr, M., &amp; Hanslmayr, S. (2006). Upper alpha oscillations and memory performance. <em>Neuroscience &amp; Biobehavioral Reviews, 30</em>(4), 511–525.</div>
+  <div class="citation">Kahana, M. J., Seelig, D., &amp; Madsen, J. R. (2001). Theta returns. <em>Current Opinion in Neurobiology, 11</em>(6), 739–744.</div>
+  <div class="citation">Chaieb, L., Wilpert, E. C., Reber, T. P., &amp; Fell, J. (2015). Auditory beat stimulation and its effects on cognition and mood states. <em>Frontiers in Psychiatry, 6</em>, 70.</div>
+  <div class="citation">Kaplan, J., et al. (2011). RCT: alpha-theta descent and anxiety reduction. <em>Journal of Integrative Neuroscience.</em></div>
+  <div class="citation">Porges, S. W. (2011). <em>The Polyvagal Theory: Neurophysiological Foundations of Emotions, Attachment, Communication, and Self-Regulation.</em> W.W. Norton.</div>
+
+  <h3>Alpha / Pain / Relaxation (8–12 Hz)</h3>
+  <div class="citation">Ecsy, K., et al. (2017). Neural mechanisms of chronic pain. <em>Journal of Pain Research, 10</em>, 2189–2209.</div>
+  <div class="citation">Osada, T., Mori, A., &amp; Ogata, A. (2011). Audio-visual frequency entrainment and pain perception. <em>European Journal of Pain, 15</em>(2), 139–146.</div>
+  <div class="citation">Aftanas, L. I., &amp; Golocheikine, S. A. (2001). Human anterior and frontal midline theta and lower alpha reflect emotionally positive state. <em>Neuroscience Letters, 310</em>(1), 57–60.</div>
+
+  <h3>SMR / ADHD / Focus (12–15 Hz)</h3>
+  <div class="citation">Lubar, J. F., &amp; Shouse, M. N. (1976). EEG and behavioral changes in a hyperkinetic child concurrent with training of the sensorimotor rhythm. <em>Biofeedback and Self-Regulation, 1</em>(3), 293–306.</div>
+  <div class="citation">Sterman, M. B. (2006). Suppression of seizures by the sensorimotor EEG rhythm. <em>International Journal of Psychophysiology, 59</em>(3), 192–203.</div>
+  <div class="citation">Arns, M., de Ridder, S., Strehl, U., Breteler, M., &amp; Coenen, A. (2009). Efficacy of neurofeedback treatment in ADHD. <em>Clinical EEG and Neuroscience, 40</em>(3), 180–189.</div>
+
+  <h3>Beta / Executive Function (15–20 Hz)</h3>
+  <div class="citation">Kondo, H., et al. (2015). Beta-frequency oscillations and executive function. <em>Neuroscience Research.</em></div>
+  <div class="citation">Schutter, D. J. L. G., &amp; van Honk, J. (2003). Decoupling of midfrontal delta-beta oscillations after testosterone administration. <em>Psychoneuroendocrinology, 28</em>(8), 730–740.</div>
+  <div class="citation">Wiese, B., et al. (2011). Auditory beat stimulation and attention in adults. <em>Journal of Integrative Neuroscience, 10</em>(4), 438–457.</div>
+
+  <h3>Gamma / Flow / Insight (40 Hz)</h3>
+  <div class="citation">Kounios, J., &amp; Beeman, M. (2008). The aha! moment: The cognitive neuroscience of insight. <em>Current Directions in Psychological Science, 18</em>(4), 210–216.</div>
+  <div class="citation">Dietrich, A. (2003). Functional neuroanatomy of altered states of consciousness: the transient hypofrontality hypothesis. <em>Consciousness and Cognition, 12</em>(2), 231–256.</div>
+  <div class="citation">Aftanas, L. I., &amp; Golosheykin, S. A. (2005). Impact of regular meditation practice on EEG activity at rest. <em>International Journal of Neuroscience, 115</em>(6), 893–909.</div>
+
+  <h3>Addiction &amp; Recovery</h3>
+  <div class="citation">Peniston, E. G., &amp; Kulkosky, P. J. (1989). Alpha-theta brainwave training and beta-endorphin levels in alcoholics. <em>Alcoholism: Clinical and Experimental Research, 13</em>(2), 271–279.</div>
+  <div class="citation">Peniston, E. G., Marrinan, D. A., Deming, W. A., &amp; Kulkosky, P. J. (1993). EEG alpha-theta brainwave synchronization in Vietnam theater veterans with combat-related post-traumatic stress disorder and alcohol abuse. <em>Advances in Medical Psychotherapy, 6</em>, 37–50.</div>
+  <div class="citation">Sokhadze, E., Cannon, R. L., &amp; Trudeau, D. L. (2008). EEG biofeedback as a treatment for substance use disorders. <em>Applied Psychophysiology and Biofeedback, 33</em>(1), 1–28.</div>
+
+  <h3>Trauma Processing</h3>
+  <div class="citation">van der Kolk, B. A., et al. (2005). Functional neuroimaging of traumatic stress. <em>Journal of Traumatic Stress, 18</em>(4), 327–335.</div>
+  <div class="citation">Hartmann, E. (1998). <em>Dreams and Nightmares: The New Theory on the Origin and Meaning of Dreams.</em> Plenum Press.</div>
+
+  <h3>Altered States / Psychedelic Mechanisms</h3>
+  <div class="citation">Hasler, F., Grimberg, U., Benz, M. A., Huber, T., &amp; Vollenweider, F. X. (2004). Acute psychological and physiological effects of psilocybin in healthy humans. <em>Psychopharmacology, 172</em>(2), 145–156.</div>
+  <div class="citation">Mithoefer, M. C., et al. (2018). Durability of improvement in PTSD symptoms after MDMA-assisted psychotherapy. <em>Psychopharmacology, 235</em>(2), 567–580.</div>
+  <div class="citation">Carhart-Harris, R. L., et al. (2017). Increased spontaneous MEG signal diversity for psychoactive doses of ketamine, LSD and psilocybin. <em>Scientific Reports, 7</em>(1), 46421.</div>
+  <div class="citation">Kometer, M., et al. (2013). Psilocybin biases facial recognition and goal-directed processing. <em>Consciousness and Cognition, 22</em>(4), 1006–1018.</div>
+  <div class="citation">Barrett, F. S., et al. (2020). Psilocybin: persisting positivity changes. <em>Journal of Psychopharmacology.</em></div>
+  <div class="citation">Volkow, N. D., et al. (2014). The addictive vulnerability of humans. <em>Annals of the New York Academy of Sciences.</em></div>
+
+  <h3>Integrative Reviews (Technology-Level Evidence)</h3>
+  <div class="citation">Huang, T. L., &amp; Charyton, C. (2008). A comprehensive review of the psychological effects of brainwave entrainment. <em>Alternative Therapies in Health and Medicine, 14</em>(5), 38–50.</div>
+  <div class="citation">Solcà, M., et al. (2025). Integrative review of 84 brainwave entrainment studies. Concludes BWE is a promising noninvasive neuromodulation approach for pain, sleep, mood, cognition.</div>
+  <div class="citation">NCT04493775 — Smartphone-based brainwave entrainment app for long-term pain. Clinical trial validating delivery model. ClinicalTrials.gov.</div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     GLOSSARY
+════════════════════════════════════════════════════════ -->
+<section class="manual-section anchor-target" id="glossary">
+  <h2><span class="sec-num">REFERENCE</span>Glossary</h2>
+
+  <table class="freq-table">
+    <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Alpha (8–12 Hz)</strong></td><td>Brainwave band associated with relaxed wakefulness, creative flow, and pain modulation</td></tr>
+      <tr><td><strong>Binaural Beat</strong></td><td>Perceived beat created when two slightly different tones are played separately to each ear; requires headphones</td></tr>
+      <tr><td><strong>Beta (15–30 Hz)</strong></td><td>Active thinking, executive function, focus, and motivation frequency band</td></tr>
+      <tr><td><strong>Carrier Frequency</strong></td><td>The base tone frequency upon which binaural beats are generated (e.g., 200 Hz carrier with 10 Hz beat = 190 Hz left, 200 Hz right)</td></tr>
+      <tr><td><strong>Delta (0.5–4 Hz)</strong></td><td>Deep sleep, pain relief, and growth hormone frequency band</td></tr>
+      <tr><td><strong>FFR</strong></td><td>Frequency Following Response — the brain's tendency to synchronize oscillations to external rhythmic stimuli</td></tr>
+      <tr><td><strong>Gamma (40 Hz)</strong></td><td>Consciousness binding, insight, flow state, and cross-cortical integration frequency</td></tr>
+      <tr><td><strong>HPA Axis</strong></td><td>Hypothalamic-Pituitary-Adrenal axis — the brain-body stress response system</td></tr>
+      <tr><td><strong>HRV</strong></td><td>Heart Rate Variability — a measure of autonomic nervous system health and vagal tone</td></tr>
+      <tr><td><strong>Isochronic Tone</strong></td><td>A single tone pulsed on/off at the target frequency; does not require headphones</td></tr>
+      <tr><td><strong>Protocol Stack</strong></td><td>A sequence of two or more protocols run in succession to create compound neurological effects</td></tr>
+      <tr><td><strong>PWA</strong></td><td>Progressive Web App — a web application that can be installed to home screen and used offline</td></tr>
+      <tr><td><strong>SMR (12–15 Hz)</strong></td><td>Sensorimotor Rhythm — calm alertness, impulse control, ADHD treatment frequency</td></tr>
+      <tr><td><strong>Thalamocortical Dysrhythmia</strong></td><td>Abnormal slow-frequency thalamo-cortical loop oscillation associated with chronic pain</td></tr>
+      <tr><td><strong>Theta (4–8 Hz)</strong></td><td>Learning, memory encoding, hypnagogic states, and deep relaxation frequency band</td></tr>
+      <tr><td><strong>Vagal Tone</strong></td><td>The strength of the parasympathetic vagus nerve signal — higher tone = better stress resilience</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-divider"></div>
+  <p style="text-align:center;color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.15em">
+    SYNSYNC PRO USER MANUAL v1.0 · FEBRUARY 2026<br>
+    Open Source · Privacy First · Community Validated<br>
+    <a href="https://github.com/knowurknottty/synsyncpro" style="color:var(--cyan)">github.com/knowurknottty/synsyncpro</a>
+  </p>
+</main>
+</div>
+
+<script>
+// ─── Navigation Scrollspy ─────────────────────────────────
+const sections = document.querySelectorAll('.anchor-target, [id]');
+const navLinks = document.querySelectorAll('#sidebar a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + entry.target.id) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+}, { rootMargin: '-80px 0px -70% 0px' });
+
+sections.forEach(s => { if (s.id) observer.observe(s); });
+
+// ─── Mobile Navigation ────────────────────────────────────
+function toggleNav() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('visible');
+}
+function closeNav() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('visible');
+}
+
+// Close mobile nav on link click
+document.querySelectorAll('#sidebar a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 900) closeNav();
+  });
+});
+</script>
+</body>
+</html>

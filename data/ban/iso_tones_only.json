@@ -1,0 +1,55 @@
+{
+  "modality": "isochronic_tones_external_speakers_only",
+  "effects": [
+    {
+      "id": "A",
+      "effect_name": "Settle / pre-event calm",
+      "intent": "Encourage a calmer pre-event atmosphere (hypothesis).",
+      "typical_contexts": ["lobbies", "seated pre-show", "classrooms", "arenas (quiet moments)"]
+    },
+    {
+      "id": "B",
+      "effect_name": "Slow breathing support (pacing)",
+      "intent": "Support slower breathing cadence during a guided segment (hypothesis).",
+      "typical_contexts": ["guided relaxation segment", "wellness lounge", "small-group sessions"]
+    },
+    {
+      "id": "C",
+      "effect_name": "Meditation anchor (internal attention)",
+      "intent": "Provide a repetitive auditory anchor for meditation (hypothesis).",
+      "typical_contexts": ["small groups", "quiet rooms", "eyes-closed meditation segments"]
+    },
+    {
+      "id": "D",
+      "effect_name": "Sleep onset (small-group only)",
+      "intent": "Encourage sleepiness / nap transition in quiet settings (hypothesis).",
+      "typical_contexts": ["nap room", "wellness lounge", "very small quiet spaces"],
+      "constraints": ["Generally not suitable for stadium/arena deployment"]
+    },
+    {
+      "id": "E",
+      "effect_name": "Focus / study / work block",
+      "intent": "Support sustained work focus while remaining tolerable (hypothesis).",
+      "typical_contexts": ["study halls", "coworking spaces", "quiet productivity blocks"]
+    },
+    {
+      "id": "F",
+      "effect_name": "Alertness / anti-drowsy (between segments)",
+      "intent": "Short burst to increase perceived alertness (hypothesis; not safety-critical).",
+      "typical_contexts": ["between program blocks", "transition moments", "brief resets"]
+    },
+    {
+      "id": "G",
+      "effect_name": "Energy / hype (event priming)",
+      "intent": "Increase perceived energy/excitement before entrances or kickoffs (hypothesis).",
+      "typical_contexts": ["pre-entrance", "kickoff lead-in", "short crowd-priming moments"]
+    },
+    {
+      "id": "H",
+      "effect_name": "Discomfort / pain distraction (non-clinical)",
+      "intent": "Provide a non-clinical distraction during mild discomfort or long waits (hypothesis).",
+      "typical_contexts": ["waiting areas", "long-queue environments", "non-clinical comfort support"],
+      "constraints": ["Not a medical treatment claim"]
+    }
+  ]
+}

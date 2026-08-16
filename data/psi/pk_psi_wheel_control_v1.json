@@ -1,0 +1,46 @@
+{
+  "id": "psi_pk_psi_wheel_control_v1",
+  "title": "PK – Psi Wheel Control (CW / STOP / CCW)",
+  "target_task": "Move wheel clockwise, stop it, move it counterclockwise (repeatable control).",
+  "setup_controls": {
+    "airflow_block": "Place wheel inside a sealed container (glass/plastic jar, bowl, fish tank) to prevent air currents.",
+    "static_control": "Ground yourself / reduce static influence (document your method).",
+    "camera": "Wide shot showing you + wheel + enclosure for later review."
+  },
+  "session": {
+    "duration_sec": 420,
+    "phases": [
+      {
+        "name": "Baseline (no intention)",
+        "duration_sec": 60,
+        "instruction": "Hands still. Observe only. Confirm no drift or vibration sources."
+      },
+      {
+        "name": "Control Set A (CW → STOP → CCW)",
+        "duration_sec": 120,
+        "cycles": 2,
+        "cycle_steps": [
+          { "label": "CW drive", "duration_sec": 20, "cue": "One command only: CLOCKWISE." },
+          { "label": "Release", "duration_sec": 10, "cue": "Drop the command fully." },
+          { "label": "STOP (brake)", "duration_sec": 15, "cue": "One command only: STOP NOW." },
+          { "label": "Release", "duration_sec": 10, "cue": "Drop the command fully." },
+          { "label": "CCW drive", "duration_sec": 20, "cue": "One command only: COUNTERCLOCKWISE." },
+          { "label": "Release", "duration_sec": 10, "cue": "Drop the command fully." }
+        ]
+      },
+      {
+        "name": "Distance Set (optional)",
+        "duration_sec": 120,
+        "instruction": "Repeat Control Set A from farther away (across room / another room via webcam) if desired."
+      }
+    ]
+  },
+  "logging": {
+    "record": [
+      "direction_change_latency_sec_per_step",
+      "peak_spin_rate_estimate",
+      "stop_success_boolean",
+      "confounds: airflow/static/heat/vibration notes"
+    ]
+  }
+}

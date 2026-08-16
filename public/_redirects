@@ -1,0 +1,9 @@
+# Root → landing page
+/           /main.html  200
+
+# Demo shortcuts → React app
+/demo       /index.html 200
+/free-demo  /index.html 200
+
+# SPA fallback — all unmatched routes serve the React app shell
+/*          /index.html 200

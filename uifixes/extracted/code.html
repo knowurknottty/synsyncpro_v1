@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SynSync Pro | Bio-Insights Neural Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5b13ec",
+                        "background-dark": "#030305",
+                        "surface": "#12121A",
+                        "teal-glow": "#26ffdf",
+                        "violet-glow": "#8b5cf6",
+                        "amber-glow": "#fbbf24",
+                    },
+                    fontFamily: {
+                        "sans": ["Outfit", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-background-dark text-white font-sans antialiased;
+            }
+        }
+        .glass-card {
+            background: rgba(18, 18, 26, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .neural-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 0;
+            filter: drop-shadow(0 0 8px rgba(38, 255, 223, 0.6));
+        }
+        .glow-pulse-teal {
+            box-shadow: 0 0 30px -10px rgba(38, 255, 223, 0.3);
+        }
+        .glow-pulse-violet {
+            box-shadow: 0 0 30px -10px rgba(139, 92, 246, 0.3);
+        }
+        .hrv-wave {
+            stroke: rgba(38, 255, 223, 0.5);
+            fill: none;
+            stroke-width: 2;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .ring-chart {
+            transform: rotate(-90deg);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen overflow-x-hidden">
+<div class="fixed inset-0 pointer-events-none">
+<div class="absolute top-[10%] left-[-20%] w-[80%] h-[40%] bg-teal-glow/5 blur-[120px] rounded-full"></div>
+<div class="absolute bottom-[20%] right-[-20%] w-[80%] h-[40%] bg-violet-glow/5 blur-[120px] rounded-full"></div>
+</div>
+<div class="relative flex flex-col max-w-md mx-auto w-full min-h-screen pb-32">
+<header class="flex items-center justify-between px-6 pt-12 pb-6">
+<button class="size-10 rounded-full glass-card flex items-center justify-center text-white/60">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<h1 class="text-xl font-semibold tracking-tight">Bio-Insights</h1>
+<button class="size-10 rounded-full glass-card flex items-center justify-center text-white/60">
+<span class="material-symbols-outlined">share</span>
+</button>
+</header>
+<div class="px-6 mb-8">
+<div class="glass-card rounded-3xl p-6 glow-pulse-teal relative overflow-hidden">
+<div class="flex justify-between items-start mb-8">
+<div>
+<p class="text-white/40 text-[10px] uppercase font-bold tracking-widest">Neural Coherence</p>
+<h2 class="text-3xl font-bold mt-1">94.2<span class="text-teal-glow text-lg ml-1">%</span></h2>
+</div>
+<div class="flex gap-2">
+<span class="px-2 py-1 rounded-md bg-teal-glow/10 text-teal-glow text-[10px] font-bold">OPTIMAL</span>
+</div>
+</div>
+<div class="h-48 w-full relative">
+<svg class="w-full h-full" viewBox="0 0 400 150">
+<defs>
+<linearGradient id="chartGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#26ffdf" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#26ffdf" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+<path class="neural-path" d="M0,120 Q50,110 80,80 T150,60 T220,90 T300,40 T400,20" fill="none" stroke="#26ffdf" stroke-width="3"></path>
+<path d="M0,120 Q50,110 80,80 T150,60 T220,90 T300,40 T400,20 V150 H0 Z" fill="url(#chartGradient)"></path>
+<circle cx="300" cy="40" fill="#26ffdf" r="4"></circle>
+<circle cx="300" cy="40" fill="#26ffdf" fill-opacity="0.2" r="10"></circle>
+</svg>
+<div class="flex justify-between mt-4 text-[10px] text-white/30 font-medium">
+<span>08:00</span>
+<span>12:00</span>
+<span>16:00</span>
+<span>20:00</span>
+<span>NOW</span>
+</div>
+</div>
+</div>
+</div>
+<div class="px-6 mb-8">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-sm font-bold uppercase tracking-widest text-white/50">Brainwave Distribution</h3>
+<span class="text-xs text-white/30">Last 60 mins</span>
+</div>
+<div class="grid grid-cols-3 gap-4">
+<div class="glass-card rounded-2xl p-4 flex flex-col items-center">
+<div class="relative size-16 mb-3">
+<svg class="ring-chart size-16" viewBox="0 0 36 36">
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="3"></path>
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#8b5cf6" stroke-dasharray="65, 100" stroke-linecap="round" stroke-width="3" style="filter: drop-shadow(0 0 3px #8b5cf6);"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-[10px] font-bold">65%</span>
+</div>
+</div>
+<span class="text-[10px] font-bold text-violet-glow uppercase">Alpha</span>
+<span class="text-[9px] text-white/40">Calm</span>
+</div>
+<div class="glass-card rounded-2xl p-4 flex flex-col items-center">
+<div class="relative size-16 mb-3">
+<svg class="ring-chart size-16" viewBox="0 0 36 36">
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="3"></path>
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#fbbf24" stroke-dasharray="25, 100" stroke-linecap="round" stroke-width="3" style="filter: drop-shadow(0 0 3px #fbbf24);"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-[10px] font-bold">25%</span>
+</div>
+</div>
+<span class="text-[10px] font-bold text-amber-glow uppercase">Beta</span>
+<span class="text-[9px] text-white/40">Active</span>
+</div>
+<div class="glass-card rounded-2xl p-4 flex flex-col items-center">
+<div class="relative size-16 mb-3">
+<svg class="ring-chart size-16" viewBox="0 0 36 36">
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="3"></path>
+<path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#26ffdf" stroke-dasharray="10, 100" stroke-linecap="round" stroke-width="3" style="filter: drop-shadow(0 0 3px #26ffdf);"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-[10px] font-bold">10%</span>
+</div>
+</div>
+<span class="text-[10px] font-bold text-teal-glow uppercase">Gamma</span>
+<span class="text-[9px] text-white/40">Peak</span>
+</div>
+</div>
+</div>
+<div class="px-6 mt-auto">
+<div class="glass-card rounded-3xl p-6 relative overflow-hidden">
+<div class="flex items-center justify-between mb-6">
+<div>
+<p class="text-white/40 text-[10px] uppercase font-bold tracking-widest">HRV Rhythm</p>
+<h4 class="text-lg font-bold">78 <span class="text-xs text-white/40 font-normal">ms</span></h4>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-teal-glow shadow-[0_0_8px_#26ffdf]"></span>
+<span class="text-[10px] font-bold text-teal-glow">STABLE</span>
+</div>
+</div>
+<div class="h-16 w-full flex items-center justify-center">
+<svg class="w-full h-full opacity-80" viewBox="0 0 400 60">
+<path class="hrv-wave" d="M0,30 L40,30 L50,10 L65,50 L75,30 L110,30 L120,5 L135,55 L150,30 L190,30 L200,15 L215,45 L225,30 L260,30 L270,10 L285,50 L300,30 L400,30" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<p class="text-center text-[10px] text-white/30 mt-4 italic">Rhythmic parasympathetic engagement active</p>
+</div>
+</div>
+<div class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md px-4 pb-8 pt-2">
+<div class="glass-card rounded-2xl flex items-center justify-around p-2 border-white/10 shadow-2xl">
+<a class="flex flex-col items-center gap-1 p-2 text-white/40 hover:text-white/60 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-medium">Zen</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-white/40 hover:text-white/60 transition-colors" href="#">
+<span class="material-symbols-outlined">library_music</span>
+<span class="text-[10px] font-medium">Library</span>
+</a>
+<div class="relative -mt-10">
+<div class="absolute -inset-2 bg-primary/20 blur-xl rounded-full"></div>
+<button class="relative size-14 rounded-full bg-primary text-white flex items-center justify-center shadow-xl shadow-primary/20 border-4 border-background-dark">
+<span class="material-symbols-outlined text-[32px]">qr_code_scanner</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 p-2 text-white" href="#">
+<span class="material-symbols-outlined fill-1">insights</span>
+<span class="text-[10px] font-medium">Metrics</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-white/40 hover:text-white/60 transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">account_circle</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</div>
+</div>
+</div>
+<div class="hidden">
+<img alt="Bioluminescent neural network visualization" data-alt="Glowing teal and violet synaptic connections on a deep black background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9vhL1dkp7OMvk4PoKLtQhbx9c8jaHu5J-6GbP8w5_ecXW5bjCxbdAjUUAk6eBZNZTDPI2w_WNkllexmUDB7XUbP58nMkJ4V3N4iKfQZVH_BG1M5xUmufrCU1KAcMyBCltGa17odyY9LaI97tjiDmX8QFxVl_v33O_rMDaJbMHM7XmJoBw35Gsf1QBGBMAuyOZNmKa_mjNaqkpdwbL5W1E0Q_qOaCL_huWpql_bZQWxHAWI3eN7psTomoho0Ex3pnJsyOmmG-hxL2_"/>
+</div>
+
+</body></html>

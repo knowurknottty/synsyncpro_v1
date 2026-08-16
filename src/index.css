@@ -1,0 +1,170 @@
+/* Self-hosted fonts (zero external requests) */
+
+/* Inter */
+@import '@fontsource/inter/300.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/inter/800.css';
+
+/* Fira Code */
+@import '@fontsource/fira-code/400.css';
+@import '@fontsource/fira-code/600.css';
+
+/* Teko */
+@import '@fontsource/teko/300.css';
+@import '@fontsource/teko/500.css';
+
+/* JetBrains Mono */
+@import '@fontsource/jetbrains-mono/100.css';
+@import '@fontsource/jetbrains-mono/300.css';
+@import '@fontsource/jetbrains-mono/500.css';
+
+/* Space Grotesk */
+@import '@fontsource/space-grotesk/300.css';
+@import '@fontsource/space-grotesk/400.css';
+@import '@fontsource/space-grotesk/500.css';
+@import '@fontsource/space-grotesk/600.css';
+@import '@fontsource/space-grotesk/700.css';
+
+/* Space Mono */
+@import '@fontsource/space-mono/400.css';
+
+/* Michroma */
+@import '@fontsource/michroma/400.css';
+
+/* Share Tech Mono */
+@import '@fontsource/share-tech-mono/400.css';
+
+/* Outfit */
+@import '@fontsource/outfit/200.css';
+@import '@fontsource/outfit/400.css';
+@import '@fontsource/outfit/700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Low-resolution cockpit parity
+ *
+ * The medium/tablet shell is now also used on standard phone widths. These
+ * overrides preserve the full visualizer and desktop information hierarchy,
+ * while reflowing the two-column cockpit into a single vertical workspace.
+ */
+@media (max-width: 639px) {
+  /* TabletApp root */
+  #root > div {
+    min-width: 0;
+  }
+
+  /* Convert the protocol sidebar into an overlay drawer rather than allowing
+     it to permanently consume most of a 320–412px viewport. */
+  #root > div > aside {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 120;
+    width: min(84vw, 288px) !important;
+    max-width: 288px;
+    box-shadow: 24px 0 60px rgba(0, 0, 0, 0.72);
+  }
+
+  #root > div > aside > div {
+    width: 100% !important;
+  }
+
+  /* Keep the cockpit available behind the drawer at full phone width. */
+  #root > div > main {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Compact header without deleting status, profile, or volume controls. */
+  #root > div > main > header {
+    min-height: 52px;
+    height: auto;
+    gap: 8px;
+    padding: 8px 10px;
+  }
+
+  #root > div > main > header > div:last-child {
+    gap: 8px;
+  }
+
+  #root > div > main > header input[type='range'] {
+    width: 56px !important;
+  }
+
+  #root > div > main > header button span {
+    display: none;
+  }
+
+  /* Tablet content grid becomes a vertical cockpit instead of changing to a
+     separate stripped application. */
+  #root > div > main > div.flex-1.flex {
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #root > div > main > div.flex-1.flex > div {
+    width: 100% !important;
+    min-width: 0;
+    overflow: visible;
+    border-right: 0 !important;
+  }
+
+  /* Preserve the large cockpit graphic as the dominant mobile element. */
+  #root > div > main .aspect-video {
+    margin: 10px !important;
+    border-radius: 14px;
+    min-height: clamp(210px, 64vw, 290px);
+    aspect-ratio: 4 / 3;
+    box-shadow:
+      0 18px 50px rgba(0, 0, 0, 0.65),
+      0 0 28px rgba(0, 243, 255, 0.08);
+  }
+
+  /* Keep visualization mode controls touchable and horizontally scrollable. */
+  #root > div > main .overflow-x-auto {
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  #root > div > main .overflow-x-auto::-webkit-scrollbar {
+    display: none;
+  }
+
+  #root > div > main .overflow-x-auto > button {
+    scroll-snap-align: start;
+    min-height: 36px;
+  }
+
+  /* Reclaim space while retaining the complete protocol card. */
+  #root > div > main h3 {
+    font-size: 1rem;
+    line-height: 1.25rem;
+  }
+
+  #root > div > main button.w-16.h-16 {
+    width: 54px !important;
+    height: 54px !important;
+  }
+
+  #root > div > main .p-4 {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 359px) {
+  #root > div > main .aspect-video {
+    margin: 8px !important;
+    min-height: 196px;
+  }
+
+  #root > div > main > header {
+    padding-inline: 8px;
+  }
+}

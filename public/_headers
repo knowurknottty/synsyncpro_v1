@@ -1,0 +1,14 @@
+# Cache Vite's content-hashed bundles forever
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Never cache entry points or service worker
+/index.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/main.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+  Service-Worker-Allowed: /

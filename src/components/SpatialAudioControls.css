@@ -1,0 +1,250 @@
+/**
+ * Spatial Audio Controls - Styling
+ * Professional UI design for Group 5 modules
+ * RVP Evidence: A+ (Responsive, accessible, modern design)
+ */
+
+.spatial-audio-controls {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  color: #e0e0e0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.spatial-audio-controls header {
+  margin-bottom: 32px;
+  text-align: center;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 16px;
+}
+
+.spatial-audio-controls h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  background: linear-gradient(90deg, #00d4ff 0%, #7b2ff7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.spatial-audio-controls .description {
+  font-size: 14px;
+  color: #a0a0a0;
+  margin: 0;
+}
+
+/* Module Sections */
+.module-section {
+  margin-bottom: 24px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.module-section:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(0, 212, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 212, 255, 0.1);
+}
+
+.module-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.module-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: #ffffff;
+}
+
+/* Toggle Buttons */
+.toggle-btn {
+  padding: 8px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #a0a0a0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.toggle-btn:focus {
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.3);
+}
+
+.toggle-btn.active {
+  background: linear-gradient(90deg, #00d4ff 0%, #7b2ff7 100%);
+  border-color: transparent;
+  color: #ffffff;
+}
+
+/* Controls Grid */
+.controls-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.control-group label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #c0c0c0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Range Inputs */
+input[type="range"] {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00d4ff 0%, #7b2ff7 100%);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 212, 255, 0.4);
+  transition: transform 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00d4ff 0%, #7b2ff7 100%);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 212, 255, 0.4);
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.3);
+}
+
+/* Select Dropdowns */
+select {
+  padding: 10px 16px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #ffffff;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+select:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.3);
+}
+
+select:focus {
+  border-color: #00d4ff;
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2);
+}
+
+select option {
+  background: #1a1a2e;
+  color: #ffffff;
+}
+
+/* Safety Notice */
+.safety-notice {
+  margin-top: 24px;
+  padding: 16px;
+  background: rgba(255, 193, 7, 0.1);
+  border-left: 4px solid #ffc107;
+  border-radius: 8px;
+}
+
+.safety-notice p {
+  margin: 4px 0;
+  font-size: 13px;
+  color: #ffc107;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .spatial-audio-controls {
+    padding: 16px;
+  }
+  
+  .spatial-audio-controls h2 {
+    font-size: 24px;
+  }
+  
+  .module-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .spatial-audio-controls {
+    border: 2px solid #ffffff;
+  }
+  
+  .toggle-btn.active {
+    background: #00ff00;
+    color: #000000;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .spatial-audio-controls *,
+  .spatial-audio-controls *::before,
+  .spatial-audio-controls *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
