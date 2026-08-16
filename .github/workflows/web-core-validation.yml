@@ -1,0 +1,54 @@
+name: Web/Core Validation
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '**/*.ts'
+      - '**/*.tsx'
+      - 'public/**'
+      - 'manifest.json'
+      - 'sw.js'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'vite.config.ts'
+      - 'netlify.toml'
+      - '.nvmrc'
+      - 'PROTOCOL_PLAN_SCHEMA.json'
+      - 'scripts/verify-netlify-dist.mjs'
+      - '.github/workflows/web-core-validation.yml'
+  push:
+    branches: [main]
+    paths:
+      - '**/*.ts'
+      - '**/*.tsx'
+      - 'public/**'
+      - 'manifest.json'
+      - 'sw.js'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'vite.config.ts'
+      - 'netlify.toml'
+      - '.nvmrc'
+      - 'PROTOCOL_PLAN_SCHEMA.json'
+      - 'scripts/verify-netlify-dist.mjs'
+      - '.github/workflows/web-core-validation.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+      - run: npm ci
+      - run: npm run type-check
+      - run: npm test -- --run
+      - run: npm run build
+      - run: npm run verify:netlify-dist
+      - run: npm run validate:protocols
