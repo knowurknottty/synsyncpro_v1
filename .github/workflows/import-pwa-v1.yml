@@ -1,0 +1,35 @@
+name: Import verified SynSync PWA snapshot
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/import-pwa-v1.yml
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Import exact verified PWA tree
+        env:
+          SOURCE_URL: 'https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-d280-822f-9d5e-b876c2783a09/raw?se=2026-08-16T19%3A51%3A52Z&sp=r&sv=2026-02-06&sr=b&scid=786b41c2-ec36-5983-8189-7a76de15e941&skoid=d1cabc79-3240-4866-94fe-6005330cb49e&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-08-16T11%3A04%3A48Z&ske=2026-08-17T11%3A04%3A48Z&sks=b&skv=2026-02-06&sig=iMgbwn54g5Pp09lq3a%2BdTsbOxynQrqdzi2fBDaH0A3g%3D'
+        run: |
+          set -euo pipefail
+          curl --fail --location --silent --show-error "$SOURCE_URL" -o "$RUNNER_TEMP/source-artifact.zip"
+          mkdir -p "$RUNNER_TEMP/artifact" "$RUNNER_TEMP/source"
+          unzip -q "$RUNNER_TEMP/source-artifact.zip" -d "$RUNNER_TEMP/artifact"
+          tar -xzf "$RUNNER_TEMP/artifact/synsyncpro-v1-source.tgz" -C "$RUNNER_TEMP/source"
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -a "$RUNNER_TEMP/source/." .
+          git config user.name 'knowurknot'
+          git config user.email 'knowurknottty@gmail.com'
+          git add -A
+          git commit -m 'chore: seed verified clean SynSync PWA snapshot'
+          git push origin HEAD:main
