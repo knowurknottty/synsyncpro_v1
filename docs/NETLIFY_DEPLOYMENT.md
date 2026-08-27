@@ -4,14 +4,14 @@ This repository is intentionally scoped to the SynSync Web/PWA. Native macOS, Wi
 
 ## Source of truth
 
-- Repository: `knowurknottty/synsyncpro`
+- Repository: `knowurknottty/synsyncpro_v1`
 - Production branch: `main`
 - Build system: Vite
 - Node runtime: `.nvmrc` (Node 22)
 - Netlify configuration: `netlify.toml`
 - Build output: `dist/`
 
-Do not point production at `synsyncpro-release-candidate` or an old feature branch.
+Do not point production at `synsyncpro-release-candidate`, the older `synsyncpro` repository name, or an old feature branch. `synsyncpro_v1` is the canonical Web/PWA source named by this runbook.
 
 ## Build and verification
 
@@ -19,9 +19,9 @@ Do not point production at `synsyncpro-release-candidate` or an old feature bran
 npm ci
 npm run type-check
 npm test -- --run
+npm run validate:protocols
 npm run build
 npm run verify:netlify-dist
-npm run validate:protocols
 ```
 
 `npm run build` produces the browser application and copies the stable PWA entry/control files into `dist/`. `verify:netlify-dist` fails if required application, manifest, service-worker, protocol-schema, icon, or AudioWorklet files are absent or malformed.
