@@ -2,10 +2,11 @@ import { useState, useEffect, useCallback } from 'react';
 
 export type LayoutMode = 'compact' | 'medium' | 'cockpit';
 
-// Only genuinely sub-320px legacy viewports use the stripped compact shell.
-// Standard Android phones (320px and above) now receive the responsive cockpit
-// so visual identity and graphics stay consistent with desktop.
-export const COMPACT_MAX = 319;
+// Phones (up to 767px) receive the compact mobile shell (MobileAppDrawer):
+// bottom-sheet navigation, thumb-reachable controls, and a layout designed
+// for one-handed use. Tablets (768-1099px) get the medium layout; 1100px
+// and above get the full desktop cockpit.
+export const COMPACT_MAX = 767;
 export const COCKPIT_MIN = 1100;
 export const LEGACY_MOBILE_BREAKPOINT = 1024;
 
